@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetSetGo.Api", "JetSetGo.Api\JetSetGo.Api.csproj", "{E305791F-D706-463D-8D57-B6EDDA6BFFA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetSetGo.Application", "JetSetGo.Application\JetSetGo.Application.csproj", "{EDE1599C-F921-426C-8419-325BA9F08067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetSetGo.Domain", "JetSetGo.Domain\JetSetGo.Domain.csproj", "{8203E30F-A58E-4E5E-BD67-DC9E7A177361}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetSetGo.Infrastructure", "JetSetGo.Infrastructure\JetSetGo.Infrastructure.csproj", "{2B7BD19B-A0BE-4BC2-8994-2FE2032E04E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E305791F-D706-463D-8D57-B6EDDA6BFFA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E305791F-D706-463D-8D57-B6EDDA6BFFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E305791F-D706-463D-8D57-B6EDDA6BFFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E305791F-D706-463D-8D57-B6EDDA6BFFA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE1599C-F921-426C-8419-325BA9F08067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE1599C-F921-426C-8419-325BA9F08067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE1599C-F921-426C-8419-325BA9F08067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE1599C-F921-426C-8419-325BA9F08067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8203E30F-A58E-4E5E-BD67-DC9E7A177361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8203E30F-A58E-4E5E-BD67-DC9E7A177361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8203E30F-A58E-4E5E-BD67-DC9E7A177361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8203E30F-A58E-4E5E-BD67-DC9E7A177361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7BD19B-A0BE-4BC2-8994-2FE2032E04E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7BD19B-A0BE-4BC2-8994-2FE2032E04E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7BD19B-A0BE-4BC2-8994-2FE2032E04E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7BD19B-A0BE-4BC2-8994-2FE2032E04E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
