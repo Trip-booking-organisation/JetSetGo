@@ -6,10 +6,12 @@ namespace JetSetGo.Infrastructure.Persistence;
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     protected readonly DbSet<T>  DbSet;
+    protected readonly DbContext dbContext;
 
     protected GenericRepository(JetSetGoContext dbContext)
     {
         DbSet = dbContext.Set<T>();
+        this.dbContext = dbContext;
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()
@@ -25,6 +27,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task<T> CreateAsync(T entity)
     {
         await DbSet.AddAsync(entity);
+        await dbContext.SaveChangesAsync();
         return entity;
     }
 
@@ -41,6 +44,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return;
         }
         DbSet.Remove(entity);
+        
     }
 
     public Task UpdateAsync(T entity)

@@ -24,6 +24,7 @@ var app = builder.Build();
     app.MapControllers();
     //app.UseExceptionHandler("/error");
     app.MapFlightsEndpoints();
+    app.MapAuthenticationEndpoints();
     app.Run();
 }
 
