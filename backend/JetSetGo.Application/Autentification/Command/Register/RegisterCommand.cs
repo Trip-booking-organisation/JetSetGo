@@ -1,8 +1,7 @@
 ﻿using FluentResults;
-using JetSetGo.Domain.Users;
 using MediatR;
 
-namespace JetSetGo.Application.Autentification.Command;
+namespace JetSetGo.Application.Autentification.Command.Register;
 
 public record RegisterCommand(
     string FirstName,

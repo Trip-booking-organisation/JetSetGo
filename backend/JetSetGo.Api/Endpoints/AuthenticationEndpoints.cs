@@ -1,14 +1,9 @@
-﻿using FluentResults;
-using JetSetGo.Application.Autentification;
+﻿using backend.Requests.User;
 using JetSetGo.Application.Autentification.Command;
-using JetSetGo.Domain.Users;
-using JetSetGo.Infrastructure;
-using JetSetGo.Infrastructure.Persistence;
-using JetSetGoBackend.Requests.User;
+using JetSetGo.Application.Autentification.Command.Register;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
-namespace JetSetGoBackend;
+namespace backend.Endpoints;
 
 public static class AuthenticationEndpoints
 {

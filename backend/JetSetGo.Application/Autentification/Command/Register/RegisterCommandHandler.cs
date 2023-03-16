@@ -6,7 +6,7 @@ using JetSetGo.Domain.Users;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace JetSetGo.Application.Autentification.Command;
+namespace JetSetGo.Application.Autentification.Command.Register;
 
 public record RegisterCommandHandler: IRequestHandler<RegisterCommand,Result<AutentificationResult>>
 {
