@@ -26,10 +26,11 @@ var app = builder.Build();
     app.MapControllers();
     //app.UseExceptionHandler("/error");
     app.MapFlightsEndpoints();
+    app.MapAuthenticationEndpoints();
     app.UseCors(
         app.Configuration
-        .GetSection("Cors")
-        .GetSection("PolicyName").Value!);
+            .GetSection("Cors")
+            .GetSection("PolicyName").Value!);
     app.Run();
 }
 

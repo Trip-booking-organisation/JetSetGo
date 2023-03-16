@@ -2,9 +2,9 @@
 
 public record AutentificationResult
 (
-    Guid Id,
     string FirstName,
     string LastName,
-    string Email
+    string Email,
+    string Token
 );
     
