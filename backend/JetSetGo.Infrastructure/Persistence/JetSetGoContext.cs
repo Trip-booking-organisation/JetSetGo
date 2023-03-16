@@ -13,9 +13,10 @@ public class JetSetGoContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         DotNetEnv.Env.Load();
+        DotNetEnv.Env.TraversePath().Load();
         var accountEndpoint = Environment.GetEnvironmentVariable("DB_ACC_ENDPOINT") ?? "https://jetsetgo.documents.azure.com:443/";
-        var accKey= Environment.GetEnvironmentVariable("DB_ACC_KEY")!;
-        var dbName= Environment.GetEnvironmentVariable("DB_NAME") ?? "letsetgo-db";
+        var accKey=Environment.GetEnvironmentVariable("DB__ACC__KEY")!;
+        var dbName=Environment.GetEnvironmentVariable("DB_NAME") ?? "letsetgo-db";
         optionsBuilder.UseCosmos(
             accountEndpoint,
             accKey,
