@@ -1,11 +1,10 @@
-﻿using JetSetGo.Application.Autentification;
+﻿using backend.Requests.User;
+using JetSetGo.Application.Autentification;
 using JetSetGo.Domain.Users;
-using JetSetGo.Infrastructure;
 using JetSetGo.Infrastructure.Persistence;
-using JetSetGoBackend.Requests.User;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JetSetGoBackend;
+namespace backend.Controllers;
 
 [ApiController]
 [Route("api/v1/Authentication")]

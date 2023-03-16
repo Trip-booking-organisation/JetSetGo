@@ -1,4 +1,4 @@
-﻿namespace JetSetGoBackend;
+﻿namespace backend;
 
 public static class DependencyInjection
 {

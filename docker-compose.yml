@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  jet-set-go-be:
+    image: ${DOCKER_REGISTRY-}jet-set-go-be
+    container_name: jet-set-go-api
+    build: backend
+    restart: on-failure
+    ports:
+      - "5000:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    networks:
+      - jet-set-go-network
+  jet-set-go-fe:
+    image: ${DOCKER_REGISTRY-}jet-set-go-be
+    container_name: jet-set-go-fe
+    build: frontend
+    restart: on-failure
+    ports:
+      - "4200:80"
+    networks:
+      - jet-set-go-network
+networks:
+  jet-set-go-network:
+    driver: bridge
+  

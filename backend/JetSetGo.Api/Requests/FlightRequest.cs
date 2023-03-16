@@ -1,4 +1,4 @@
-﻿namespace JetSetGoBackend.Requests;
+﻿namespace backend.Requests;
 
 public class FlightRequest
 {

@@ -1,8 +1,8 @@
 using System.Configuration;
+using backend;
+using backend.Endpoints;
 using JetSetGo.Application;
 using JetSetGo.Infrastructure;
-using JetSetGoBackend;
-using JetSetGoBackend.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 {

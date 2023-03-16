@@ -1,18 +1,16 @@
 ﻿using JetSetGo.Application.Flights.Query.GetById;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
-namespace JetSetGoBackend.Endpoints;
+namespace backend.Endpoints;
 
 public static class FlightEndpoints
 {
     public static void MapFlightsEndpoints(this WebApplication application)
     {
-        application.MapGet("flights",GetAllFlights);
-        application.MapPost("flights",CreateFlight);
-        application.MapGet("flights/{id:guid}", GetFlightById);
-        application.MapGet("/", () => "HelLoo");
+        application.MapGet("api/v1/flights",GetAllFlights);
+        application.MapPost("api/v1/flights",CreateFlight);
+        application.MapGet("api/v1/flights/{id:guid}", GetFlightById);
+        application.MapGet("/", () => Results.Ok("Hello"));
     }
 
     private static async Task<IResult> GetAllFlights(ISender sender)
@@ -24,7 +22,7 @@ public static class FlightEndpoints
     {
         var query = new GetFlightQuery(id);
         var flight = await sender.Send(query);
-        return flight.IsFailed ? Results.NotFound() : Results.Ok(flight.Value);
+        return flight.IsFailed ? Results.NotFound(flight.Errors) : Results.Ok(flight.Value);
     }
     private static async Task<IResult> CreateFlight(ISender sender,Guid id)
     {

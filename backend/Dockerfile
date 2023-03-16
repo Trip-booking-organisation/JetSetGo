@@ -5,16 +5,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["JetSetGoBackend/JetSetGoBackend.csproj", "JetSetGoBackend/"]
-RUN dotnet restore "JetSetGoBackend/JetSetGoBackend.csproj"
+COPY ["JetSetGo.Api/JetSetGo.Api.csproj", "JetSetGo.Api/"]
+COPY ["JetSetGo.Application/JetSetGo.Application.csproj", "JetSetGo.Application/"]
+COPY ["JetSetGo.Domain/JetSetGo.Domain.csproj", "JetSetGo.Domain/"]
+COPY ["JetSetGo.Infrastructure/JetSetGo.Infrastructure.csproj", "JetSetGo.Infrastructure/"]
+RUN dotnet restore "JetSetGo.Api/JetSetGo.Api.csproj"
 COPY . .
-WORKDIR "/src/JetSetGoBackend"
-RUN dotnet build "JetSetGoBackend.csproj" -c Release -o /app/build
+WORKDIR "/src/JetSetGo.Api"
+RUN dotnet build "JetSetGo.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "JetSetGoBackend.csproj" -c Release -o /app/publish
+RUN dotnet publish "JetSetGo.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "JetSetGoBackend.dll"]
+ENTRYPOINT ["dotnet", "JetSetGo.Api.dll"]

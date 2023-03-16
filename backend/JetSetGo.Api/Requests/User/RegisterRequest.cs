@@ -1,4 +1,4 @@
-﻿namespace JetSetGoBackend.Requests.User;
+﻿namespace backend.Requests.User;
 
 public record RegisterRequest
 (
