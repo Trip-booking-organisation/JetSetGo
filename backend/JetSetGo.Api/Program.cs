@@ -1,3 +1,4 @@
+using System.Configuration;
 using JetSetGo.Application;
 using JetSetGo.Infrastructure;
 using JetSetGoBackend;
@@ -6,7 +7,7 @@ using JetSetGoBackend.Endpoints;
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
-        .AddPresentation()
+        .AddPresentation(builder.Configuration)
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
     builder.Logging.ClearProviders();
@@ -21,9 +22,14 @@ var app = builder.Build();
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+    
     app.MapControllers();
     //app.UseExceptionHandler("/error");
     app.MapFlightsEndpoints();
+    app.UseCors(
+        app.Configuration
+        .GetSection("Cors")
+        .GetSection("PolicyName").Value!);
     app.Run();
 }
 
