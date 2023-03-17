@@ -1,4 +1,5 @@
-﻿/JetSetGoBackend/.idea/.idea.JetSetGoBackend/.idea/projectSettingsUpdater.xml
-/JetSetGoBackend/.idea/.idea.JetSetGoBackend.dir/.idea/projectSettingsUpdater.xml
-/JetSetGoBackend/.idea/.idea.JetSetGoBackend/.idea/workspace.xml
-/JetSetGoBackend/.idea/.idea.JetSetGoBackend.dir/.idea/workspace.xml
+﻿.idea
+backend/.idea
+frontend/.idea
+frontend/node_modules
+docker.prod.yml

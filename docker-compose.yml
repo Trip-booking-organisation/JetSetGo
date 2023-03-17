@@ -9,10 +9,12 @@ services:
       - "5000:80"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+    env_file:
+      - backend/.env
     networks:
       - jet-set-go-network
   jet-set-go-fe:
-    image: ${DOCKER_REGISTRY-}jet-set-go-be
+    image: ${DOCKER_REGISTRY-}jet-set-go-fe
     container_name: jet-set-go-fe
     build: frontend
     restart: on-failure
