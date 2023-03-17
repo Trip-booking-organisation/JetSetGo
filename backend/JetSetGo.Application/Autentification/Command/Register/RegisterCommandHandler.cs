@@ -24,6 +24,11 @@ public record RegisterCommandHandler: IRequestHandler<RegisterCommand,Result<Aut
 
     public async Task<Result<AutentificationResult>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
+        if (!await CheckEmail(request.Email))
+        {
+            return Result.Fail("Wrong credentials");
+        }
+        
         Guid userId = Guid.NewGuid();
         var token = _jwtTokenGenerator.GenerateToken(userId, request.FirstName, request.LastName);
         var user = new User
@@ -40,5 +45,15 @@ public record RegisterCommandHandler: IRequestHandler<RegisterCommand,Result<Aut
             request.LastName, 
             request.Email, 
             token);
+    }
+    
+    private async Task<Boolean> CheckEmail(string email)
+    {
+        var user = await _userRepository.GetByEmail(email);
+        if (user != null)
+        {
+            return false;
+        }
+        return true;
     }
 }
