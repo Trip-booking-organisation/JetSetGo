@@ -18,24 +18,20 @@ namespace JetSetGo.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services,
+    public static void AddInfrastructure(this IServiceCollection services,
         ConfigurationManager builderConfiguration)
     {
         builderConfiguration.AddDotNetEnv();
         services.AddPersistence();
         services.AddServices();
         services.AddConfiguration(builderConfiguration);
-        return services;
     }
     private static void AddPersistence(this IServiceCollection services){
+        services.AddDbContext<JetSetGoContext>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IFlightRepository, FlightContainer>();
-        services.AddCosmos();
     }
-    private static void AddCosmos(this IServiceCollection services){
-        services.AddDbContext<JetSetGoContext>();
-    }
-    
+
     private static void AddServices(this IServiceCollection services){
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddSingleton<IDateTimeProvider,DateTimeProvider>();
