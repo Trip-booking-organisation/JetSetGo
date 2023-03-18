@@ -25,13 +25,14 @@ public class JetSetGoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Flight>().ToContainer("Flights");
+        modelBuilder.Entity<User>().ToContainer("Users");
         modelBuilder.Entity<Flight>()
-            .ToContainer("Flights")
             .HasPartitionKey(f => f.Id);
-        modelBuilder.Entity<Flight>().OwnsMany(f => f.Tickets);
+        modelBuilder.Entity<Flight>()
+            .OwnsMany(f => f.Tickets);
 
         modelBuilder.Entity<User>()
-            .ToContainer("Users")
             .HasPartitionKey(u => u.Id);
     }
 }

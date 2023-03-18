@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
         .AddInfrastructure(builder.Configuration);
     builder.Logging.ClearProviders();
     builder.Logging.AddConsole();
-    builder.Services.AddControllers();
 }
 
 var app = builder.Build();
@@ -22,11 +21,8 @@ var app = builder.Build();
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-    
-    app.MapControllers();
     //app.UseExceptionHandler("/error");
-    app.MapFlightsEndpoints();
-    app.MapAuthenticationEndpoints();
+    app.MapEndpoints();
     app.UseCors(
         app.Configuration
             .GetSection("Cors")
