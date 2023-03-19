@@ -1,4 +1,4 @@
-﻿namespace HouseFinder360.Domain.Common.BuildingBlocks;
+﻿namespace JetSetGo.Domain.Common.BuildingBlocks;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {

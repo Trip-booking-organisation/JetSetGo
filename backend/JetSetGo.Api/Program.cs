@@ -1,4 +1,3 @@
-using System.Configuration;
 using backend;
 using backend.Endpoints;
 using JetSetGo.Application;
