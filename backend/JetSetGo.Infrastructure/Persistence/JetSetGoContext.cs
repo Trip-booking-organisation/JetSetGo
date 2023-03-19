@@ -1,4 +1,5 @@
 ﻿using JetSetGo.Domain.Flights;
+using JetSetGo.Domain.Tickets;
 using JetSetGo.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,13 +27,18 @@ public class JetSetGoContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Flight>().ToContainer("Flights");
+        modelBuilder.Entity<Ticket>().ToContainer("Tickets");
         modelBuilder.Entity<User>().ToContainer("Users");
+        
         modelBuilder.Entity<Flight>()
             .HasPartitionKey(f => f.Id);
         modelBuilder.Entity<Flight>()
-            .OwnsMany(f => f.Tickets);
+            .OwnsMany(f => f.Seats);
 
         modelBuilder.Entity<User>()
             .HasPartitionKey(u => u.Id);
+        
+        modelBuilder.Entity<Ticket>()
+            .HasPartitionKey(t => t.Id);
     }
 }

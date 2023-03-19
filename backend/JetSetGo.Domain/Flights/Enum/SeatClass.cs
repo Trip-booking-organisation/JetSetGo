@@ -1,6 +1,6 @@
 ﻿namespace JetSetGo.Domain.Flights.Enum;
 
-public enum Class
+public enum SeatClass
 {
     First = 0,
     Business = 1,
