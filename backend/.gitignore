@@ -5,6 +5,8 @@
 .idea
 #env
 .env
+.env.prod
+*.crt
 # User-specific files
 *.rsuser
 *.suo

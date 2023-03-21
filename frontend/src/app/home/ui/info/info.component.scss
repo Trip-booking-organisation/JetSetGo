@@ -1,0 +1,65 @@
+@import "src/sass/variables";
+
+.info {
+  background: $secondary-color;
+  border-radius: 1rem;
+
+  .info-container {
+    .title-div {
+      h2 {
+        background: $gradient-blue;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+      justify-content: space-between;
+    }
+
+    .cards {
+      gap: 1.5rem;
+      margin-top: 3rem;
+
+      .single-card {
+        background: $white-color;
+        padding: 3rem 2rem;
+        border-radius: 10rem;
+        gap: 1rem;
+        text-align: center;
+        height: 320px;
+        width: 90%;
+        max-width: 250px;
+        margin: auto;
+
+        .icon-div {
+          justify-content: center;
+          margin: auto;
+          background: $primary-color;
+          width: max-content;
+          height: 55px;
+          padding: 1.2rem;
+          border-radius: 3rem;
+
+          .icon {
+            color: $white-color;
+          }
+        }
+
+        .card-title {
+          color: $black-color;
+          font-weight: 700;
+        }
+
+        .color-one {
+          background: $pinky-1;
+        }
+
+        .color-two {
+          background: $pinky-2;
+        }
+      }
+    }
+  }
+}

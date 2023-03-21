@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using JetSetGo.Application.Common.Errors;
 using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Domain.Flights;
 using MediatR;
@@ -25,6 +26,6 @@ public class GetFlightQueryHandler : IRequestHandler<GetFlightQuery,Result<Fligh
         _logger.LogInformation("Key {env}", 
             env);
         var flight = await _flightRepository.GetById(request.Id);
-        return flight ?? Result.Fail<Flight>("Cannot find flight");
+        return flight ?? Result.Fail<Flight>(FlightErrors.FlightNotFound);
     }
 }

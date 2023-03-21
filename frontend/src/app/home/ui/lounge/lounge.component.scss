@@ -1,0 +1,38 @@
+@import "src/sass/variables";
+
+.lounge {
+  .section-container {
+    gap: 1.5rem;
+
+    .img-div {
+      margin: auto;
+
+      img {
+        width: 100%;
+        max-width: 430px;
+      }
+    }
+
+    .text {
+      h2 {
+        background: $gradient-blue;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .grids {
+        margin-top: 1rem;
+        gap: 1.5rem;
+
+        .single-grid {
+          .grid-title {
+            display: block;
+            padding-bottom: .5rem;
+            font-weight: 550;
+            color: $black-color;
+          }
+        }
+      }
+    }
+  }
+}

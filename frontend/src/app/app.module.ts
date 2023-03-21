@@ -7,6 +7,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HomeModule} from "./home/home.module";
 import {FlightsModule} from "./flights/flights.module";
 import { RegistrationComponent } from './view/autentification/registration/registration.component';
+import {ComponentsModule} from "./components/components.module";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RegistrationComponent } from './view/autentification/registration/regis
     AppRoutingModule,
     HttpClientModule,
     HomeModule,
-    FlightsModule
+    FlightsModule,
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

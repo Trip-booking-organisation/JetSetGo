@@ -10,9 +10,9 @@ public static class AuthenticationEndpoints
 {
     public static void MapAuthenticationEndpoints(this WebApplication application)
     {
-        application.MapGet("authentification/users", GetAllUsers);
-        application.MapPost("authentification/register", Register);
-        application.MapPost("authentification/signIn", SignIn);
+        application.MapGet("authentication/users", GetAllUsers);
+        application.MapPost("authentication/register", Register);
+        application.MapPost("authentication/signIn", SignIn);
     }
 
     private static async Task<IResult> GetAllUsers(ISender sender)
