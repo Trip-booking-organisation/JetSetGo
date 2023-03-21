@@ -1,0 +1,41 @@
+@import "src/sass/variables";
+
+.home {
+  padding-top: 10rem;
+  text-align: center;
+  gap: 2rem;
+  flex-direction: column;
+
+  .main-text {
+    background: $gradient-blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 2.5rem;
+    text-wrap: none;
+  }
+
+  .home-images {
+    width: 100%;
+    margin: 1rem auto 0;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 6rem;
+
+    .video-div {
+      width: 100%;
+
+      .video {
+        border-radius: 11rem;
+      }
+    }
+
+    .plane {
+      position: absolute;
+      width: 100%;
+      top: -50%;
+    }
+  }
+}

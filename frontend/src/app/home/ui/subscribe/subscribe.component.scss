@@ -1,0 +1,41 @@
+@import "src/sass/variables";
+
+.subscribe {
+  background: $secondary-color;
+  border-radius: 1rem;
+
+  .section-container {
+    text-align: center;
+
+    h2 {
+      background: $gradient-blue;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-div {
+      margin-top: 1rem;
+      flex-direction: column;
+      background: $white-color;
+      border-radius: 1rem;
+      gap: .5rem;
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 1rem .5rem;
+
+        &::placeholder {
+          font-size: 13px;
+          opacity: 0.7;
+        }
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+  }
+}

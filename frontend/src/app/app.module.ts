@@ -6,6 +6,8 @@ import {AppComponent} from './app.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HomeModule} from "./home/home.module";
 import {FlightsModule} from "./flights/flights.module";
+import {ComponentsModule} from "./components/components.module";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {FlightsModule} from "./flights/flights.module";
     AppRoutingModule,
     HttpClientModule,
     HomeModule,
-    FlightsModule
+    FlightsModule,
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

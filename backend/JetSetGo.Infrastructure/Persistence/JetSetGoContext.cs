@@ -1,5 +1,5 @@
 ﻿using JetSetGo.Domain.Flights;
-using JetSetGo.Domain.Users;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 
 namespace JetSetGo.Infrastructure.Persistence;
@@ -14,13 +14,13 @@ public class JetSetGoContext : DbContext
     {
         DotNetEnv.Env.Load();
         DotNetEnv.Env.TraversePath().Load();
-        var accountEndpoint = Environment.GetEnvironmentVariable("DB_ACC_ENDPOINT") ?? "https://jetsetgo.documents.azure.com:443/";
-        var accKey=Environment.GetEnvironmentVariable("DB_ACC_KEY")!;
-        var dbName=Environment.GetEnvironmentVariable("DB_NAME") ?? "letsetgo-db";
+        var accountEndpoint = Environment.GetEnvironmentVariable("DB_ACC_ENDPOINT") ?? "https://localhost:8081";
+        var accKey=Environment.GetEnvironmentVariable("DB_ACC_KEY") ?? "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+        var dbName=Environment.GetEnvironmentVariable("DB_NAME") ?? "jet-set-go";
         optionsBuilder.UseCosmos(
             accountEndpoint,
-            accKey,
-            dbName);
+            accKey, dbName);
+
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,7 +31,6 @@ public class JetSetGoContext : DbContext
             .HasPartitionKey(f => f.Id);
         modelBuilder.Entity<Flight>()
             .OwnsMany(f => f.Tickets);
-
         modelBuilder.Entity<User>()
             .HasPartitionKey(u => u.Id);
     }

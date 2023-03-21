@@ -1,0 +1,80 @@
+@import "src/sass/variables";
+
+.search {
+  .section-container {
+    width: 100%;
+    padding: 1.5rem;
+    border: 2px solid $gray-background;
+    border-radius: 16px;
+    row-gap: 2rem;
+
+    .btn-multi {
+      background: $secondary-color;
+      padding: .6rem;
+      border-radius: 1rem;
+      flex-direction: column;
+      width: 100%;
+      margin: auto;
+
+      .btn-single {
+        padding: .8rem 1.5rem;
+        font-size: 13px;
+        border-radius: 3rem;
+        width: 80%;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+          background: $primary-color;
+          color: $white-color;
+          font-weight: 500;
+          transition: 0.5s ease;
+        }
+      }
+    }
+
+    .search-inputs {
+      width: 100%;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .single-input {
+        .icon-div {
+          padding: 18px 12px;
+          border-radius: 3rem;
+          background: $secondary-color;
+          margin-right: 1rem;
+
+          .icon {
+            color: $black-color;
+            opacity: .7;
+          }
+        }
+
+        .texts {
+          h4 {
+            padding-top: 0;
+            padding-bottom: .7rem;
+            color: $black-color;
+            font-weight: 700;
+            font-size: 20px;
+          }
+
+          input {
+            width: 95%;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            background: transparent;
+
+            &::placeholder {
+              font-size: 15px;
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+  }
+}
