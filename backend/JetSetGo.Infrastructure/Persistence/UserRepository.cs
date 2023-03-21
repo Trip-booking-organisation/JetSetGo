@@ -6,22 +6,22 @@ namespace JetSetGo.Infrastructure.Persistence;
 
 public class UserRepository : IUserRepository
 {
-    protected readonly JetSetGoContext dbContext;
+    protected readonly JetSetGoContext DbContext;
 
     public UserRepository(JetSetGoContext dbContext)
     {
-        this.dbContext = dbContext;
+        this.DbContext = dbContext;
     }
 
     public async Task<User> CreateAsync(User user)
     {
-        await dbContext.Users.AddAsync(user);
+        await DbContext.Users.AddAsync(user);
         return user;
     }
 
     public async Task<User?> GetByEmail(string email)
     {
-        var user = await dbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
+        var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
         return user;
     }
     
