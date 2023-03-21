@@ -1,0 +1,17 @@
+@import "src/sass/variables";
+
+.single-info {
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  .number {
+    background: $primary-color;
+    padding: 5px 12px;
+    width: 40px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: $white-color;
+  }
+}

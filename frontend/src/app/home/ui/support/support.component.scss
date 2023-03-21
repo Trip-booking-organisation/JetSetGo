@@ -1,0 +1,39 @@
+@import "src/sass/variables";
+
+.support {
+  .section-container {
+    .title-div {
+      text-align: center;
+
+      h2 {
+        background: $gradient-blue;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      small {
+        letter-spacing: .8rem;
+        text-transform: uppercase;
+        font-size: 14px;
+        color: $black-color;
+        line-height: 1.5rem;
+      }
+    }
+
+    .info-div {
+      margin-top: 2rem;
+      gap: 2rem;
+    }
+
+    .img-div {
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+  }
+}

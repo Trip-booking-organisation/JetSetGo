@@ -1,0 +1,27 @@
+﻿version: '3.8'
+services:
+  jet-set-go-be:
+    image: tadjotadjo/jet-set-go-be
+    container_name: jet-set-go-api
+    build: backend
+    restart: on-failure
+    ports:
+      - "5000:80"
+    env_file:
+      - backend/.env
+    networks:
+      - jet-set-go-network
+  jet-set-go-fe:
+    image: tadjotadjo/jet-set-go-fe
+    container_name: jet-set-go-fe
+    build: frontend
+    restart: on-failure
+    ports:
+      - "4200:80"
+    networks:
+      - jet-set-go-network
+networks:
+  jet-set-go-network:
+    driver: bridge
+  
+  

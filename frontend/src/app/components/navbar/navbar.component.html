@@ -1,0 +1,41 @@
+<div class="navbar flex">
+  <div class="navbar-one flex">
+    <mat-icon>airplanemode_active</mat-icon>
+    <div class="none flex">
+      <li class="flex">
+        <mat-icon>vibration</mat-icon>
+        Support
+      </li>
+      <li class="flex">
+        <mat-icon>language</mat-icon>
+        Languages
+      </li>
+    </div>
+    <div class="gap__ flex">
+      <span>Sign In</span>
+      <span>Sign Up</span>
+    </div>
+  </div>
+  <div [class]="addBackground">
+    <div class="logo-div">
+      <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
+    </div>
+    <div [class]="activeClass">
+      <ul class="menu flex">
+        <li (click)="removeNavBar()" class="list-item"
+            *ngFor="let data of navDataPassenger">
+          {{data.label}}
+        </li>
+      </ul>
+      <button class="btn btn-one flex">
+        Contact
+      </button>
+    </div>
+    <button class="btn btn-two flex">
+      Contact
+    </button>
+    <div class="toggle-icon" (click)="showNavBar()">
+      <mat-icon class="icon">menu</mat-icon>
+    </div>
+  </div>
+</div>

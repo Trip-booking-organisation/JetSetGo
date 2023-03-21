@@ -1,3 +1,19 @@
-﻿$primary-color: "#fcfcfc";
-$secondary-color: "#fcfcfc";
+﻿//colors
+$primary-color: hsl(225, 50%, 48%);
+$secondary-color: hsl(240, 3%, 94%);
+$white-color: hsl(0, 0%, 100%);
+$white-color-dm: hsl(0, 0%, 93%);
+$hover-color: hsl(225, 56%, 59%);
+$gray-text: rgb(145, 145, 145);
+$black-color: hsl(0, 0%, 12%);
+$gradient-blue: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+$gray-background: hsl(0, 0%, 94%);
+$pinky-1: hsl(15, 74%, 70%);
+$pinky-2: hsl(28, 100%, 60%);
+$border-color: hsl(0, 0%, 83%);
+$box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+rgba(0, 0, 0, 0.06) 0px 4px 6px -2px;
+//animation
+$transition: 0.4s ease-in-out;
+
 

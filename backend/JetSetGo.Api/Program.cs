@@ -22,10 +22,11 @@ var app = builder.Build();
     }
     //app.UseExceptionHandler("/error");
     app.MapEndpoints();
-    app.UseCors(
-        app.Configuration
+    app.UseHttpsRedirection();
+    app.UseCors(app.Configuration
             .GetSection("Cors")
             .GetSection("PolicyName").Value!);
+    //app.RunCosmosCreation();
     app.Run();
 }
 
