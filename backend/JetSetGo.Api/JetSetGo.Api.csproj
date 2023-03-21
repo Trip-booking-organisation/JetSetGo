@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <Folder Include="Mapping" />
+      <Folder Include="Requests\Tickets" />
       <Folder Include="Responses" />
       <Folder Include="Validation" />
     </ItemGroup>

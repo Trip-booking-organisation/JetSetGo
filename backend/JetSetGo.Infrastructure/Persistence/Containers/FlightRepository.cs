@@ -3,11 +3,11 @@ using JetSetGo.Domain.Flights;
 
 namespace JetSetGo.Infrastructure.Persistence.Containers;
 
-public class FlightContainer : IFlightRepository
+public class FlightRepository : IFlightRepository
 {
     private readonly JetSetGoContext _context;
 
-    public FlightContainer(JetSetGoContext context)
+    public FlightRepository(JetSetGoContext context)
     {
         _context = context;
     }

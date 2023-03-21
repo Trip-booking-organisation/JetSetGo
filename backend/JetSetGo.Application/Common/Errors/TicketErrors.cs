@@ -1,0 +1,9 @@
+﻿using FluentResults;
+
+namespace JetSetGo.Application.Common.Errors;
+
+public static class TicketErrors
+{
+    public static IError TicketsNotFound=> new Error("Tickets not found");
+
+}
