@@ -44,6 +44,11 @@ $frontend-theme: mat.define-light-theme((
 
 body {
   background: $white-color;
+  cursor: url('/assets/images/globe_cursor.png'), auto;
+}
+
+.cursor {
+  cursor: url('/assets/images/globe_cursor.png'), auto;
 }
 
 a {
