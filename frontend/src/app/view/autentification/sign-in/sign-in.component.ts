@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {User} from "../../../model/ApplicationUser/User";
 import {SignInRequest} from "../../../model/autentification/signIn/SignInRequest";
 import {AutentificationService} from "../../../services/autentificationService";
 import {TokenStorageService} from "../../../services/tokenStorage.service";
 import {RegisterRequest} from "../../../model/autentification/register/RegisterRequest";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -25,10 +25,10 @@ export class SignInComponent implements OnInit {
   @Output() onSignInOrRegister: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(private autentificationService:AutentificationService,private tokenStorage: TokenStorageService) {
-  }
+  constructor(private autentificationService:AutentificationService,private tokenStorage: TokenStorageService,
+              private router:Router) {}
   ngOnInit(): void {
-    this.onSignInOrRegister.emit(false)
+    this.onSignInOrRegister.emit(true)
     this.container = document.querySelector(".container");
   }
 
@@ -69,4 +69,6 @@ export class SignInComponent implements OnInit {
       }
     })
   }
+
+
 }

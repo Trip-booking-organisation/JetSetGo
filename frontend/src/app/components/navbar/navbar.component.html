@@ -1,5 +1,5 @@
 <div class="navbar flex">
-  <div class="navbar-one flex">
+  <div class="navbar-one flex ">
     <mat-icon>airplanemode_active</mat-icon>
     <div class="none flex">
       <li class="flex">
@@ -16,7 +16,7 @@
       <span>Sign Up</span>
     </div>
   </div>
-  <div [class]="addBackground">
+  <div [class]="addBackground" *ngIf="isNotSignIn()">
     <div class="logo-div">
       <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
     </div>

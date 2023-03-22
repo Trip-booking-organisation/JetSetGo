@@ -12,9 +12,8 @@
     width: 100%;
   }
 
-  .navbar-one {
-    background: $secondary-color;
 
+  .navbar-one {
     .icon:hover {
       color: $primary-color;
     }
@@ -34,6 +33,12 @@
         }
       }
     }
+  }
+  .opacity-background{
+    background: $secondary-color opacity(50%);
+  }
+  .visible-background{
+    background: $secondary-color ;
   }
 
   .nav-bg {
