@@ -9,11 +9,15 @@ import {FlightsModule} from "./flights/flights.module";
 import { RegistrationComponent } from './view/autentification/registration/registration.component';
 import {ComponentsModule} from "./components/components.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SignInComponent } from './view/autentification/sign-in/sign-in.component';
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HomeModule,
     FlightsModule,
     ComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

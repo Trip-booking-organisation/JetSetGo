@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AutentificationService} from "../../../services/autentificationService";
-import {RegisterRequest} from "../../../model/autentification/RegisterRequest";
+import {RegisterRequest} from "../../../model/autentification/register/RegisterRequest";
 
 @Component({
   selector: 'app-registration',
@@ -12,9 +12,9 @@ export class RegistrationComponent {
   }
   register() {
     var newUser = new RegisterRequest()
-    newUser.Email = "try@gmail.com"
-    newUser.FirstName = "try"
-    newUser.LastName = "try"
+    newUser.Email = "try2@gmail.com"
+    newUser.FirstName = "try2"
+    newUser.LastName = "try2"
     newUser.Password = "password"
 
     this.autentificationService.registerUser(newUser).subscribe({
