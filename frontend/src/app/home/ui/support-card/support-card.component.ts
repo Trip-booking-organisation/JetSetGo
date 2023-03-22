@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import * as Aos from "aos";
 
 @Component({
   selector: 'app-support-card',
@@ -14,4 +15,8 @@ export class SupportCardComponent {
   description: string = ''
   @Input()
   color: string = ''
+
+  constructor() {
+    Aos.init({duration: 2000})
+  }
 }

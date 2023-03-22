@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as Aos from "aos";
 
 @Component({
   selector: 'app-subscribe',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./subscribe.component.scss']
 })
 export class SubscribeComponent {
-
+  constructor() {
+    Aos.init({duration: 2000})
+  }
 }

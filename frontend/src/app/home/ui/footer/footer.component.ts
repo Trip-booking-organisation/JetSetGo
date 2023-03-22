@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as Aos from "aos";
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-
+  constructor() {
+    Aos.init({duration: 2000})
+  }
 }
