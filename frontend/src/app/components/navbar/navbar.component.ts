@@ -55,7 +55,6 @@ export class NavbarComponent implements OnInit {
   }
 
   private handleColorTransparancy() {
-    console.log(this.navbar_one)
     // @ts-ignore
     const component = this.route.snapshot.firstChild.component;
     if (component === SignInComponent) {
