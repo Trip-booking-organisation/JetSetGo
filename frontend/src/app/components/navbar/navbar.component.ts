@@ -1,5 +1,6 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {navData} from "./passenger-nav-data";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,9 @@ export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false
   navDataPassenger = navData;
 
+
+
+  constructor(private router: Router){}
   ngOnInit(): void {
   }
 
@@ -31,4 +35,7 @@ export class NavbarComponent implements OnInit {
     this.activeClass = 'navbar-menu'
   }
 
+  goToSignIn() {
+    this.router.navigate(['signIn']).then();
+  }
 }

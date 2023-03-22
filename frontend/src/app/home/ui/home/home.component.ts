@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import AOS from "aos";
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-home',
