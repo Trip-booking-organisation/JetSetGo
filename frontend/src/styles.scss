@@ -130,11 +130,38 @@ h2 {
   color: $black-color;
 }
 
-html, body {
-  height: 100%;
+@media screen and (min-width: 1024px) {
+  p {
+    font-size: 18px;
+    line-height: 25px;
+  }
+  h4 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  .section {
+    padding: 6rem 0 4rem;
+  }
+
+  .container-main {
+    width: 90%;
+    margin: auto;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+::selection {
+  background: burlywood;
+  color: $black-color;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  background: $gray-background;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 11px;
+  background: $primary-color;
 }

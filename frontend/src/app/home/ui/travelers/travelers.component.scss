@@ -8,6 +8,7 @@
       background: $gradient-blue;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-weight: 700;
     }
 
     .travelers-container {
@@ -18,7 +19,6 @@
         position: relative;
         height: 340px;
         width: 90%;
-        max-width: 270px;
         overflow: hidden;
         border-radius: 10rem;
         gap: 1rem;
@@ -107,6 +107,42 @@
             transition: 1s ease-in-out;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .travelers {
+    width: 80vw;
+
+    .section-container {
+      .travelers-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .travelers {
+    width: 80vw;
+
+    .section-container {
+      .travelers-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .travelers {
+    width: 80vw;
+
+    .section-container {
+      .travelers-container {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   }

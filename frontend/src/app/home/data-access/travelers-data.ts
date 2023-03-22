@@ -21,5 +21,12 @@ export const travelersData: Traveler[] = [
     destinationImage: 'assets/images/thailand.jpg',
     id: '3',
     travelerImage: 'assets/images/women1.jpg'
+  },
+  {
+    socialLink: "@carina1312",
+    travelerName: "Igor Car",
+    destinationImage: 'assets/images/newyork.jpg',
+    id: '4',
+    travelerImage: 'assets/images/trav1.jpg'
   }
 ]

@@ -11,9 +11,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 2.5rem;
-    text-wrap: none;
   }
 
   .home-images {
@@ -29,13 +28,132 @@
 
       .video {
         border-radius: 11rem;
+        object-fit: cover;
       }
     }
 
     .plane {
       position: absolute;
-      width: 100%;
-      top: -50%;
+      width: 90%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@media screen and (min-width: 570px) {
+  .home {
+    .main-text {
+      width: 80%;
+    }
+
+    .home-images {
+      .video {
+        border-radius: 15rem;
+      }
+
+    }
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .home {
+    .main-text {
+      width: 80%;
+    }
+
+    .home-images {
+      .video-div {
+        width: 80%;
+
+        .video {
+          height: 100%;
+          width: 100%;
+          border-radius: 15rem;
+        }
+      }
+
+      .plane {
+        position: absolute;
+        width: 70%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .home {
+
+    .main-text {
+      width: 70%;
+      padding-bottom: 1.5rem;
+      font-size: 22px;
+      line-height: 4rem;
+
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home {
+    .main-text {
+      width: 70%;
+      font-size: 28px;
+      line-height: 4rem;
+    }
+
+    .home-images {
+      .video-div {
+        width: 70%;
+
+        .video {
+          height: 100%;
+          width: 100%;
+          border-radius: 15rem;
+        }
+      }
+
+      .plane {
+        position: absolute;
+        width: 60%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .home {
+    .main-text {
+      width: 70%;
+      font-size: 30px;
+      line-height: 4.5rem;
+    }
+
+    .home-images {
+      .video-div {
+        width: 60%;
+
+        .video {
+          height: 100%;
+          width: 100%;
+          border-radius: 15rem;
+        }
+      }
+
+      .plane {
+        position: absolute;
+        width: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 }

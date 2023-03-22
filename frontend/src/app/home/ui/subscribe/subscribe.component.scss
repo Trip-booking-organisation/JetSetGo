@@ -18,7 +18,6 @@
       flex-direction: column;
       background: $white-color;
       border-radius: 1rem;
-      gap: .5rem;
 
       input {
         border: none;
@@ -27,7 +26,7 @@
         padding: 1rem .5rem;
 
         &::placeholder {
-          font-size: 13px;
+          font-size: 14px;
           opacity: 0.7;
         }
       }
@@ -37,5 +36,48 @@
       }
     }
 
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .subscribe {
+    .section-container {
+      width: 80vw;
+      margin: auto;
+
+      .input-div {
+        flex-direction: row;
+        padding: 0 .6rem;
+        border-radius: 3rem;
+
+        .btn {
+          justify-self: flex-end;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 570px) {
+  .subscribe {
+    .section-container {
+      width: 70vw;
+
+      .input-div {
+        justify-content: space-between;
+
+        .btn {
+          max-width: max-content;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1050px) {
+  .subscribe {
+    .section-container {
+      width: 50vw;
+    }
   }
 }

@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   addBg() {
-    this.addBackground = window.scrollY >= 10
+    this.addBackground = window.scrollY >= 15
       ? 'navbar-two nav-bg'
       : 'navbar-two';
   }

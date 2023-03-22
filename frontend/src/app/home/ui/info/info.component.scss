@@ -63,3 +63,42 @@
     }
   }
 }
+
+@media screen and (min-width: 570px) {
+  .info {
+    .info-container {
+      .title-div {
+        flex-direction: row;
+
+        h2 {
+          text-align: left;
+          max-width: 500px;
+        }
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .info {
+    .info-container {
+      width: 90%;
+      margin: auto;
+      align-items: center;
+
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+
+        .single-card {
+          max-width: 280px;
+          padding: 3rem 1rem;
+        }
+      }
+    }
+  }
+}
