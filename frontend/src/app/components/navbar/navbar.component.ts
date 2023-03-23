@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false
   navDataPassenger = navData;
   navbar_one = document.querySelector(".navbar-one");
-  component:any;
   @Input() second_nav_visibility =true;
 
 
@@ -27,10 +26,7 @@ export class NavbarComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.navbar_one = document.querySelector(".navbar-one");
-    // @ts-ignore
-    this.component = this.route.snapshot.firstChild.component;
-    console.log(this.component)
+
   }
 
   showNavBar() {
@@ -53,9 +49,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['signIn']).then();
   }
 
-  isNotSignIn() {
-    return this.component !== SignInComponent;
-  }
+
 
   private handleColorTransparancy() {
     // @ts-ignore
