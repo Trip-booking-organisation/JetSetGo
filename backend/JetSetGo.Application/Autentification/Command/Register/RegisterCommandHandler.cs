@@ -30,7 +30,7 @@ public record RegisterCommandHandler: IRequestHandler<RegisterCommand,Result<Aut
         }
         
         Guid userId = Guid.NewGuid();
-        var token = _jwtTokenGenerator.GenerateToken(userId, request.FirstName, request.LastName);
+        var token = _jwtTokenGenerator.GenerateToken(userId, request.FirstName, request.LastName,request.Email);
         var user = new User
         {
             Id = userId,
@@ -40,11 +40,7 @@ public record RegisterCommandHandler: IRequestHandler<RegisterCommand,Result<Aut
             Password = request.Password
         };
         await _userRepository.CreateAsync(user);
-        return  new AutentificationResult(
-            request.FirstName,
-            request.LastName, 
-            request.Email, 
-            token);
+        return  new AutentificationResult(token);
     }
     
     private async Task<Boolean> CheckEmail(string email)

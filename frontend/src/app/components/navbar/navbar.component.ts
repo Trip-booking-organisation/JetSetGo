@@ -1,7 +1,8 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {navData} from "./passenger-nav-data";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {SignInComponent} from "../../view/autentification/sign-in/sign-in.component";
+import {TokenStorageService} from "../../services/tokenStorage.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,9 +15,11 @@ export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false
   navDataPassenger = navData;
   navbar_one = document.querySelector(".navbar-one");
+  component:any;
+  @Input() second_nav_visibility =true;
 
 
-  constructor(private router: Router,private route: ActivatedRoute){
+  constructor(private router: Router,private route: ActivatedRoute, private tokenStorage:TokenStorageService){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.handleColorTransparancy();
@@ -25,6 +28,9 @@ export class NavbarComponent implements OnInit {
   }
   ngOnInit(): void {
     this.navbar_one = document.querySelector(".navbar-one");
+    // @ts-ignore
+    this.component = this.route.snapshot.firstChild.component;
+    console.log(this.component)
   }
 
   showNavBar() {
@@ -48,10 +54,7 @@ export class NavbarComponent implements OnInit {
   }
 
   isNotSignIn() {
-    // @ts-ignore
-    const component = this.route.snapshot.firstChild.component;
-    return component !== SignInComponent;
-
+    return this.component !== SignInComponent;
   }
 
   private handleColorTransparancy() {
@@ -66,5 +69,20 @@ export class NavbarComponent implements OnInit {
       this.navbar_one?.classList.add("visible-background")
     }
 
+  }
+
+  goToRegister() {
+    console.log(this.tokenStorage.getUser())
+  }
+
+  checkIfSignedIn() {
+    var token = this.tokenStorage.getToken()
+    return !!token;
+
+  }
+
+  LogOut() {
+    this.tokenStorage.signOut();
+    // window.location.reload()
   }
 }

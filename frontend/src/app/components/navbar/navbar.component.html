@@ -12,11 +12,12 @@
       </li>
     </div>
     <div class="gap__ flex">
-      <span (click)="goToSignIn()">Sign In</span>
-      <span>Sign Up</span>
+      <span *ngIf="!checkIfSignedIn() && second_nav_visibility" (click)="goToSignIn()">Sign In</span>
+      <span *ngIf="!checkIfSignedIn() && second_nav_visibility" (click)="goToRegister()">Sign Up</span>
+      <span *ngIf="checkIfSignedIn()" (click)="LogOut()">Log out</span>
     </div>
   </div>
-  <div [class]="addBackground" *ngIf="isNotSignIn()">
+  <div [class]="addBackground" *ngIf="second_nav_visibility">
     <div class="logo-div">
       <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
     </div>
