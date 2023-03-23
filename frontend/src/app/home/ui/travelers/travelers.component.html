@@ -3,8 +3,8 @@
     <h2>
       Top travelers of this month!
     </h2>
-    <div class="travelers-container grid" *ngFor="let traveler of travelers">
-      <div class="single-traveler">
+    <div class="travelers-container grid">
+      <div class="single-traveler" *ngFor="let traveler of travelers">
         <img [src]="traveler.destinationImage" alt="dest" class="dest"/>
         <div class="traveler-details">
           <div class="traveler-pic">

@@ -1,5 +1,5 @@
 <div class="navbar flex">
-  <div class="navbar-one flex">
+  <div class="navbar-one flex ">
     <mat-icon>airplanemode_active</mat-icon>
     <div class="none flex">
       <li class="flex">
@@ -12,11 +12,12 @@
       </li>
     </div>
     <div class="gap__ flex">
-      <span>Sign In</span>
-      <span>Sign Up</span>
+      <span *ngIf="!checkIfSignedIn() && second_nav_visibility" (click)="goToSignIn()">Sign In</span>
+      <span *ngIf="!checkIfSignedIn() && second_nav_visibility" (click)="goToRegister()">Sign Up</span>
+      <span *ngIf="checkIfSignedIn()" (click)="LogOut()">Log out</span>
     </div>
   </div>
-  <div [class]="addBackground">
+  <div [class]="addBackground" *ngIf="second_nav_visibility">
     <div class="logo-div">
       <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
     </div>

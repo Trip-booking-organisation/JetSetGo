@@ -9,4 +9,7 @@ import {travelersData} from "../../data-access/travelers-data";
 })
 export class TravelersComponent {
   travelers: Traveler[] = travelersData;
+
+  constructor() {
+  }
 }

@@ -12,15 +12,14 @@
     width: 100%;
   }
 
-  .navbar-one {
-    background: $secondary-color;
 
+  .navbar-one {
     .icon:hover {
       color: $primary-color;
     }
 
     .gap__ {
-      gap: 1.2rem;
+      gap: 1rem;
 
       span {
         color: $black-color;
@@ -30,17 +29,23 @@
 
         &:hover {
           color: $primary-color;
-          font-weight: 500;
+          font-weight: 700;
         }
       }
     }
+  }
+  .opacity-background{
+    background: $secondary-color opacity(50%);
+  }
+  .visible-background{
+    background: $secondary-color ;
   }
 
   .nav-bg {
     background: $secondary-color;
     padding: .5rem 1rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 10x 15px -3px,
-    rgba(0, 0, 0, 0.06) 0 4px 6px -2px;;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 10x 15px -6px,
+    rgba(0, 0, 0, 0.06) 0 4px 6px -3px;
   }
 
   .navbar-two {
@@ -121,6 +126,90 @@
     .show-nav {
       right: 50%;
       transition: .5s ease-in-out;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    align-items: center;
+
+    .navbar-one {
+      .none {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      li {
+        font-size: 13px;
+        gap: .5rem;
+        color: $text-color;
+
+        &:hover {
+          color: $primary-color;
+
+        }
+      }
+    }
+
+    .navbar-two {
+      justify-content: space-between;
+      align-items: center;
+
+      .logo-div {
+        .logo {
+          max-width: 30%;
+        }
+      }
+
+      .menu {
+        flex-direction: row;
+        gap: .5rem;
+
+        .list-item {
+          padding: 0 .5rem;
+          font-size: 14px;
+          cursor: pointer;
+          color: $text-color;
+          font-weight: 700;
+
+          &:hover {
+            color: $primary-color;
+            font-weight: 700;
+          }
+        }
+      }
+
+      .btn-one, .toggle-icon {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    .navbar-one, .navbar-two {
+      padding: 1.5rem 5rem;
+    }
+
+    .nav-bg {
+      padding: 0 5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1332px) {
+  .navbar {
+    .navbar-two {
+      .menu {
+        gap: 1rem;
+
+        .list-item {
+          padding: 0 1rem;
+          font-size: 15px;
+        }
+      }
     }
   }
 }

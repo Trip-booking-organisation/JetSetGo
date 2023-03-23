@@ -1,6 +1,8 @@
 @import "src/sass/variables";
 
 .search {
+  margin-top: 5rem;
+
   .section-container {
     width: 100%;
     padding: 1.5rem;
@@ -38,6 +40,7 @@
       justify-content: center;
       flex-direction: column;
       gap: 1.5rem;
+      cursor: pointer;
 
       .single-input {
         .icon-div {
@@ -58,7 +61,8 @@
             padding-bottom: .7rem;
             color: $black-color;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 16px;
+            white-space: nowrap;
           }
 
           input {
@@ -69,12 +73,117 @@
             background: transparent;
 
             &::placeholder {
-              font-size: 15px;
+              font-size: 12px;
+              text-wrap: normal;
               opacity: 0.7;
+              white-space: pre-line;
             }
           }
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .search {
+    .section-container {
+      .search-inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 570px) {
+  .search {
+    .section-container {
+      .btn-multi {
+        border-radius: 3rem;
+        flex-direction: row;
+
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .search {
+    .section-container {
+      .btn {
+        border-radius: 3rem;
+        flex-direction: row;
+      }
+
+      .search-inputs {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search {
+    .section-container {
+      .btn-multi {
+        width: 70%;
+        border-radius: 3rem;
+        flex-direction: row;
+      }
+
+      .search-inputs {
+        grid-template-columns: repeat(4, 1fr);
+
+        .single-input {
+          .texts {
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .search {
+    .section-container {
+      .btn-multi {
+        width: 60%;
+        border-radius: 3rem;
+        flex-direction: row;
+      }
+
+      .search-inputs {
+        grid-template-columns: repeat(5, 1fr);
+
+        .single-input {
+          .texts {
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .search {
+    .section-container {
+      .btn-multi {
+        width: 50%;
+      }
+    }
+
   }
 }

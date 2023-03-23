@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as Aos from "aos";
 
 @Component({
   selector: 'app-support',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class SupportComponent {
 
+  constructor() {
+    Aos.init({duration: 2000})
+  }
 }
