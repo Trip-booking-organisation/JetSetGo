@@ -8,5 +8,6 @@ public static class EndpointsExtension
     {
         webApplication.MapFlightsEndpoints();
         webApplication.MapAuthenticationEndpoints();
+        webApplication.MapTicketsEndpoints();
     }
 }

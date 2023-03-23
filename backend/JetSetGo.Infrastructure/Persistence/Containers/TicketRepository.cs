@@ -1,4 +1,4 @@
-﻿using JetSetGo.Application.Common.Interfaces.Tickets;
+﻿using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Domain.Tickets;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +13,7 @@ public class TicketRepository: ITicketRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Ticket>> GetTicketsByPassenger(Guid id)
+    public async Task<List<Ticket>> GetTicketsByPassenger(Guid id)
     {
         return await _context.Tickets
                     .Where(x => x.PassengerId == id)
@@ -25,9 +25,9 @@ public class TicketRepository: ITicketRepository
         throw new NotImplementedException();
     }
 
-    public Task<Ticket> GetTicketById(Guid id)
+    public Task<Ticket?> GetTicketById(Guid id)
     {
-        throw new NotImplementedException();
+        return _context.Tickets.FirstOrDefaultAsync(ticket => ticket.Id == id);
     }
 
     public Task CreateTicket(Ticket ticket)
@@ -40,8 +40,9 @@ public class TicketRepository: ITicketRepository
         throw new NotImplementedException();
     }
 
-    public Task DeleteTicket(Guid id)
+    public async Task DeleteTicket(Ticket ticket)
     {
-        throw new NotImplementedException();
+        _context.Tickets.Remove(ticket);
+        await  _context.SaveChangesAsync();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using JetSetGo.Application.Common.Interfaces.Autentification;
+using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Application.Flights.Query.GetById;
-using JetSetGo.Application.Persistence;
 using JetSetGo.Domain.Users;
 using MediatR;
 using Microsoft.Extensions.Logging;
