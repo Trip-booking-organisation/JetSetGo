@@ -40,12 +40,17 @@ export class SignInComponent implements OnInit {
     this.autentificationService.signInUser(user).subscribe({
 
       next: res=>{
-        console.log(res)
-          this.tokenStorage.saveToken(res.token!);
-          this.tokenStorage.saveUser(res.token!);
-          this.isLoggedIn = true;
+        this.logInUser(res)
       }
     })
+  }
+
+  logInUser(res:any){
+    console.log(res)
+    this.tokenStorage.saveToken(res.token!);
+    this.tokenStorage.saveUser(res.token!);
+    this.isLoggedIn = true;
+    this.router.navigate(['']).then()
   }
 
   signUpMode() {
@@ -66,6 +71,8 @@ export class SignInComponent implements OnInit {
     this.autentificationService.registerUser(registerRequest).subscribe({
       next:res=>{
         console.log(res)
+        this.logInUser(res)
+        this.router.navigate(['']).then()
       }
     })
   }
