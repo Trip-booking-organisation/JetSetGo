@@ -21,11 +21,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router,private route: ActivatedRoute, private tokenStorage:TokenStorageService,
               private authentificatoinService:AutentificationService){
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.handleColorTransparancy();
-      }
-    });
+
   }
   ngOnInit(): void {
 
