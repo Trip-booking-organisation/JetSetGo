@@ -27,4 +27,9 @@ export class AutentificationService{
     const url = `${this.aplUrl}signIn`
     return this.httpClient.post<any>(url,signInrequest,{headers: this.headers});
   }
+
+  getAllUsers(): Observable<any>{
+    const url = `${this.aplUrl}users`
+    return this.httpClient.get<any>(url);
+  }
 }

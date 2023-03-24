@@ -63,18 +63,23 @@ export class SignInComponent implements OnInit {
   }
 
   register() {
-    var registerRequest= new RegisterRequest()
-    registerRequest.FirstName=this.signUpName;
-    registerRequest.LastName=this.signUpSurname;
-    registerRequest.Email=this.signUpEmail;
-    registerRequest.Password = this.signUpPassword;
-    this.autentificationService.registerUser(registerRequest).subscribe({
+    this.autentificationService.getAllUsers().subscribe({
       next:res=>{
         console.log(res)
-        this.logInUser(res)
-        this.router.navigate(['']).then()
       }
     })
+  //   var registerRequest= new RegisterRequest()
+  //   registerRequest.FirstName=this.signUpName;
+  //   registerRequest.LastName=this.signUpSurname;
+  //   registerRequest.Email=this.signUpEmail;
+  //   registerRequest.Password = this.signUpPassword;
+  //   this.autentificationService.registerUser(registerRequest).subscribe({
+  //     next:res=>{
+  //       console.log(res)
+  //       this.logInUser(res)
+  //       this.router.navigate(['']).then()
+  //     }
+  //   })
   }
 
 

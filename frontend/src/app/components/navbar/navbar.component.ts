@@ -3,6 +3,7 @@ import {navData} from "./passenger-nav-data";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {SignInComponent} from "../../view/autentification/sign-in/sign-in.component";
 import {TokenStorageService} from "../../services/tokenStorage.service";
+import {AutentificationService} from "../../services/autentificationService";
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
   @Input() second_nav_visibility =true;
 
 
-  constructor(private router: Router,private route: ActivatedRoute, private tokenStorage:TokenStorageService){
+  constructor(private router: Router,private route: ActivatedRoute, private tokenStorage:TokenStorageService,
+              private authentificatoinService:AutentificationService){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.handleColorTransparancy();
@@ -78,5 +80,13 @@ export class NavbarComponent implements OnInit {
   LogOut() {
     this.tokenStorage.signOut();
     // window.location.reload()
+  }
+
+  checkAuthorisation() {
+    this.authentificatoinService.getAllUsers().subscribe({
+      next: res=>{
+        console.log(res)
+      }
+    })
   }
 }
