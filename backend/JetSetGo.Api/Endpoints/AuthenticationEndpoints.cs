@@ -3,6 +3,7 @@ using JetSetGo.Application.Autentification.Command;
 using JetSetGo.Application.Autentification.Command.Register;
 using JetSetGo.Application.Autentification.Query.SignIn;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Endpoints;
 
@@ -10,15 +11,15 @@ public static class AuthenticationEndpoints
 {
     public static void MapAuthenticationEndpoints(this WebApplication application)
     {
-        application.MapGet("authentication/users", GetAllUsers);
+        application.MapGet("authentication/users", GetAllUsers).RequireAuthorization();
         application.MapPost("authentication/register", Register);
-        application.MapPost("authentication/signIn", SignIn);
+        application.MapPost("authentication/signIn", SignIn).AllowAnonymous();
     }
 
     private static async Task<IResult> GetAllUsers(ISender sender)
     {
         await Task.CompletedTask;
-        return Results.Ok();
+        return Results.Ok("Uspesno");
     }
 
     private static async Task<IResult> SignIn(ISender sender, SignInRequest request)
