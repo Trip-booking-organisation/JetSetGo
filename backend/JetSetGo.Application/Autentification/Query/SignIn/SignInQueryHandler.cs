@@ -33,7 +33,7 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<Autentific
         {
             return Result.Fail("Email or password is invalid.");
         }
-        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName,user.Email);
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName,user.Email,user.Role);
         return  new AutentificationResult(token);
     }
 

@@ -1,7 +1,9 @@
-﻿namespace JetSetGo.Application.Common.Interfaces.Autentification;
+﻿using JetSetGo.Domain.Users;
+
+namespace JetSetGo.Application.Common.Interfaces.Autentification;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(Guid userId, string firstName, string secondName,string email);
+    string GenerateToken(Guid userId, string firstName, string secondName,string email,UserRole role);
 
 }
