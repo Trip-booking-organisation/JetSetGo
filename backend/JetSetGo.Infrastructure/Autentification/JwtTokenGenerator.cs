@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using JetSetGo.Application.Common.Interfaces.Autentification;
 using JetSetGo.Application.Common.Services;
+using JetSetGo.Domain.Users;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -19,7 +20,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         this._jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(Guid userID, string firstName, string secondName,string email)
+    public string GenerateToken(Guid userID, string firstName, string secondName,string email,UserRole role)
     {
 
         var signingCredentials = new SigningCredentials(
@@ -31,6 +32,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new Claim(JwtRegisteredClaimNames.GivenName, firstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, secondName),
             new Claim(JwtRegisteredClaimNames.Email, email),
+            new Claim(JwtRegisteredClaimNames.Acr, role.ToString()),
             new Claim(JwtRegisteredClaimNames.Sub, userID.ToString()),
         };
         var securityToken = new JwtSecurityToken(
