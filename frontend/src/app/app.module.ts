@@ -12,13 +12,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SignInComponent } from './view/autentification/sign-in/sign-in.component';
 import {FormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./interceptors/AuthInterceptor";
+import { ErrorComponent } from './view/errors/errorPage/error.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    SignInComponent
+    SignInComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
