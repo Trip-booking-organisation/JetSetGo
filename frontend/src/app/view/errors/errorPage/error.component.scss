@@ -6,9 +6,11 @@
   display: flex;
   justify-content: left;
   align-content: flex-start;
-  height: 100vh
+  height: 100vh;
 }
 .text-container{
+  max-width: 60%;
+  padding-right: 10%;
   padding-top: 10%;
   display: flex;
   flex-direction: column; /* stack child elements vertically */
@@ -16,14 +18,19 @@
   height: 100%; /* fill the height of the parent container */
   color: $warning-trans;
   text-align: left;
-
+  align-items: flex-start;
 }
 .text{
   margin-top: 0; /* remove default margin */
   vertical-align: top;
   text-align: left;
-
+  font-family: 'Poppins', sans-serif;
 }
+.main-container:before {
+  transform: translate(100%, -50%);
+  right: 52%;
+}
+
 .picture{
   padding-top: 5%;
   width: 90%;

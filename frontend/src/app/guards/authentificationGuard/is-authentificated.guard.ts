@@ -14,7 +14,7 @@ export class IsAuthentificatedGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var isLoggedIn = this.tokenStorageService.isLoggedIn();
     if(!isLoggedIn){
-      this.router.navigate(['/error'], { queryParams: { errorExplanation: "Please log in." } });
+      this.router.navigate(['/error'], { queryParams: { errorExplanation: "Please log in or create an account to access this page." } });
     }
     return true;
   }

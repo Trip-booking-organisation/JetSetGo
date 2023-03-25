@@ -15,7 +15,7 @@ export class HasRoleGuard implements CanActivate {
     // return this.tokenStorageService.getUser().role.includes(route.data['role']);
     var hasRole = route.data['role'].includes(this.tokenStorageService.getUser().role)
     if(!hasRole){
-      this.router.navigate(['/error'], { queryParams: { errorExplanation: "Please log in." } });
+      this.router.navigate(['/error'], { queryParams: { errorExplanation: "The page you are trying to access is not available to your account level. Please contact support if you need assistance." } });
     }
     return true;
   }

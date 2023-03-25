@@ -17,9 +17,11 @@ const routes: Routes = [
   {
     path: 'flights',
     component: FlightsComponent,
-    canActivate:[HasRoleGuard,IsAuthentificatedGuard],
+    canActivate:[IsAuthentificatedGuard,HasRoleGuard],
     data:{
-      role: ["Admin","Passenger"]
+      role: ["Admin"
+        // ,"Passenger"
+      ]
     }
   },
   {
