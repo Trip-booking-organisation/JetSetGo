@@ -1,0 +1,32 @@
+@import "src/sass/variables";
+
+.main-container{
+  margin-left: 10%;
+  padding-top: 10%;
+  display: flex;
+  justify-content: left;
+  align-content: flex-start;
+  height: 100vh
+}
+.text-container{
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column; /* stack child elements vertically */
+  justify-content: flex-start;
+  height: 100%; /* fill the height of the parent container */
+  color: $warning-trans;
+  text-align: left;
+
+}
+.text{
+  margin-top: 0; /* remove default margin */
+  vertical-align: top;
+  text-align: left;
+
+}
+.picture{
+  padding-top: 5%;
+  width: 90%;
+  transition: transform 0.9s ease-in-out;
+  transition-delay: 0.6s;
+}

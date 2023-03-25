@@ -6,6 +6,7 @@ import {RegistrationComponent} from "./view/autentification/registration/registr
 import {SignInComponent} from "./view/autentification/sign-in/sign-in.component";
 import {HasRoleGuard} from "./guards/roleGuard/has-role.guard";
 import {IsAuthentificatedGuard} from "./guards/authentificationGuard/is-authentificated.guard";
+import { ErrorComponent } from './view/errors/errorPage/error.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
     component: FlightsComponent,
     canActivate:[HasRoleGuard,IsAuthentificatedGuard],
     data:{
-      role:"Admin"
+      role: ["Admin","Passenger"]
     }
   },
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'signIn',
     component:SignInComponent
+  },
+  {
+    path:"error",
+    component:ErrorComponent
   }
 ];
 
