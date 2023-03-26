@@ -4,18 +4,20 @@
       Top travelers of this month!
     </h2>
     <div class="travelers-container grid">
-      <div class="single-traveler" *ngFor="let traveler of travelers">
-        <img [src]="traveler.destinationImage" alt="dest" class="dest"/>
-        <div class="traveler-details">
-          <div class="traveler-pic">
-            <img [src]="traveler.travelerImage" alt="traveler" class="traveler-image"/>
-          </div>
-          <div class="traveler-name">
-            <span>{{traveler.travelerName}}</span>
-            <p>{{traveler.socialLink}}</p>
+      <ng-container *ngFor="let traveler of travelers">
+        <div class="single-traveler">
+          <img [src]="traveler.destinationImage" alt="dest" class="dest" loading="eager"/>
+          <div class="traveler-details">
+            <div class="traveler-pic">
+              <img [src]="traveler.travelerImage" alt="traveler" class="traveler-image" loading="eager"/>
+            </div>
+            <div class="traveler-name">
+              <span>{{traveler.travelerName}}</span>
+              <p>{{traveler.socialLink}}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>

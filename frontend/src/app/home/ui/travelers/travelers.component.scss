@@ -3,6 +3,7 @@
 .travelers {
   .section-container {
     text-align: center;
+    width: 80vw;
 
     h2 {
       background: $gradient-blue;
@@ -114,7 +115,6 @@
 
 @media screen and (min-width: 480px) {
   .travelers {
-    width: 80vw;
 
     .section-container {
       .travelers-container {
@@ -126,7 +126,6 @@
 
 @media screen and (min-width: 768px) {
   .travelers {
-    width: 80vw;
 
     .section-container {
       .travelers-container {
@@ -138,7 +137,6 @@
 
 @media screen and (min-width: 960px) {
   .travelers {
-    width: 80vw;
 
     .section-container {
       .travelers-container {
