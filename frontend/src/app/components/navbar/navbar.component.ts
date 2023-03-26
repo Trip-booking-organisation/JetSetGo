@@ -1,7 +1,7 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {navData} from "./passenger-nav-data";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {SignInComponent} from "../../view/autentification/sign-in/sign-in.component";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SignInComponent} from "../../autentification/view/sign-in/sign-in.component";
 import {TokenStorageService} from "../../services/tokenStorage.service";
 import {AutentificationService} from "../../services/autentificationService";
 
@@ -16,13 +16,14 @@ export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false
   navDataPassenger = navData;
   navbar_one = document.querySelector(".navbar-one");
-  @Input() second_nav_visibility =true;
+  @Input() second_nav_visibility = true;
 
 
-  constructor(private router: Router,private route: ActivatedRoute, private tokenStorage:TokenStorageService,
-              private authentificatoinService:AutentificationService){
+  constructor(private router: Router, private route: ActivatedRoute, private tokenStorage: TokenStorageService,
+              private authentificatoinService: AutentificationService) {
 
   }
+
   ngOnInit(): void {
 
   }
@@ -48,15 +49,13 @@ export class NavbarComponent implements OnInit {
   }
 
 
-
   private handleColorTransparancy() {
     // @ts-ignore
     const component = this.route.snapshot.firstChild.component;
     if (component === SignInComponent) {
       this.navbar_one?.classList.add("opacity-background");
       this.navbar_one?.classList.remove("visible-background")
-    }
-    else{
+    } else {
       this.navbar_one?.classList.remove("opacity-background");
       this.navbar_one?.classList.add("visible-background")
     }
@@ -81,7 +80,7 @@ export class NavbarComponent implements OnInit {
 
   checkAuthorisation() {
     this.authentificatoinService.getAllUsers().subscribe({
-      next: res=>{
+      next: res => {
         console.log(res)
       }
     })

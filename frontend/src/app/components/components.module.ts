@@ -6,12 +6,14 @@ import {SearchComponent} from './search/search.component';
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {ErrorComponent} from "./errors/errorPage/error.component";
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    ErrorComponent
   ],
   exports: [
     NavbarComponent,

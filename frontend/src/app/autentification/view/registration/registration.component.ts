@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AutentificationService} from "../../../services/autentificationService";
-import {RegisterRequest} from "../../../model/autentification/register/RegisterRequest";
+import {RegisterRequest} from "../../model/register/RegisterRequest";
 
 @Component({
   selector: 'app-registration',
@@ -8,7 +8,7 @@ import {RegisterRequest} from "../../../model/autentification/register/RegisterR
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  constructor(private autentificationService: AutentificationService) {
+  constructor(private authenticationService: AutentificationService) {
   }
 
   register() {
@@ -18,7 +18,7 @@ export class RegistrationComponent {
     newUser.LastName = "try2"
     newUser.Password = "password"
 
-    this.autentificationService.registerUser(newUser).subscribe({
+    this.authenticationService.registerUser(newUser).subscribe({
       next: res => {
         console.log(res)
       }

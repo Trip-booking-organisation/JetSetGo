@@ -1,6 +1,6 @@
-@import "src/sass/variables";
+@import "../../../../sass/variables";
 
-.main-container{
+.main-container {
   margin-left: 10%;
   padding-top: 10%;
   display: flex;
@@ -8,7 +8,8 @@
   align-content: flex-start;
   height: 100vh;
 }
-.text-container{
+
+.text-container {
   max-width: 60%;
   padding-right: 10%;
   padding-top: 10%;
@@ -20,18 +21,20 @@
   text-align: left;
   align-items: flex-start;
 }
-.text{
+
+.text {
   margin-top: 0; /* remove default margin */
   vertical-align: top;
   text-align: left;
   font-family: 'Poppins', sans-serif;
 }
+
 .main-container:before {
   transform: translate(100%, -50%);
   right: 52%;
 }
 
-.picture{
+.picture {
   padding-top: 5%;
   width: 90%;
   transition: transform 0.9s ease-in-out;
