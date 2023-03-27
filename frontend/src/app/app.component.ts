@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   navBarVisibility = true;
   @Output() onPaintNavBar = new EventEmitter<boolean>();
+  @Output() onGoToRegister = new EventEmitter<boolean>();
 
   constructor(private router: Router, private route: ActivatedRoute) {
   }
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
       this.onPaintNavBar.emit(true)
     }
   }
+
 
 
 }

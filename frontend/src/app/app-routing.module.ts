@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/ui/home/home.component";
 import {FlightsComponent} from "./flights/ui/flights/flights.component";
-import {RegistrationComponent} from "./autentification/view/registration/registration.component"
 import {SignInComponent} from "./autentification/view/sign-in/sign-in.component";
 import {HasRoleGuard} from "./guards/roleGuard/has-role.guard";
 import {IsAuthentificatedGuard} from "./guards/authentificationGuard/is-authentificated.guard";
@@ -23,10 +22,6 @@ const routes: Routes = [
         // ,"Passenger"
       ]
     }
-  },
-  {
-    path: 'registration',
-    component: RegistrationComponent
   },
   {
     path: 'signIn',
