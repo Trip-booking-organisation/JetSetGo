@@ -1,6 +1,7 @@
 ﻿using JetSetGo.Domain.Flights;
 using JetSetGo.Domain.Users;
 using JetSetGo.Domain.Tickets;
+using JetSetGo.Infrastructure.Persistence.Converters;
 using Microsoft.EntityFrameworkCore;
 
 namespace JetSetGo.Infrastructure.Persistence;
@@ -35,6 +36,31 @@ public class JetSetGoContext : DbContext
             .HasPartitionKey(f => f.Id);
         modelBuilder.Entity<Flight>()
                     .OwnsMany(f => f.Seats);
+        modelBuilder.Entity<Flight>()
+            .OwnsOne(f => f.Departure, 
+                builder =>
+                {
+                    builder.OwnsOne(a => a.Address);
+                    builder.Property(x => x.Date)
+                        .HasConversion(new DateConverter());
+                    builder.Property(x => x.Time)
+                        .HasConversion(new DateTimeConverter());
+                });
+        modelBuilder.Entity<Flight>()
+            .OwnsOne(f => f.Arrival, 
+                builder =>
+                {
+                    builder.OwnsOne(a => a.Address);
+                    builder.Property(x => x.Date)
+                        .HasConversion(new DateConverter());
+                    builder.Property(x => x.Time)
+                        .HasConversion(new DateTimeConverter());
+                });
+        modelBuilder.Entity<Flight>()
+            .OwnsOne(f => f.Arrival, 
+                builder => builder.OwnsOne(a=> a.Address)
+            );
+        
 
         modelBuilder.Entity<User>()
             .HasPartitionKey(u => u.Id);
