@@ -2,6 +2,7 @@
   <div class="forms-container">
     <div class="signin-signup">
       <form action="#" class="sign-in-form">
+<!--        <div class="forma" data-aos="fade-down" data-aos-duration="2000">-->
         <h2 class="title">Sign in</h2>
         <div class="input-field">
           <i class="fas fa-envelope"></i>
@@ -27,43 +28,47 @@
             <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
+<!--        </div>-->
       </form>
 
       <!--      Registration Form-->
-      <form action="#" class="sign-up-form">
-        <h2 class="title">Sign up</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input type="text" name="signUpName" [(ngModel)]="signUpName" placeholder="Name"/>
-        </div>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input type="text" name="signUpSurname" [(ngModel)]="signUpSurname" placeholder="Surname"/>
-        </div>
-        <div class="input-field">
-          <i class="fas fa-envelope"></i>
-          <input type="email" name="signUpEmail" [(ngModel)]="signUpEmail" placeholder="Email"/>
-        </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
-          <input type="password" name="signUpPassword" [(ngModel)]="signUpPassword" placeholder="Password"/>
-        </div>
-        <input type="submit" class="btn" (click)="register()" value="Sign up"/>
-        <p class="social-text">Or Sign up with social platforms</p>
-        <div class="social-media">
-          <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
+      <form action="#" class="sign-up-form" >
+<!--        <div class="forma" data-aos="fade-down" data-aos-duration="2000">-->
+          <h2 class="title">Sign up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" name="signUpName" [(ngModel)]="signUpName" placeholder="Name"/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" name="signUpSurname" [(ngModel)]="signUpSurname" placeholder="Surname"/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="signUpEmail" [(ngModel)]="signUpEmail" placeholder="Email"/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="signUpPassword" [(ngModel)]="signUpPassword" placeholder="Password"/>
+          </div>
+          <input type="submit" class="btn" (click)="register()" value="Sign up"/>
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+<!--        </div>-->
+
       </form>
     </div>
   </div>
