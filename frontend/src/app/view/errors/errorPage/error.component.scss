@@ -1,30 +1,35 @@
 @import "src/sass/variables";
 
 .main-container{
-  margin-left: 10%;
+  padding-left: 10%;
   padding-top: 10%;
   display: flex;
-  justify-content: left;
-  align-content: flex-start;
   height: 100vh;
+  background-color: #f2f2f2;
+  border-top-color: #000000;
+  border-top-style: solid;
+  border-top-width: 3px;
+
 }
 .text-container{
   max-width: 60%;
   padding-right: 10%;
-  padding-top: 10%;
+  padding-top: 6%;
   display: flex;
-  flex-direction: column; /* stack child elements vertically */
-  justify-content: flex-start;
-  height: 100%; /* fill the height of the parent container */
   color: $warning-trans;
-  text-align: left;
   align-items: flex-start;
 }
+
 .text{
+  padding: 5% 5% 5% 5%;
+  //background-color: #fff;
   margin-top: 0; /* remove default margin */
   vertical-align: top;
-  text-align: left;
+  text-align: center;
   font-family: 'Poppins', sans-serif;
+  color: $warning-trans;
+
+  border-radius: 5%;
 }
 .main-container:before {
   transform: translate(100%, -50%);
@@ -32,7 +37,6 @@
 }
 
 .picture{
-  padding-top: 5%;
   width: 90%;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
