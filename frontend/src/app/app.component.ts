@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NavigationEnd,ActivatedRoute, Router} from "@angular/router";
-import {SignInComponent} from "./view/autentification/sign-in/sign-in.component";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {SignInComponent} from "./autentification/view/sign-in/sign-in.component";
 
 @Component({
   selector: 'app-root',
@@ -10,14 +10,14 @@ import {SignInComponent} from "./view/autentification/sign-in/sign-in.component"
 export class AppComponent implements OnInit {
 
   navBarVisibility = true;
-  @Output()onPaintNavBar = new EventEmitter<boolean>();
+  @Output() onPaintNavBar = new EventEmitter<boolean>();
 
-  constructor(private router:Router,private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.router.events.subscribe(event=>{
-      if(event instanceof NavigationEnd){
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
         this.toggleNavBar()
       }
     })
@@ -27,11 +27,10 @@ export class AppComponent implements OnInit {
     // @ts-ignore
     const component = this.route.snapshot.firstChild.component;
     if (component === SignInComponent) {
-      this.navBarVisibility=false;
+      this.navBarVisibility = false;
       this.onPaintNavBar.emit(false)
-    }
-    else {
-      this.navBarVisibility=true;
+    } else {
+      this.navBarVisibility = true;
       this.onPaintNavBar.emit(true)
     }
   }

@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SignInRequest} from "../../../model/autentification/signIn/SignInRequest";
+import {SignInRequest} from "../../model/signIn/SignInRequest";
 import {AutentificationService} from "../../../services/autentificationService";
 import {TokenStorageService} from "../../../services/tokenStorage.service";
-import {RegisterRequest} from "../../../model/autentification/register/RegisterRequest";
-import {NavigationEnd, Router} from "@angular/router";
+import {RegisterRequest} from "../../model/register/RegisterRequest";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -12,21 +12,23 @@ import {NavigationEnd, Router} from "@angular/router";
 })
 export class SignInComponent implements OnInit {
   email = "";
-  password='';
+  password = '';
   isLoggedIn = false
   container = document.querySelector(".container");
 
-  signUpName='';
-  signUpSurname='';
-  signUpEmail='';
-  signUpPassword='';
-  signUpUsername='';
+  signUpName = '';
+  signUpSurname = '';
+  signUpEmail = '';
+  signUpPassword = '';
+  signUpUsername = '';
 
   @Output() onSignInOrRegister: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(private autentificationService:AutentificationService,private tokenStorage: TokenStorageService,
-              private router:Router) {}
+  constructor(private autentificationService: AutentificationService, private tokenStorage: TokenStorageService,
+              private router: Router) {
+  }
+
   ngOnInit(): void {
     this.onSignInOrRegister.emit(true)
     this.container = document.querySelector(".container");
@@ -34,18 +36,19 @@ export class SignInComponent implements OnInit {
 
   signIn() {
     var user = new SignInRequest({
-      email: this.email,
-      password:this.password}
+        email: this.email,
+        password: this.password
+      }
     )
     this.autentificationService.signInUser(user).subscribe({
 
-      next: res=>{
+      next: res => {
         this.logInUser(res)
       }
     })
   }
 
-  logInUser(res:any){
+  logInUser(res: any) {
     console.log(res)
     this.tokenStorage.saveToken(res.token!);
     this.tokenStorage.saveUser(res.token!);
@@ -64,13 +67,13 @@ export class SignInComponent implements OnInit {
 
   register() {
 
-    var registerRequest= new RegisterRequest()
-    registerRequest.FirstName=this.signUpName;
-    registerRequest.LastName=this.signUpSurname;
-    registerRequest.Email=this.signUpEmail;
+    var registerRequest = new RegisterRequest()
+    registerRequest.FirstName = this.signUpName;
+    registerRequest.LastName = this.signUpSurname;
+    registerRequest.Email = this.signUpEmail;
     registerRequest.Password = this.signUpPassword;
     this.autentificationService.registerUser(registerRequest).subscribe({
-      next:res=>{
+      next: res => {
         console.log(res)
         this.logInUser(res)
         this.router.navigate(['']).then()

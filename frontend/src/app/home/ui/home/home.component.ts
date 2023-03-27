@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import * as AOS from 'aos';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +7,17 @@ import * as AOS from 'aos';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  ngOnInit(): void {
-    AOS.init();
+  @ViewChild('planeVideo') myVideo!: ElementRef;
+
+  constructor() {
+    Aos.init({duration: 2000})
   }
 
+  ngOnInit(): void {
+  }
+
+  playVideo() {
+    console.log(this.myVideo)
+    this.myVideo.nativeElement.play();
+  }
 }
