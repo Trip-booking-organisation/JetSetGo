@@ -3,7 +3,11 @@ import {SignInRequest} from "../../model/signIn/SignInRequest";
 import {AutentificationService} from "../../../services/autentificationService";
 import {TokenStorageService} from "../../../services/tokenStorage.service";
 import {RegisterRequest} from "../../model/register/RegisterRequest";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import * as Aos from "aos";
+
+const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
 @Component({
   selector: 'app-sign-in',
@@ -20,21 +24,49 @@ export class SignInComponent implements OnInit {
   signUpSurname = '';
   signUpEmail = '';
   signUpPassword = '';
-  signUpUsername = '';
 
   @Output() onSignInOrRegister: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   constructor(private autentificationService: AutentificationService, private tokenStorage: TokenStorageService,
-              private router: Router) {
+              private router: Router,private toast:ToastrService,private route: ActivatedRoute) {
+    Aos.init({duration: 2000})
   }
 
   ngOnInit(): void {
     this.onSignInOrRegister.emit(true)
     this.container = document.querySelector(".container");
+    this.route.queryParams.subscribe(params=>{
+      if(params['isRegistration']) {
+        this.container?.classList.add("sign-up-mode");
+      }
+    })
   }
 
+  checkSignInFields():boolean{
+    return !(this.email == "" || this.password == "");
+
+  }
   signIn() {
+    if(!this.checkSignInFields()){
+      this.toast.error("Please insert mail and password.","Error")
+    }
+    else if(!this.checkEmailFormat(this.email)){
+      this.toast.error("Please insert mail correctly.","Error")
+    }
+    else{
+      this.doLoginCommand()
+    }
+  }
+
+  checkEmailFormat(email:string):boolean{
+    if(regex.test(email)){
+      return true;
+    }
+    return false;
+  }
+
+  doLoginCommand(){
     var user = new SignInRequest({
         email: this.email,
         password: this.password
@@ -44,6 +76,9 @@ export class SignInComponent implements OnInit {
 
       next: res => {
         this.logInUser(res)
+      },
+      error: err => {
+        this.toast.error("Incorrect email or password.","Error")
       }
     })
   }
@@ -66,7 +101,18 @@ export class SignInComponent implements OnInit {
   }
 
   register() {
+    if(!this.checkRegisterFields()){
+      this.toast.error("Please insert all sign up fields.","Error")
+    }
+    else if(!this.checkEmailFormat(this.signUpEmail)){
+      this.toast.error("Please insert mail correctly.","Error")
+    }
+    else{
+      this.doRegisterCommand();
+    }
+  }
 
+  doRegisterCommand(){
     var registerRequest = new RegisterRequest()
     registerRequest.FirstName = this.signUpName;
     registerRequest.LastName = this.signUpSurname;
@@ -77,8 +123,15 @@ export class SignInComponent implements OnInit {
         console.log(res)
         this.logInUser(res)
         this.router.navigate(['']).then()
+      },
+      error:err=>{
+        this.toast.error(err,"Error")
       }
     })
+  }
+
+  checkRegisterFields():boolean{
+    return !(this.signUpEmail == "" || this.signUpPassword == "" || this.signUpSurname == "" || this.signUpName == "");
   }
 
 

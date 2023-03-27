@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {navData} from "./passenger-nav-data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SignInComponent} from "../../autentification/view/sign-in/sign-in.component";
@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   navDataPassenger = navData;
   navbar_one = document.querySelector(".navbar-one");
   @Input() second_nav_visibility = true;
+  @Output() on_register_route :  EventEmitter<boolean> = new EventEmitter();
 
 
   constructor(private router: Router, private route: ActivatedRoute, private tokenStorage: TokenStorageService,
@@ -49,20 +50,9 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  private handleColorTransparancy() {
-    // @ts-ignore
-    const component = this.route.snapshot.firstChild.component;
-    if (component === SignInComponent) {
-      this.navbar_one?.classList.add("opacity-background");
-      this.navbar_one?.classList.remove("visible-background")
-    } else {
-      this.navbar_one?.classList.remove("opacity-background");
-      this.navbar_one?.classList.add("visible-background")
-    }
-
-  }
 
   goToRegister() {
+    this.router.navigate(['signIn'],{ queryParams: { isRegistration: true } }).then();
     console.log(this.tokenStorage.getUser())
   }
 
