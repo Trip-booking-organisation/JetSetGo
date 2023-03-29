@@ -31,6 +31,7 @@ public static class DependencyInjection
         services.AddDbContext<JetSetGoContext>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IFlightRepository, FlightRepository>();
+        services.AddScoped<ITicketRepository, TicketRepository>();
     }
 
     private static void AddServices(this IServiceCollection services){
