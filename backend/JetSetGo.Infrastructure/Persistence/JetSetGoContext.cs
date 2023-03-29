@@ -11,6 +11,7 @@ public class JetSetGoContext : DbContext
 
     public DbSet<Flight> Flights { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Ticket> Tickets { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

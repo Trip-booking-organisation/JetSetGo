@@ -2,7 +2,7 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 
-namespace backend;
+namespace backend.Config;
 
 public static class DbConfig
 {
