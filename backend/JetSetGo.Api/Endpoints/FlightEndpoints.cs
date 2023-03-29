@@ -1,5 +1,6 @@
 ﻿using backend.Helpers;
 using JetSetGo.Application.Flights.Query.GetById;
+using JetSetGo.Application.Flights.Query.Search;
 using MediatR;
 
 namespace backend.Endpoints;
@@ -11,6 +12,7 @@ public static class FlightEndpoints
         application.MapGet("api/v1/flights",GetAllFlights);
         application.MapPost("api/v1/flights",CreateFlight);
         application.MapGet("api/v1/flights/{id:guid}", GetFlightById);
+        application.MapGet("api/v1/flights/search", SearchFlights);
         application.MapGet("/", () => Results.Ok("Hello"));
     }
 
@@ -29,5 +31,13 @@ public static class FlightEndpoints
     {
         await Task.CompletedTask;
         return Results.Ok();
+    }
+
+    private static async Task<IResult> SearchFlights(string locationFrom, string locationTo,
+        int passengersNumber, DateOnly date,ISender sender)
+    {
+        var query = new SearchFlightsQuery(locationFrom, locationTo, passengersNumber, date);
+        var flights =await sender.Send(query);
+        return flights.Any() ? Results.Ok(flights) : Results.NoContent();
     }
 }

@@ -10,14 +10,13 @@ public class UserRepository : IUserRepository
 
     public UserRepository(JetSetGoContext dbContext)
     {
-        this.DbContext = dbContext;
+        DbContext = dbContext;
     }
 
     public async Task<User> CreateAsync(User user)
     {
         await DbContext.Users.AddAsync(user);
         await DbContext.SaveChangesAsync();
-
         return user;
     }
 

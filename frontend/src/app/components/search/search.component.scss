@@ -4,9 +4,10 @@
   margin-top: 5rem;
 
   .section-container {
+    cursor: pointer;
     width: 100%;
     padding: 1.5rem;
-    border: 2px solid $gray-background;
+    border: 3px solid $gray-background;
     border-radius: 16px;
     row-gap: 2rem;
 
@@ -25,6 +26,8 @@
         width: 80%;
         text-align: center;
         cursor: pointer;
+        outline: none;
+        border: none;
 
         &:hover {
           background: $primary-color;
@@ -40,7 +43,6 @@
       justify-content: center;
       flex-direction: column;
       gap: 1.5rem;
-      cursor: pointer;
 
       .single-input {
         .icon-div {
@@ -59,14 +61,14 @@
           h4 {
             padding-top: 0;
             padding-bottom: .7rem;
+            text-align: left;
             color: $black-color;
             font-weight: 700;
             font-size: 16px;
-            white-space: nowrap;
           }
 
           input {
-            width: 95%;
+            width: 100%;
             border: none;
             outline: none;
             font-size: 17px;
@@ -80,6 +82,11 @@
             }
           }
         }
+      }
+
+      .btn-block {
+        text-align: center;
+        justify-content: center;
       }
     }
   }
@@ -177,7 +184,7 @@
   }
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1330px) {
   .search {
     .section-container {
       .btn-multi {
