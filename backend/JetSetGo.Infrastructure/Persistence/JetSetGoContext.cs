@@ -1,7 +1,8 @@
 ﻿using JetSetGo.Domain.Flights;
-using JetSetGo.Domain.Users;
 using JetSetGo.Domain.Tickets;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
+using User = JetSetGo.Domain.Users.User;
 
 namespace JetSetGo.Infrastructure.Persistence;
 
@@ -10,6 +11,7 @@ public class JetSetGoContext : DbContext
 
     public DbSet<Flight> Flights { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Ticket> Tickets { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -42,4 +44,6 @@ public class JetSetGoContext : DbContext
         modelBuilder.Entity<Ticket>()
             .HasPartitionKey(t => t.Id);
     }
+
+  
 }

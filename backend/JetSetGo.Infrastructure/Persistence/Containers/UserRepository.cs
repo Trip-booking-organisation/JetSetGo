@@ -2,7 +2,7 @@
 using JetSetGo.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace JetSetGo.Infrastructure.Persistence;
+namespace JetSetGo.Infrastructure.Persistence.Containers;
 
 public class UserRepository : IUserRepository
 {
@@ -16,6 +16,7 @@ public class UserRepository : IUserRepository
     public async Task<User> CreateAsync(User user)
     {
         await _dbContext.Users.AddAsync(user);
+        await _dbContext.SaveChangesAsync();
         return user;
     }
 

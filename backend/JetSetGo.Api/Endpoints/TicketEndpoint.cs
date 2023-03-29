@@ -14,10 +14,10 @@ public static class TicketEndpoint
     public static void MapTicketsEndpoints(this WebApplication application)
     {
         application.MapGet("api/v1/tickets/{id:guid}",GetAllTicketsByPassenger);
-       // application.MapPost("api/v1/tickets",CreateTicket);
-        /*application.MapGet("api/v1/tickets/{id:guid}", GetTicketById);
-        application.MapPut("api/v1/tickets", UpdateTicket);
-        application.MapDelete("api/v1/tickets/{id:guid}", DeleteTicket);*/
+        application.MapPost("api/v1/tickets",CreateTicket);
+        application.MapGet("api/v1/tickets/get-ticket/{id:guid}", GetTicketById);
+      //  application.MapPut("api/v1/tickets", UpdateTicket);
+        application.MapDelete("api/v1/tickets/{id:guid}", DeleteTicket);
     }
     private static async Task<IResult> GetAllTicketsByPassenger(ISender sender,Guid id)
     {
@@ -26,19 +26,19 @@ public static class TicketEndpoint
         return result.IsFailed ? Results.NotFound(result.Errors) : Results.Ok(result.Value);
     }
 
-    /*private static async Task<IResult> GetTicketById(ISender sender, Guid id)
+    private static async Task<IResult> GetTicketById(ISender sender, Guid id)
     {
         var request = new GetTicketByIdQuery(id);
         var result = await sender.Send(request);
         return result.IsFailed ? Results.NotFound(result.Errors) : Results.Ok(result.Value);
     }
 
-    /*private static Task CreateTicket(IMapper mapper,ISender sender,[FromBody] NewTicketRequest request)
+    private static async Task<IResult> CreateTicket(IMapper mapper,ISender sender,[FromBody] NewTicketRequest request)
     {
-        var student = mapper.Map<NewTicketCommand>(request);
-        var result = sender.Send(student);
-        /*return Results.Created();#2#
-    }#1#
+        var ticket = mapper.Map<NewTicketCommand>(request);
+        var result = await sender.Send(ticket);
+        return Results.Created(nameof(GetTicketById),result);
+    }
     private static async Task<IResult> DeleteTicket(ISender sender, Guid id)
     {
         var ticket = new DeleteTicketCommand(id);
@@ -46,7 +46,7 @@ public static class TicketEndpoint
         return result.IsFailed ? Results.NotFound(result.Errors) : Results.NoContent();
     }
 
-    private static Task UpdateTicket(HttpContext context)
+    /*private static Task UpdateTicket(HttpContext context)
     {
         throw new NotImplementedException();
     }*/

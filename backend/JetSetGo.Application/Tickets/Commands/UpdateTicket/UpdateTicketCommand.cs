@@ -1,6 +1,9 @@
-﻿namespace JetSetGo.Application.Tickets.Commands.UpdateTicket;
+﻿using FluentResults;
+using MediatR;
 
-public class UpdateTicketCommand
-{
-    
-}
+namespace JetSetGo.Application.Tickets.Commands.UpdateTicket;
+
+public record UpdateTicketCommand(Guid Id,Guid FlightId,
+    Guid PassengerId,
+    string ContactDetails,
+    string SeatNumber) : IRequest<Result>;

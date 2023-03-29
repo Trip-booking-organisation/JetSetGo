@@ -30,14 +30,17 @@ public class TicketRepository: ITicketRepository
         return _context.Tickets.FirstOrDefaultAsync(ticket => ticket.Id == id);
     }
 
-    public Task CreateTicket(Ticket ticket)
+    public async Task<Ticket?> CreateTicket(Ticket ticket)
     {
-        throw new NotImplementedException();
+        var newTicket = await _context.Tickets.AddAsync(ticket);
+        await _context.SaveChangesAsync();
+        return newTicket.Entity;
+
     }
 
-    public Task UpdateTicket(Ticket ticket)
+    public async Task UpdateTicket(Ticket ticket)
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteTicket(Ticket ticket)
