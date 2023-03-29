@@ -2,7 +2,7 @@
 using JetSetGo.Domain.Tickets;
 using Microsoft.EntityFrameworkCore;
 
-namespace JetSetGo.Infrastructure.Persistence.Containers;
+namespace JetSetGo.Infrastructure.Persistence.Repository;
 
 public class TicketRepository: ITicketRepository
 {

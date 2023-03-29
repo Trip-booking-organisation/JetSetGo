@@ -1,8 +1,8 @@
-﻿using JetSetGo.Application.Persistence;
+﻿using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace JetSetGo.Infrastructure.Persistence;
+namespace JetSetGo.Infrastructure.Persistence.Repository;
 
 public class UserRepository : IUserRepository
 {
@@ -25,5 +25,9 @@ public class UserRepository : IUserRepository
         var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
         return user;
     }
-    
+
+    public Task<User?> GetById(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -28,7 +28,7 @@ public class NewTicketCommandHandler : IRequestHandler<NewTicketCommand,Result<T
         
         if (await CheckIfFlightExists(request)) return Result.Fail<Ticket>(FlightErrors.FlightNotFound);
         if (await CheckIfPassengerExists(request)) return Result.Fail<Ticket>(UserErrors.UserNotFound);
-        if (await CheckIfSeatExistsOnFlight(request)) return Result.Fail<Ticket>(SeatErrors.SeatNotFound);
+        //if (await CheckIfSeatExistsOnFlight(request)) return Result.Fail<Ticket>(SeatErrors.SeatNotFound);
         
         var ticketRequest = InitializeTicket(request);
         var newTicket = await  _ticketRepository.CreateTicket(ticketRequest);
@@ -49,10 +49,10 @@ public class NewTicketCommandHandler : IRequestHandler<NewTicketCommand,Result<T
         return ticketRequest;
     }
 
-    private async Task<bool> CheckIfSeatExistsOnFlight(NewTicketCommand request)
+    private async Task CheckIfSeatExistsOnFlight(NewTicketCommand request)
     {
-        var flight = await _flightRepository.GetByIdAndSeat(request.FlightId,request.SeatNumber);
-        return flight == null;
+        /*var flight = await _flightRepository.GetByIdAndSeat(request.FlightId,request.SeatNumber);
+        return flight == null;*/
     }
 
     private async Task<bool> CheckIfPassengerExists(NewTicketCommand request)

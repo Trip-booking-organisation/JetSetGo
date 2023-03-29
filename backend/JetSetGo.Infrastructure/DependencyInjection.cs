@@ -3,7 +3,6 @@ using DotNetEnv.Configuration;
 using JetSetGo.Application.Common.Interfaces.Autentification;
 using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Application.Common.Services;
-using JetSetGo.Application.Persistence;
 using JetSetGo.Infrastructure.Autentification;
 using JetSetGo.Infrastructure.Persistence;
 using JetSetGo.Infrastructure.Persistence.Repository;
