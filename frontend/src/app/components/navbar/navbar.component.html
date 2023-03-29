@@ -1,9 +1,9 @@
 <div class="navbar flex">
-  <div class="navbar-one flex ">
+  <div class="navbar-one flex " [class.opacity-background] = "!second_nav_visibility"  [class.visible-background] = "second_nav_visibility">
     <mat-icon>airplanemode_active</mat-icon>
     <div class="none flex">
       <li class="flex">
-        <mat-icon>vibration</mat-icon>
+          <mat-icon (click)="checkAuthorisation()">vibration</mat-icon>
         Support
       </li>
       <li class="flex">
@@ -17,11 +17,11 @@
       <span *ngIf="checkIfSignedIn()" (click)="LogOut()">Log out</span>
     </div>
   </div>
-  <div [class]="addBackground" *ngIf="second_nav_visibility">
+  <div [class]="addBackground" *ngIf="second_nav_visibility" style="padding-top: 1%">
     <div class="logo-div">
       <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
     </div>
-    <div [class]="activeClass">
+    <div [class]="activeClass" >
       <ul class="menu flex">
         <li (click)="removeNavBar()" class="list-item"
             *ngFor="let data of navDataPassenger">

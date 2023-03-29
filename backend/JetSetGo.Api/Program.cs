@@ -21,8 +21,10 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
     //app.UseExceptionHandler("/error");
-    app.MapEndpoints();
     app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapEndpoints();
     app.UseCors(app.Configuration
             .GetSection("Cors")
             .GetSection("PolicyName").Value!);

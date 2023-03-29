@@ -1,23 +1,21 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {HomeModule} from "./home/home.module";
 import {FlightsModule} from "./flights/flights.module";
-import { RegistrationComponent } from './view/autentification/registration/registration.component';
 import {ComponentsModule} from "./components/components.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SignInComponent } from './view/autentification/sign-in/sign-in.component';
-import {FormsModule} from "@angular/forms";
+import {AuthInterceptor} from "./interceptors/AuthInterceptor";
+import {AuthenticationModule} from "./autentification/authentication.module";
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
-    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +25,16 @@ import {FormsModule} from "@angular/forms";
     FlightsModule,
     ComponentsModule,
     BrowserAnimationsModule,
-    FormsModule,
+    AuthenticationModule,
+    CommonModule,
+    ToastrModule.forRoot()
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

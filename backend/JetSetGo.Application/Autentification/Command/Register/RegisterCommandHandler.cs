@@ -30,14 +30,15 @@ public record RegisterCommandHandler: IRequestHandler<RegisterCommand,Result<Aut
         }
         
         Guid userId = Guid.NewGuid();
-        var token = _jwtTokenGenerator.GenerateToken(userId, request.FirstName, request.LastName,request.Email);
+        var token = _jwtTokenGenerator.GenerateToken(userId, request.FirstName, request.LastName,request.Email,UserRole.Passenger);
         var user = new User
         {
             Id = userId,
             FirstName = request.FirstName, 
             LastName = request.LastName, 
             Email = request.Email, 
-            Password = request.Password
+            Password = request.Password,
+            Role = UserRole.Passenger
         };
         await _userRepository.CreateAsync(user);
         return  new AutentificationResult(token);

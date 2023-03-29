@@ -1,4 +1,5 @@
-﻿using JetSetGo.Application.Flights.Query.GetById;
+﻿using backend.Helpers;
+using JetSetGo.Application.Flights.Query.GetById;
 using MediatR;
 
 namespace backend.Endpoints;
@@ -22,7 +23,7 @@ public static class FlightEndpoints
     {
         var query = new GetFlightQuery(id);
         var flight = await sender.Send(query);
-        return flight.IsFailed ? Results.NotFound(flight.Errors) : Results.Ok(flight.Value);
+        return flight.IsFailed ? Results.NotFound(flight.Errors.ToResponse()) : Results.Ok(flight.Value);
     }
     private static async Task<IResult> CreateFlight(ISender sender,Guid id)
     {

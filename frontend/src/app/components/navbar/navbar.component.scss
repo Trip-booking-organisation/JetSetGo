@@ -46,7 +46,9 @@
     padding: .5rem 1rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0 10x 15px -6px,
     rgba(0, 0, 0, 0.06) 0 4px 6px -3px;
+
   }
+
 
   .navbar-two {
     display: flex;
@@ -56,7 +58,7 @@
     padding: 1.5rem 1rem;
     position: fixed;
     transition: .3s ease-in-out;
-
+    background: hsla(180, 16%, 94%, 0.89);
     .logo-div {
       .logo {
         width: 30%;

@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import * as Aos from "aos";
 
 @Component({
   selector: 'app-info',
@@ -7,7 +6,4 @@ import * as Aos from "aos";
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent {
-  constructor() {
-    Aos.init({duration: 2000})
-  }
 }
