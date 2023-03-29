@@ -1,10 +1,11 @@
-﻿using JetSetGo.Domain.Flights;
+﻿using JetSetGo.Application.Flights.Query.Search;
+using JetSetGo.Domain.Flights;
 
 namespace JetSetGo.Application.Common.Interfaces.Persistence;
 
 public interface IFlightRepository
 {
-     Task<Flight?> GetById(Guid id);
-     Task Create(Flight flight);
-     Task<Flight?> GetByIdAndSeat(Guid id, string seatNumber);
+    public Task<Flight?> GetById(Guid id);
+    public Task Create(Flight flight);
+    public Task<List<Flight>> SearchFlights(SearchFlightsQuery flightsQuery);
 }

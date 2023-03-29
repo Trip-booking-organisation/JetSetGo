@@ -29,44 +29,43 @@ export class SignInComponent implements OnInit {
 
 
   constructor(private autentificationService: AutentificationService, private tokenStorage: TokenStorageService,
-              private router: Router,private toast:ToastrService,private route: ActivatedRoute) {
+              private router: Router, private toast: ToastrService, private route: ActivatedRoute) {
     Aos.init({duration: 2000})
   }
 
   ngOnInit(): void {
     this.onSignInOrRegister.emit(true)
     this.container = document.querySelector(".container");
-    this.route.queryParams.subscribe(params=>{
-      if(params['isRegistration']) {
+    this.route.queryParams.subscribe(params => {
+      if (params['isRegistration']) {
         this.container?.classList.add("sign-up-mode");
       }
     })
   }
 
-  checkSignInFields():boolean{
+  checkSignInFields(): boolean {
     return !(this.email == "" || this.password == "");
 
   }
+
   signIn() {
-    if(!this.checkSignInFields()){
-      this.toast.error("Please insert mail and password.","Error")
-    }
-    else if(!this.checkEmailFormat(this.email)){
-      this.toast.error("Please insert mail correctly.","Error")
-    }
-    else{
+    if (!this.checkSignInFields()) {
+      this.toast.error("Please insert mail and password.", "Error")
+    } else if (!this.checkEmailFormat(this.email)) {
+      this.toast.error("Please insert mail correctly.", "Error")
+    } else {
       this.doLoginCommand()
     }
   }
 
-  checkEmailFormat(email:string):boolean{
-    if(regex.test(email)){
+  checkEmailFormat(email: string): boolean {
+    if (regex.test(email)) {
       return true;
     }
     return false;
   }
 
-  doLoginCommand(){
+  doLoginCommand() {
     var user = new SignInRequest({
         email: this.email,
         password: this.password
@@ -78,7 +77,7 @@ export class SignInComponent implements OnInit {
         this.logInUser(res)
       },
       error: err => {
-        this.toast.error("Incorrect email or password.","Error")
+        this.toast.error("Incorrect email or password.", "Error")
       }
     })
   }
@@ -101,18 +100,16 @@ export class SignInComponent implements OnInit {
   }
 
   register() {
-    if(!this.checkRegisterFields()){
-      this.toast.error("Please insert all sign up fields.","Error")
-    }
-    else if(!this.checkEmailFormat(this.signUpEmail)){
-      this.toast.error("Please insert mail correctly.","Error")
-    }
-    else{
+    if (!this.checkRegisterFields()) {
+      this.toast.error("Please insert all sign up fields.", "Error")
+    } else if (!this.checkEmailFormat(this.signUpEmail)) {
+      this.toast.error("Please insert mail correctly.", "Error")
+    } else {
       this.doRegisterCommand();
     }
   }
 
-  doRegisterCommand(){
+  doRegisterCommand() {
     var registerRequest = new RegisterRequest()
     registerRequest.FirstName = this.signUpName;
     registerRequest.LastName = this.signUpSurname;
@@ -124,13 +121,13 @@ export class SignInComponent implements OnInit {
         this.logInUser(res)
         this.router.navigate(['']).then()
       },
-      error:err=>{
-        this.toast.error(err,"Error")
+      error: err => {
+        this.toast.error(err, "Error")
       }
     })
   }
 
-  checkRegisterFields():boolean{
+  checkRegisterFields(): boolean {
     return !(this.signUpEmail == "" || this.signUpPassword == "" || this.signUpSurname == "" || this.signUpName == "");
   }
 
