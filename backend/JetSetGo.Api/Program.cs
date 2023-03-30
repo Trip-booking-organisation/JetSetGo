@@ -1,5 +1,4 @@
 using backend;
-using backend.Endpoints;
 using JetSetGo.Application;
 using JetSetGo.Infrastructure;
 

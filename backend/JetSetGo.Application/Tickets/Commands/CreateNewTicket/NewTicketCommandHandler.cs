@@ -2,15 +2,12 @@
 using JetSetGo.Application.Common.Errors;
 using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Domain.Flights;
-using JetSetGo.Domain.Flights.Entities;
-using JetSetGo.Domain.Flights.Enum;
-using JetSetGo.Domain.Flights.ValueObjects;
 using JetSetGo.Domain.Tickets;
 using MediatR;
 
 namespace JetSetGo.Application.Tickets.Commands.CreateNewTicket;
 
-public class NewTicketCommandHandler : IRequestHandler<NewTicketCommand,Result<Ticket>>
+public class NewTicketCommandHandler : IRequestHandler<NewTicketsCommand,Result<bool>>
 {
     private readonly ITicketRepository _ticketRepository;
     private readonly IFlightRepository _flightRepository;
@@ -23,47 +20,83 @@ public class NewTicketCommandHandler : IRequestHandler<NewTicketCommand,Result<T
         _userRepository = userRepository;
     }
 
-    public async Task<Result<Ticket>> Handle(NewTicketCommand request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(NewTicketsCommand request, CancellationToken cancellationToken)
     {
-        
-        if (await CheckIfFlightExists(request)) return Result.Fail<Ticket>(FlightErrors.FlightNotFound);
-        if (await CheckIfPassengerExists(request)) return Result.Fail<Ticket>(UserErrors.UserNotFound);
-        //if (await CheckIfSeatExistsOnFlight(request)) return Result.Fail<Ticket>(SeatErrors.SeatNotFound);
-        
-        var ticketRequest = InitializeTicket(request);
-        var newTicket = await  _ticketRepository.CreateTicket(ticketRequest);
-        
-        return newTicket ?? Result.Fail<Ticket>(TicketErrors.TicketNotCreated);
+        var newTickets = new List<Ticket>();
+        if (newTickets == null) throw new ArgumentNullException(nameof(newTickets));
+        var flight = await CheckIfFlightExists(request);
+        if (flight == null) return Result.Fail<bool>(FlightErrors.FlightNotFound);
+        if(flight.AvailableSeats < request.NewTickets.Count) return Result.Fail<bool>(FlightErrors.NoAvailableSeats);
+        if (await CheckIfPassengerExists(request)) return Result.Fail<bool>(UserErrors.UserNotFound);
+       
+        foreach (var ticket in request.NewTickets)
+        {
+            if (!CheckIfSeatExistsOnFlight(flight,ticket.SeatNumber)) return Result.Fail<bool>(SeatErrors.SeatNotFound);
+            var newTicket = await CreateTicket(ticket,request);
+            if (newTicket is null)
+            {
+                return  Result.Fail<bool>(TicketErrors.TicketNotCreated);
+            }
+            await UpdateSeatAvailability(ticket, flight);
+            newTickets.Add(newTicket);
+        }
+
+        return Result.Ok(newTickets.Any());
+    }
+    private async Task UpdateSeatAvailability(NewTicketCommand request, Flight flight)
+    {
+            flight.Seats.ForEach(seat =>
+            {
+                if (seat.SeatNumber == request.SeatNumber) seat.Available = false;
+            });
+            --flight.AvailableSeats; 
+            await _flightRepository.Update(flight);
     }
 
-    private static Ticket InitializeTicket(NewTicketCommand request)
+    private async Task<Ticket?> CreateTicket(NewTicketCommand ticket, NewTicketsCommand request)
+    {
+        var ticketRequest = InitializeTicket(ticket,request);
+        var newTicket = await _ticketRepository.CreateTicket(ticketRequest);
+        return newTicket;
+    }
+
+    private static Ticket InitializeTicket(NewTicketCommand ticket, NewTicketsCommand request)
     {
         var ticketRequest = new Ticket
         {
-            SeatNumber = request.SeatNumber,
-            BookingTime = new DateTime(),
-            ContactDetails = request.ContactDetails,
+            SeatNumber = ticket.SeatNumber,
+            BookingTime = DateTime.Now,
+            ContactDetails = ticket.ContactDetails,
             PassengerId = request.PassengerId,
             FlightId = request.FlightId
         };
         return ticketRequest;
     }
 
-    private async Task CheckIfSeatExistsOnFlight(NewTicketCommand request)
+    private bool CheckIfSeatExistsOnFlight(Flight flight,String seatNumber)
     {
-        /*var flight = await _flightRepository.GetByIdAndSeat(request.FlightId,request.SeatNumber);
-        return flight == null;*/
+        if (flight.AvailableSeats > 0)
+        {
+            var seat = flight
+                .Seats
+                .FirstOrDefault(seat => seat.SeatNumber == seatNumber && seat.Available);
+            return seat != null;
+        }
+       
+        return false;
     }
 
-    private async Task<bool> CheckIfPassengerExists(NewTicketCommand request)
+    private async Task<bool> CheckIfPassengerExists(NewTicketsCommand request)
     {
-        var passenger = await _userRepository.GetById(request.PassengerId);
+        var passenger = await _userRepository
+                                    .GetById(request.PassengerId);
         return passenger == null;
     }
 
-    private async Task<bool> CheckIfFlightExists(NewTicketCommand request)
+    private async Task<Flight?> CheckIfFlightExists(NewTicketsCommand request)
     {
-        var flight = await _flightRepository.GetById(request.FlightId);
-        return flight == null;
+        var flight = await _flightRepository
+                                .GetById(request.FlightId);
+        return flight;
     }
 }

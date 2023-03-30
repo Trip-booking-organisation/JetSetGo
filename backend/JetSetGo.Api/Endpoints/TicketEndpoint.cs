@@ -33,9 +33,9 @@ public static class TicketEndpoint
         return result.IsFailed ? Results.NotFound(result.Errors) : Results.Ok(result.Value);
     }
 
-    private static async Task<IResult> CreateTicket(IMapper mapper,ISender sender,[FromBody] NewTicketRequest request)
+    private static async Task<IResult> CreateTicket(IMapper mapper,ISender sender,[FromBody] NewTicketsRequest request)
     {
-        var ticket = mapper.Map<NewTicketCommand>(request);
+        var ticket = mapper.Map<NewTicketsCommand>(request);
         var result = await sender.Send(ticket);
         return Results.Created(nameof(GetTicketById),result);
     }

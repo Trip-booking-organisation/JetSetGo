@@ -26,8 +26,9 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public Task<User?> GetById(Guid id)
+    public async Task<User?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        var user = await DbContext.Users.FindAsync(id);
+        return user;
     }
 }
