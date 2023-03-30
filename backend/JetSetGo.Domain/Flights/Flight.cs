@@ -7,11 +7,12 @@ namespace JetSetGo.Domain.Flights;
 
 public class Flight
 {
-    public Flight(List<Seat> seats, FlightDetails departure, FlightDetails arrival)
+    public Flight(List<Seat> seats, FlightDetails departure, FlightDetails arrival, int availableSeats)
     {
         Seats = seats;
         Departure = departure;
         Arrival = arrival;
+        AvailableSeats = availableSeats;
     }
 
     public static Result ValidateSets(IEnumerable<Seat> seats)
@@ -28,6 +29,7 @@ public class Flight
     public List<Seat> Seats { get;private  set; }
     public FlightDetails Departure { get; private set; }
     public FlightDetails Arrival { get; private set; }
+    public int AvailableSeats { get; set; }
 
     public Result AddSeat(Seat seat)
     {

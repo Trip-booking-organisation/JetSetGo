@@ -57,7 +57,7 @@ public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Re
             return Result.Fail<Guid>("Same seat provided");
         }
 
-        var flight = new Flight(seats, departure, arrival);
+        var flight = new Flight(seats, departure, arrival,request.AvailableSeats);
         var id = await _flightRepository.Create(flight);
         return id;
     }

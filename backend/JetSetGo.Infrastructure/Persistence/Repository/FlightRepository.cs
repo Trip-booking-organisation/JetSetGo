@@ -41,9 +41,6 @@ public class FlightRepository : IFlightRepository
         //     JOIN s IN c.Seats
         //     WHERE s.Available = true"
         // );
-        // var flights = _context.Flights
-        //     .Include(f => f.Seats)
-        //     .SelectMany(flight => flight.Seats);
         // _logger.LogInformation(flights.ToQueryString());
         return await query.ToListAsync();
     }
