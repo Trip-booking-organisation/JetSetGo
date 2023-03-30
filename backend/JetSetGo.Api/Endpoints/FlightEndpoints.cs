@@ -44,6 +44,6 @@ public static class FlightEndpoints
     {
         var query = new SearchFlightsQuery(locationFrom, locationTo, passengersNumber, date);
         var flights = await sender.Send(query);
-        return flights.Any() ? Results.Ok(flights) : Results.NoContent();
+        return Results.Ok(flights);
     }
 }
