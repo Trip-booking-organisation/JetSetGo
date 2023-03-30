@@ -1,4 +1,4 @@
-﻿namespace backend.Requests.User;
+﻿namespace backend.Dto.Requests.User;
 
 public record RegisterRequest
 (

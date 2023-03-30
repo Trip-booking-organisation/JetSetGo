@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using backend.Requests.Tickets;
+using backend.Dto.Requests.Tickets;
 using JetSetGo.Application.Tickets.Commands.CreateNewTicket;
 using JetSetGo.Application.Tickets.Commands.DeleteTicket;
 using JetSetGo.Application.Tickets.Queries.GetTicketById;

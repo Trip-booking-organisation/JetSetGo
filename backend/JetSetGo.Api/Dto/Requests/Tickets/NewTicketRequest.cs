@@ -1,4 +1,4 @@
-﻿namespace backend.Requests.Tickets;
+﻿namespace backend.Dto.Requests.Tickets;
 
 public class NewTicketRequest
 {

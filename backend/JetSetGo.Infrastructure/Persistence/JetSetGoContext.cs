@@ -21,7 +21,8 @@ public class JetSetGoContext : DbContext
         var accKey=Environment.GetEnvironmentVariable("DB_ACC_KEY")!;
         var dbName=Environment.GetEnvironmentVariable("DB_NAME") ?? "jet-set-go-db";
 
-        optionsBuilder.UseCosmos(
+        optionsBuilder.
+            UseCosmos(
             accountEndpoint,
             accKey, dbName);
 
@@ -29,16 +30,14 @@ public class JetSetGoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Flight>().ToContainer("Flights");
-        modelBuilder.Entity<Ticket>().ToContainer("Tickets");
-        modelBuilder.Entity<User>().ToContainer("Users");
+        modelBuilder.Entity<Flight>().ToContainer(nameof(Flights));
+        modelBuilder.Entity<Ticket>().ToContainer(nameof(Tickets));
+        modelBuilder.Entity<User>().ToContainer(nameof(Users));
 
-        modelBuilder.Entity<Flight>()
-            .HasPartitionKey(f => f.Id);
-        modelBuilder.Entity<Flight>()
-                    .OwnsMany(f => f.Seats);
-        modelBuilder.Entity<Flight>()
-            .OwnsOne(f => f.Departure, 
+        var flightEntity = modelBuilder.Entity<Flight>();
+        flightEntity.HasPartitionKey(f => f.Id);
+        flightEntity.OwnsMany(f => f.Seats);
+        flightEntity.OwnsOne(f => f.Departure, 
                 builder =>
                 {
                     builder.OwnsOne(a => a.Address);
@@ -47,8 +46,7 @@ public class JetSetGoContext : DbContext
                     builder.Property(x => x.Time)
                         .HasConversion(new DateTimeConverter());
                 });
-        modelBuilder.Entity<Flight>()
-            .OwnsOne(f => f.Arrival, 
+        flightEntity.OwnsOne(f => f.Arrival, 
                 builder =>
                 {
                     builder.OwnsOne(a => a.Address);
@@ -57,8 +55,7 @@ public class JetSetGoContext : DbContext
                     builder.Property(x => x.Time)
                         .HasConversion(new DateTimeConverter());
                 });
-        modelBuilder.Entity<Flight>()
-            .OwnsOne(f => f.Arrival, 
+        flightEntity.OwnsOne(f => f.Arrival, 
                 builder => builder.OwnsOne(a=> a.Address)
             );
         

@@ -6,6 +6,6 @@ namespace JetSetGo.Application.Common.Interfaces.Persistence;
 public interface IFlightRepository
 {
     public Task<Flight?> GetById(Guid id);
-    public Task Create(Flight flight);
+    public Task<Guid> Create(Flight flight);
     public Task<List<Flight>> SearchFlights(SearchFlightsQuery flightsQuery);
 }
