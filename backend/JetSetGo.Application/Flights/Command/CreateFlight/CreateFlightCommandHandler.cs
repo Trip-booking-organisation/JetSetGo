@@ -30,6 +30,8 @@ public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Re
                 City = request.Arrival.Address.City,
                 Country = request.Arrival.Address.Country,
                 AirportName = request.Arrival.Address.AirportName,
+                Longitude = request.Arrival.Address.Longitude,
+                Latitude = request.Arrival.Address.Latitude
             }
         };
         var departure = new FlightDetails
@@ -41,6 +43,8 @@ public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Re
                 City = request.Departure.Address.City,
                 Country = request.Departure.Address.Country,
                 AirportName = request.Departure.Address.AirportName,
+                Longitude = request.Departure.Address.Longitude,
+                Latitude = request.Departure.Address.Latitude
             }
         };
         var seats = request.Seats.
