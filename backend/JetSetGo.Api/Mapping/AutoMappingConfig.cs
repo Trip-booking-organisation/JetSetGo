@@ -4,7 +4,6 @@ using backend.Dto.Requests.Tickets;
 using backend.Dto.Shared;
 using JetSetGo.Application.Flights.Command.CreateFlight;
 using JetSetGo.Application.Tickets.Commands.CreateNewTicket;
-using JetSetGo.Domain.Tickets;
 
 namespace backend.Mapping;
 
