@@ -12,6 +12,7 @@ public class AutoMappingConfig : Profile
     public AutoMappingConfig()
     {
         CreateMap<NewTicketRequest, NewTicketCommand>();
+        CreateMap<NewTicketsRequest, NewTicketsCommand>();
         CreateMap<SeatDto, CreateFlightCommand.SeatCommand>();
         CreateMap<FlightDetailsDto, CreateFlightCommand.DetailCommand>();
         CreateMap<AddressDto, CreateFlightCommand.AddressCommand>();
