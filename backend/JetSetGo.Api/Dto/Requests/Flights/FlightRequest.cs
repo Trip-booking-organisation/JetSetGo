@@ -1,4 +1,4 @@
-﻿namespace backend.Requests;
+﻿namespace backend.Dto.Requests.Flights;
 
 public class FlightRequest
 {

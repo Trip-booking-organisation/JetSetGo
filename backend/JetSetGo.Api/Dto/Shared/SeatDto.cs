@@ -1,8 +1,8 @@
 ﻿using JetSetGo.Domain.Flights.Enum;
 
-namespace JetSetGo.Domain.Flights.Entities;
+namespace backend.Dto.Shared;
 
-public class Seat
+public class SeatDto
 {
     public string SeatNumber { get; set; } = null!;
     public double Price { get; set; }

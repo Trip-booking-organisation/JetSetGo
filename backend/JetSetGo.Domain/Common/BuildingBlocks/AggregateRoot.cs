@@ -1,4 +1,6 @@
-﻿namespace HouseFinder360.Domain.Common.BuildingBlocks;
+﻿using JetSetGo.Domain.Common.BuildingBlocks;
+
+namespace HouseFinder360.Domain.Common.BuildingBlocks;
 
 public class AggregateRoot<TId> : Entity<TId> 
     where TId : notnull

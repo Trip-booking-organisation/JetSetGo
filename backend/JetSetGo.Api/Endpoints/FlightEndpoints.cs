@@ -1,4 +1,7 @@
-﻿using backend.Helpers;
+﻿using AutoMapper;
+using backend.Dto.Requests.Flights;
+using backend.Helpers;
+using JetSetGo.Application.Flights.Command.CreateFlight;
 using JetSetGo.Application.Flights.Query.GetById;
 using JetSetGo.Application.Flights.Query.Search;
 using MediatR;
@@ -25,19 +28,22 @@ public static class FlightEndpoints
     {
         var query = new GetFlightQuery(id);
         var flight = await sender.Send(query);
-        return flight.IsFailed ? Results.NotFound(flight.Errors.ToResponse()) : Results.Ok(flight.Value);
+        return flight.IsFailed ? Results.Conflict(flight.Errors.ToResponse()) : Results.Ok(flight.Value);
     }
-    private static async Task<IResult> CreateFlight(ISender sender,Guid id)
+    private static async Task<IResult> CreateFlight(ISender sender,CreateFlight request,IMapper mapper)
     {
-        await Task.CompletedTask;
-        return Results.Ok();
+        var flight = mapper.Map<CreateFlightCommand>(request);
+        var result = await sender.Send(flight);
+        return result.IsFailed
+            ? Results.BadRequest(result.Errors.ToResponse())
+            : Results.Created("/api/v1/flights/{id}", new { Id = result.Value});
     }
 
     private static async Task<IResult> SearchFlights(string locationFrom, string locationTo,
         int passengersNumber, DateOnly date,ISender sender)
     {
         var query = new SearchFlightsQuery(locationFrom, locationTo, passengersNumber, date);
-        var flights =await sender.Send(query);
+        var flights = await sender.Send(query);
         return flights.Any() ? Results.Ok(flights) : Results.NoContent();
     }
 }
