@@ -36,7 +36,6 @@ public class FlightRepository : IFlightRepository
             .Where(f => f.Departure.Date == flightsQuery.Date
             && f.AvailableSeats >= flightsQuery.PassengersNumber
             );
-
         // var flights = _context.Flights.FromSqlRaw(@"
         //     SELECT DISTINCT c
         //     FROM c

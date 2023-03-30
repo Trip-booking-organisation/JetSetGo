@@ -1,11 +1,13 @@
 <div class="search container-main section">
   <div class="section-container grid" data-aos="fade-up" data-aos-duration="2000">
     <div class="btn-multi flex">
-      <button class="btn-single">
+      <button class="btn-single" (click)="filterClass(classSeats[2])">
         Economy
       </button>
-      <button class="btn-single">Business Class</button>
-      <button class="btn-single">
+      <button class="btn-single" (click)="filterClass(classSeats[1])">
+        Business Class
+      </button>
+      <button class="btn-single" (click)="filterClass(classSeats[0])">
         First Class
       </button>
     </div>
@@ -62,5 +64,8 @@
         Search flights
       </button>
     </form>
+    <div *ngFor="let result of searchResults">
+      {{result.id}}
+    </div>
   </div>
 </div>

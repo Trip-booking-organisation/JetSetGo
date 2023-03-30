@@ -59,18 +59,16 @@ export class SignInComponent implements OnInit {
   }
 
   checkEmailFormat(email: string): boolean {
-    if (regex.test(email)) {
-      return true;
-    }
-    return false;
+    return regex.test(email);
+
   }
 
   doLoginCommand() {
-    var user = new SignInRequest({
+    const user = new SignInRequest({
         email: this.email,
         password: this.password
       }
-    )
+    );
     this.autentificationService.signInUser(user).subscribe({
 
       next: res => {
@@ -110,7 +108,7 @@ export class SignInComponent implements OnInit {
   }
 
   doRegisterCommand() {
-    var registerRequest = new RegisterRequest()
+    const registerRequest = new RegisterRequest();
     registerRequest.FirstName = this.signUpName;
     registerRequest.LastName = this.signUpSurname;
     registerRequest.Email = this.signUpEmail;

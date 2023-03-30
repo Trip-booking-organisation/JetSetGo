@@ -1,5 +1,5 @@
-import {Seat} from "../Seat";
-import {Address} from "../Address";
+import {Seat} from "./Seat";
+import {Address} from "./Address";
 
 export interface FlightResult {
   id: string,
