@@ -1,8 +1,8 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {navData} from "./passenger-nav-data";
 import {ActivatedRoute, Router} from "@angular/router";
-import {TokenStorageService} from "../../services/tokenStorage.service";
-import {AutentificationService} from "../../services/autentificationService";
+import {TokenStorageService} from "../../shared/services/tokenStorage.service";
+import {AutentificationService} from "../../shared/services/autentificationService";
 
 @Component({
   selector: 'app-navbar',

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SignInRequest} from "../../model/signIn/SignInRequest";
-import {AutentificationService} from "../../../services/autentificationService";
-import {TokenStorageService} from "../../../services/tokenStorage.service";
+import {AutentificationService} from "../../../shared/services/autentificationService";
+import {TokenStorageService} from "../../../shared/services/tokenStorage.service";
 import {RegisterRequest} from "../../model/register/RegisterRequest";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";

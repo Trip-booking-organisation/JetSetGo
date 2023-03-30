@@ -55,10 +55,7 @@ public class JetSetGoContext : DbContext
                     builder.Property(x => x.Time)
                         .HasConversion(new DateTimeConverter());
                 });
-        flightEntity.OwnsOne(f => f.Arrival, 
-                builder => builder.OwnsOne(a=> a.Address)
-            );
-        
+
 
         modelBuilder.Entity<User>()
             .HasPartitionKey(u => u.Id);
