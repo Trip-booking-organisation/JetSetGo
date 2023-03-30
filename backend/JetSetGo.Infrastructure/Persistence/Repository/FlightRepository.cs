@@ -46,4 +46,10 @@ public class FlightRepository : IFlightRepository
         // _logger.LogInformation(flights.ToQueryString());
         return await query.ToListAsync();
     }
+
+    public async Task Update(Flight flight)
+    {
+        _context.Flights.Update(flight);
+      await  _context.SaveChangesAsync();
+    }
 }
