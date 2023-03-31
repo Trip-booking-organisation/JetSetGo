@@ -5,7 +5,9 @@ using MediatR;
 namespace JetSetGo.Application.Flights.Query.Search;
 
 public record SearchFlightsQuery(
-    string LocationFrom, 
-    string LocationTo,
+    string CityFrom, 
+    string CountryFrom, 
+    string CityTo, 
+    string CountryTo,
     int PassengersNumber,
     DateOnly Date):IRequest<IEnumerable<FlightResult>>;
