@@ -26,6 +26,7 @@ public static class DependencyInjection
 
         services.AddPersistence();
         services.AddServices();
+        services.AddSecurity();
     }
     private static void AddPersistence(this IServiceCollection services){
         services.AddDbContext<JetSetGoContext>();
@@ -36,6 +37,10 @@ public static class DependencyInjection
 
     private static void AddServices(this IServiceCollection services){
         services.AddSingleton<IDateTimeProvider,DateTimeProvider>();
+    }
+    
+    private static void AddSecurity(this IServiceCollection services){
+        services.AddSingleton<IPasswordHasher,PasswordHasher>();
     }
 
     private static IServiceCollection AddAuth(this IServiceCollection services, ConfigurationManager builderConfiguration)
