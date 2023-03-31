@@ -1,0 +1,71 @@
+.loader {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  max-width: 35rem;
+  height: 30rem;
+  margin: 0 auto;
+}
+
+.departure_city {
+  left: 0;
+}
+
+.plane {
+  position: absolute;
+  margin: auto auto;
+  width: 50%;
+}
+
+.plane-img {
+  -webkit-animation: spin 2.5s linear infinite;
+  -moz-animation: spin 2.5s linear infinite;
+  animation: spin 2.5s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+.earth-wrapper {
+  position: absolute;
+  width: 100%;
+  padding-top: 2.7rem;
+}
+
+.earth {
+  width: 150px;
+  height: 150px;
+  background: url("https://zupimages.net/up/19/34/6vlb.gif");
+  border-radius: 100%;
+  background-size: 340px;
+  animation: earthAnim 12s infinite linear;
+  margin: 0 auto;
+  border: 1px solid #CDD1D3;
+}
+
+@keyframes earthAnim {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -200px;
+  }
+}

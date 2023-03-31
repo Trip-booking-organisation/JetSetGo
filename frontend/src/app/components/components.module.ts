@@ -7,15 +7,18 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ErrorComponent} from "./errors/errorPage/error.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {LoadingAnimationComponent} from './loading-animation/loading-animation.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoadingAnimationComponent
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    LoadingAnimationComponent
   ],
   imports: [
     CommonModule,

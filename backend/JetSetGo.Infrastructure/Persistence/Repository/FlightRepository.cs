@@ -23,27 +23,20 @@ public class FlightRepository : IFlightRepository
         return flight;
     }
 
-    public async Task<Guid> Create(Flight flight)
+    public async Task<Guid> Create(Flight flight,CancellationToken cancellationToken = default)
     {
-        var entityEntry = await _context.Flights.AddAsync(flight);
-        await _context.SaveChangesAsync();
+        var entityEntry = await _context.Flights.AddAsync(flight,cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
         return entityEntry.Entity.Id;
     }
 
-    public async Task<List<Flight>> SearchFlights(SearchFlightsQuery flightsQuery)
+    public async Task<List<Flight>> SearchFlights(SearchFlightsQuery flightsQuery,CancellationToken cancellationToken = default)
     {
         var query =  _context.Flights
             .Where(f => f.Departure.Date == flightsQuery.Date
             && f.AvailableSeats >= flightsQuery.PassengersNumber
             );
-        // var flights = _context.Flights.FromSqlRaw(@"
-        //     SELECT DISTINCT c
-        //     FROM c
-        //     JOIN s IN c.Seats
-        //     WHERE s.Available = true"
-        // );
-        // _logger.LogInformation(flights.ToQueryString());
-        return await query.ToListAsync();
+        return await query.ToListAsync(cancellationToken);
     }
 
     public async Task Update(Flight flight)

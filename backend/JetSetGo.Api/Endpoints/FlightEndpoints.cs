@@ -16,7 +16,7 @@ public static class FlightEndpoints
         application.MapPost("api/v1/flights",CreateFlight);
         application.MapGet("api/v1/flights/{id:guid}", GetFlightById);
         application.MapGet("api/v1/flights/search", SearchFlights);
-        application.MapGet("/", () => Results.Ok("Hello"));
+        application.MapGet("/", () => Results.Content("<h1>jet set go</h1>"));
     }
 
     private static async Task<IResult> GetAllFlights(ISender sender)

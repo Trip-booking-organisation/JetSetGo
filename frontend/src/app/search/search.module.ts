@@ -4,6 +4,7 @@ import {SearchComponent} from "./search.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ComponentsModule} from "../components/components.module";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
+    ComponentsModule,
   ]
 })
 export class SearchModule {

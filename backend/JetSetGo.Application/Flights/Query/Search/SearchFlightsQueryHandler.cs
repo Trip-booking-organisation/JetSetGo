@@ -16,7 +16,7 @@ public class SearchFlightsQueryHandler:IRequestHandler<SearchFlightsQuery,IEnume
 
     public async Task<IEnumerable<FlightResult>> Handle(SearchFlightsQuery request, CancellationToken cancellationToken)
     {
-        var flights = await  _flightRepository.SearchFlights(request);
+        var flights = await  _flightRepository.SearchFlights(request,cancellationToken);
         var searchResult = flights.Where(f => 
            (f.Departure.Address.City.Contains(request.LocationFrom) 
                || f.Departure.Address.Country.Contains(request.LocationFrom))
