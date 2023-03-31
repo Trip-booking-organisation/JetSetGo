@@ -13,12 +13,15 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<Autentific
     private readonly IUserRepository _userRepository;
     private readonly ILogger<GetFlightQueryHandler> _logger;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public SignInQueryHandler(IUserRepository userRepository, ILogger<GetFlightQueryHandler> logger, IJwtTokenGenerator jwtTokenGenerator)
+    public SignInQueryHandler(IUserRepository userRepository, ILogger<GetFlightQueryHandler> logger,
+        IJwtTokenGenerator jwtTokenGenerator, IPasswordHasher passwordHasher)
     {
         _userRepository = userRepository;
         _logger = logger;
         _jwtTokenGenerator = jwtTokenGenerator;
+        _passwordHasher = passwordHasher;
     }
 
     public async Task<Result<AutentificationResult>> Handle(SignInQuery request, CancellationToken cancellationToken)
@@ -29,16 +32,12 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, Result<Autentific
             return Result.Fail("Email or password is invalid.");
         }
 
-        if (!CheckPassword(user, request.Password))
+        if (!_passwordHasher.Verify(user.Password,request.Password))
         {
             return Result.Fail("Email or password is invalid.");
         }
         var token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName,user.Email,user.Role);
         return  new AutentificationResult(token);
     }
-
-    private bool CheckPassword(User user, string password)
-    {
-        return user.Password == password;
-    }
+    
 }
