@@ -4,6 +4,7 @@ using JetSetGo.Application.Autentification.Command.Register;
 using JetSetGo.Application.Autentification.Query.SignIn;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Endpoints;
 
@@ -11,7 +12,9 @@ public static class AuthenticationEndpoints
 {
     public static void MapAuthenticationEndpoints(this WebApplication application)
     {
-        application.MapGet("authentication/users", GetAllUsers).RequireAuthorization();
+        application.MapGet("authentication/users", GetAllUsers).RequireAuthorization("AdminPolicy");
+        
+       
         application.MapPost("authentication/register", Register);
         application.MapPost("authentication/signIn", SignIn).AllowAnonymous();
     }
