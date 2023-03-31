@@ -23,7 +23,7 @@ export class AutentificationService {
   }
 
   signInUser(signInRequest: SignInRequest): Observable<any> {
-    const url = `${this.aplUrl}signIn`
+    const url = `${this.aplUrl}/signIn`
     return this.httpClient.post<any>(url, signInRequest, {headers: this.headers});
   }
 
