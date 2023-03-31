@@ -23,6 +23,7 @@ public static class DependencyInjection
     {
         builderConfiguration.AddDotNetEnv();
         services.AddAuth(builderConfiguration);
+        
 
         services.AddPersistence();
         services.AddServices();
@@ -41,6 +42,7 @@ public static class DependencyInjection
     
     private static void AddSecurity(this IServiceCollection services){
         services.AddSingleton<IPasswordHasher,PasswordHasher>();
+        
     }
 
     private static IServiceCollection AddAuth(this IServiceCollection services, ConfigurationManager builderConfiguration)
@@ -63,13 +65,31 @@ public static class DependencyInjection
                     Encoding.UTF8.GetBytes(jwtSettings.Secret))
                 
             });
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("Authorized", policy =>
+        services.AddAuthorizationBuilder()
+            .AddPolicy("PassengerPolicy", policy =>
             {
-                policy.RequireAuthenticatedUser();
+                policy.RequireRole("Passenger");
+            })
+            .AddPolicy("AdminPolicy", policy =>
+            {
+                policy.RequireRole("Admin");
             });
-        });
+        
+        // services.AddAuthorization(options =>
+        // {
+        //     options.AddPolicy("Authorized", policy =>
+        //     {
+        //         policy.RequireAuthenticatedUser();
+        //     });
+        //     options.AddPolicy("AdminPolicy", policy =>
+        //     {
+        //         policy.RequireClaim("role", "Admin");
+        //     });
+        //     options.AddPolicy("PassengerPolicy", policy =>
+        //     {
+        //         policy.RequireClaim("role", "Passenger");
+        //     });
+        // });
         
         return services;
     }
