@@ -20,9 +20,11 @@ public class TicketRepository: ITicketRepository
                     .ToListAsync();
     }
 
-    public Task<IEnumerable<Ticket>> GetTicketsByFlight(Guid id)
+    public async Task<List<Ticket>> GetTicketsByFlight(Guid id)
     {
-        throw new NotImplementedException();
+        var tickets = await  _context.Tickets
+            .Where(ticket => ticket.FlightId == id).ToListAsync();
+        return tickets;
     }
 
     public Task<Ticket?> GetTicketById(Guid id)
@@ -35,7 +37,6 @@ public class TicketRepository: ITicketRepository
         var newTicket = await _context.Tickets.AddAsync(ticket);
         await _context.SaveChangesAsync();
         return newTicket.Entity;
-
     }
 
     public async Task UpdateTicket(Ticket ticket)

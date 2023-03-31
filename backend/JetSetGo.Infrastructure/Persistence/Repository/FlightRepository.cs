@@ -1,5 +1,6 @@
 ﻿using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Application.Flights.Query.Search;
+using JetSetGo.Domain.DomainExceptions;
 using JetSetGo.Domain.Flights;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -43,5 +44,12 @@ public class FlightRepository : IFlightRepository
     {
         _context.Flights.Update(flight);
       await  _context.SaveChangesAsync();
+    }
+
+    public async Task Delete(Flight flight)
+    {
+        _context.Flights.Remove(flight);
+        await _context.SaveChangesAsync();
+
     }
 }

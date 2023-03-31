@@ -1,4 +1,5 @@
 ﻿using JetSetGo.Application.Flights.Query.Search;
+using JetSetGo.Domain.DomainExceptions;
 using JetSetGo.Domain.Flights;
 
 namespace JetSetGo.Application.Common.Interfaces.Persistence;
@@ -9,5 +10,6 @@ public interface IFlightRepository
     Task<Guid> Create(Flight flight,CancellationToken cancellationToken);
     Task<List<Flight>> SearchFlights(SearchFlightsQuery flightsQuery,CancellationToken cancellationToken);
     Task Update(Flight flight);
+    Task Delete(Flight flight);
 
 }

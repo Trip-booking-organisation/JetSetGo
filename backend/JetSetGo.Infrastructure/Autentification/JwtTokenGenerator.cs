@@ -29,11 +29,11 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             SecurityAlgorithms.HmacSha256);
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-            new Claim(JwtRegisteredClaimNames.FamilyName, secondName),
-            new Claim(JwtRegisteredClaimNames.Email, email),
-            new Claim(JwtRegisteredClaimNames.Acr, role.ToString()),
-            new Claim(JwtRegisteredClaimNames.Sub, userID.ToString()),
+            new Claim(CustomClaimTypes.GivenName, firstName),
+            new Claim(CustomClaimTypes.FamilyName, secondName),
+            new Claim(CustomClaimTypes.Email, email),
+            new Claim(CustomClaimTypes.Role, role.ToString()),
+            new Claim(CustomClaimTypes.Subject, userID.ToString()),
         };
         var securityToken = new JwtSecurityToken(
             issuer:_jwtSettings.Issuer,
@@ -43,4 +43,5 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             signingCredentials:signingCredentials);
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
     }
+    
 }
