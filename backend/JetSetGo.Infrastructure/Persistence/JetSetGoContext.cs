@@ -1,6 +1,7 @@
 ﻿using JetSetGo.Domain.Flights;
 using JetSetGo.Domain.Users;
 using JetSetGo.Domain.Tickets;
+using JetSetGo.Infrastructure.Persistence.Converters;
 using Microsoft.EntityFrameworkCore;
 
 namespace JetSetGo.Infrastructure.Persistence;
@@ -10,6 +11,7 @@ public class JetSetGoContext : DbContext
 
     public DbSet<Flight> Flights { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Ticket> Tickets { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -19,7 +21,8 @@ public class JetSetGoContext : DbContext
         var accKey=Environment.GetEnvironmentVariable("DB_ACC_KEY")!;
         var dbName=Environment.GetEnvironmentVariable("DB_NAME") ?? "jet-set-go-db";
 
-        optionsBuilder.UseCosmos(
+        optionsBuilder.
+            UseCosmos(
             accountEndpoint,
             accKey, dbName);
 
@@ -27,14 +30,32 @@ public class JetSetGoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Flight>().ToContainer("Flights");
-        modelBuilder.Entity<Ticket>().ToContainer("Tickets");
-        modelBuilder.Entity<User>().ToContainer("Users");
+        modelBuilder.Entity<Flight>().ToContainer(nameof(Flights));
+        modelBuilder.Entity<Ticket>().ToContainer(nameof(Tickets));
+        modelBuilder.Entity<User>().ToContainer(nameof(Users));
 
-        modelBuilder.Entity<Flight>()
-            .HasPartitionKey(f => f.Id);
-        modelBuilder.Entity<Flight>()
-                    .OwnsMany(f => f.Seats);
+        var flightEntity = modelBuilder.Entity<Flight>();
+        flightEntity.HasPartitionKey(f => f.Id);
+        flightEntity.OwnsMany(f => f.Seats);
+        flightEntity.OwnsOne(f => f.Departure, 
+                builder =>
+                {
+                    builder.OwnsOne(a => a.Address);
+                    builder.Property(x => x.Date)
+                        .HasConversion(new DateConverter());
+                    builder.Property(x => x.Time)
+                        .HasConversion(new DateTimeConverter());
+                });
+        flightEntity.OwnsOne(f => f.Arrival, 
+                builder =>
+                {
+                    builder.OwnsOne(a => a.Address);
+                    builder.Property(x => x.Date)
+                        .HasConversion(new DateConverter());
+                    builder.Property(x => x.Time)
+                        .HasConversion(new DateTimeConverter());
+                });
+
 
         modelBuilder.Entity<User>()
             .HasPartitionKey(u => u.Id);

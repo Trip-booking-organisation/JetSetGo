@@ -1,0 +1,71 @@
+<div class="search container-main section">
+  <div class="section-container grid" data-aos="fade-up" data-aos-duration="2000">
+    <div class="btn-multi flex">
+      <button class="btn-single" (click)="filterClass(classSeats[2])">
+        Economy
+      </button>
+      <button class="btn-single" (click)="filterClass(classSeats[1])">
+        Business Class
+      </button>
+      <button class="btn-single" (click)="filterClass(classSeats[0])">
+        First Class
+      </button>
+    </div>
+    <form class="search-inputs flex" [formGroup]="searchForm">
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>where_to_vote</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Location from</h4>
+          <input matInput type="text"
+                 placeholder="Where you are now?"
+                 formControlName="from"
+          >
+        </div>
+      </div>
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>location_on</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Location to</h4>
+          <input matInput type="text"
+                 placeholder="Where you want to go?"
+                 formControlName="to"
+          >
+        </div>
+      </div>
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Travelers</h4>
+          <input matInput type="number"
+                 placeholder="Add passenger number"
+                 formControlName="numberOfTravelers"
+          >
+        </div>
+      </div>
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>calendar_today</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Date</h4>
+          <input matInput type="date"
+                 placeholder="Add date"
+                 formControlName="date"
+          >
+        </div>
+      </div>
+      <button (click)="searchFlights()" class="btn btn-block flex">
+        Search flights
+      </button>
+    </form>
+    <div *ngFor="let result of searchResults">
+      {{result.id}}
+    </div>
+  </div>
+</div>

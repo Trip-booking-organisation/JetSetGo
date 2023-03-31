@@ -3,10 +3,9 @@ using DotNetEnv.Configuration;
 using JetSetGo.Application.Common.Interfaces.Autentification;
 using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Application.Common.Services;
-using JetSetGo.Application.Persistence;
 using JetSetGo.Infrastructure.Autentification;
 using JetSetGo.Infrastructure.Persistence;
-using JetSetGo.Infrastructure.Persistence.Containers;
+using JetSetGo.Infrastructure.Persistence.Repository;
 using JetSetGo.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -31,7 +30,8 @@ public static class DependencyInjection
     private static void AddPersistence(this IServiceCollection services){
         services.AddDbContext<JetSetGoContext>();
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IFlightRepository, FlightContainer>();
+        services.AddScoped<IFlightRepository, FlightRepository>();
+        services.AddScoped<ITicketRepository, TicketRepository>();
     }
 
     private static void AddServices(this IServiceCollection services){

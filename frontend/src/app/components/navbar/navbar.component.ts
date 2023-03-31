@@ -1,9 +1,8 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {navData} from "./passenger-nav-data";
 import {ActivatedRoute, Router} from "@angular/router";
-import {SignInComponent} from "../../autentification/view/sign-in/sign-in.component";
-import {TokenStorageService} from "../../services/tokenStorage.service";
-import {AutentificationService} from "../../services/autentificationService";
+import {TokenStorageService} from "../../shared/services/tokenStorage.service";
+import {AutentificationService} from "../../shared/services/autentificationService";
 
 @Component({
   selector: 'app-navbar',
@@ -15,13 +14,13 @@ export class NavbarComponent implements OnInit {
   addBackground: string = 'navbar-two';
   isCollapsed: boolean = false
   navDataPassenger = navData;
-  navbar_one = document.querySelector(".navbar-one");
   @Input() second_nav_visibility = true;
-  @Output() on_register_route :  EventEmitter<boolean> = new EventEmitter();
+  @Output() on_register_route: EventEmitter<boolean> = new EventEmitter();
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private tokenStorage: TokenStorageService,
-              private authentificatoinService: AutentificationService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+              private tokenStorage: TokenStorageService,
+              private authenticationService: AutentificationService) {
 
   }
 
@@ -36,9 +35,9 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   addBg() {
-    this.addBackground = window.scrollY >= 15
-      ? 'navbar-two nav-bg'
-      : 'navbar-two';
+    this.addBackground = window.scrollY >= 200
+      ? 'navbar-two'
+      : 'navbar-two nav-bg';
   }
 
   removeNavBar() {
@@ -50,29 +49,31 @@ export class NavbarComponent implements OnInit {
   }
 
 
-
   goToRegister() {
-    this.router.navigate(['signIn'],{ queryParams: { isRegistration: true } }).then();
+    this.router.navigate(['signIn'], {queryParams: {isRegistration: true}}).then();
     console.log(this.tokenStorage.getUser())
   }
 
   checkIfSignedIn() {
-    var token = this.tokenStorage.getToken()
+    let token = this.tokenStorage.getToken();
     return !!token;
 
   }
 
   LogOut() {
     this.tokenStorage.signOut();
-    // window.location.reload()
     this.router.navigate(['']).then()
   }
 
   checkAuthorisation() {
-    this.authentificatoinService.getAllUsers().subscribe({
+    this.authenticationService.getAllUsers().subscribe({
       next: res => {
         console.log(res)
       }
     })
+  }
+
+  navigateHome() {
+    this.router.navigate(['']);
   }
 }

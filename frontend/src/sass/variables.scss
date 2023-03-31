@@ -6,13 +6,14 @@ $white-color-dm: hsl(0, 0%, 93%);
 $hover-color: hsl(225, 56%, 59%);
 $gray-text: rgb(145, 145, 145);
 $black-color: hsl(0, 0%, 12%);
-$gradient-blue: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+$gradient-blue: -webkit-linear-gradient(300deg, rgb(32, 38, 57) 20%, #a77bf3 80%);
 $gray-background: hsl(0, 0%, 94%);
 $pinky-1: hsl(15, 74%, 70%);
 $pinky-2: hsl(28, 100%, 60%);
 $warning-trans: hsla(0, 71%, 58%, 0.78);
 $border-color: hsl(0, 0%, 83%);
 $text-color: hsl(240, 1%, 48%);
+$dark-blue: rgb(32, 38, 57);
 $box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
 rgba(0, 0, 0, 0.06) 0px 4px 6px -2px;
 //animation

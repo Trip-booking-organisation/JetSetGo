@@ -20,12 +20,10 @@ public class GetFlightQueryHandler : IRequestHandler<GetFlightQuery,Result<Fligh
 
     public async Task<Result<Flight>> Handle(GetFlightQuery request, CancellationToken cancellationToken)
     {
-        var env =Environment.GetEnvironmentVariable("DB_ACC_ENDPOINT");
-        _logger.LogInformation("About page visited at {DT}", 
-            DateTime.UtcNow.ToLongTimeString());
-        _logger.LogInformation("Key {env}", 
-            env);
+      
         var flight = await _flightRepository.GetById(request.Id);
-        return flight ?? Result.Fail<Flight>(FlightErrors.FlightNotFound);
+        if (flight is not null) return flight;
+        _logger.LogError("Flight with {id} is null",request.Id);
+        return Result.Fail<Flight>(FlightErrors.FlightNotFound);
     }
 }

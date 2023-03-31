@@ -1,4 +1,6 @@
-﻿namespace backend;
+﻿using backend.Mapping;
+
+namespace backend;
 
 public static class DependencyInjection
 {
@@ -8,6 +10,7 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddCorsPolicy(builderConfiguration);
+        services.AddAutoMapper(typeof(AutoMappingConfig));
         return services;
     }
 
