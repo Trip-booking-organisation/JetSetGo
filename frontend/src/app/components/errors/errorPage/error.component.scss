@@ -14,7 +14,7 @@
 
 .text-container {
   max-width: 60%;
-  padding-right: 10%;
+  padding-right: 15%;
   padding-top: 6%;
   display: flex;
   color: $warning-trans;
@@ -30,8 +30,8 @@
   text-align: center;
   font-family: 'Poppins', sans-serif;
   color: $warning-trans;
-
-  border-radius: 5%;
+  //background-color: $warning-trans;
+  //border-radius: 5%;
 }
 
 .main-container:before {
