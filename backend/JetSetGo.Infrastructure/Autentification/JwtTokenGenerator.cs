@@ -34,6 +34,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new Claim(CustomClaimTypes.Email, email),
             new Claim(CustomClaimTypes.Role, role.ToString()),
             new Claim(CustomClaimTypes.Subject, userID.ToString()),
+           // new Claim(CustomClaimTypes.Subject, userID.ToString()),
         };
         var securityToken = new JwtSecurityToken(
             issuer:_jwtSettings.Issuer,
