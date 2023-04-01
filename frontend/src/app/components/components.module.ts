@@ -18,13 +18,13 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     NavbarComponent,
     ErrorComponent,
     LoadingAnimationComponent,
-    AutoCompleteComponent
+    AutoCompleteComponent,
     ErrorComponent,
     RoundedRectangleComponent
   ],
     exports: [
-        NavbarComponent,
-        RoundedRectangleComponent,
+      NavbarComponent,
+      RoundedRectangleComponent,
       LoadingAnimationComponent,
       AutoCompleteComponent
     ],
