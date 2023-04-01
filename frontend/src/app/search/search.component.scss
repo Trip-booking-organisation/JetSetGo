@@ -46,7 +46,7 @@
 
       .single-input {
         .icon-div {
-          padding: 18px 12px;
+          padding: 24px 16px;
           border-radius: 3rem;
           background: $secondary-color;
           margin-right: 1rem;
@@ -87,9 +87,18 @@
       .btn-block {
         text-align: center;
         justify-content: center;
+        height: 40px;
       }
     }
   }
+}
+
+.small-input {
+  width: 100px;
+}
+
+.medium-input {
+  width: 160px;
 }
 
 @media screen and (min-width: 480px) {

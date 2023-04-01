@@ -48,10 +48,10 @@ public static class FlightEndpoints
             : Results.Created("/api/v1/flights/{id}", new { Id = result.Value});
     }
 
-    private static async Task<IResult> SearchFlights(string locationFrom, string locationTo,
-        int passengersNumber, DateOnly date,ISender sender)
+    private static async Task<IResult> SearchFlights(string cityFrom, string countryFrom
+        ,string cityTo,string countryTo, int passengersNumber, DateOnly date,ISender sender)
     {
-        var query = new SearchFlightsQuery(locationFrom, locationTo, passengersNumber, date);
+        var query = new SearchFlightsQuery(cityFrom,countryFrom, cityTo,countryTo, passengersNumber, date);
         var flights = await sender.Send(query);
         return Results.Ok(flights);
     }

@@ -8,17 +8,21 @@ import {MatButtonModule} from "@angular/material/button";
 import {ErrorComponent} from "./errors/errorPage/error.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {LoadingAnimationComponent} from './loading-animation/loading-animation.component';
+import {AutoCompleteComponent} from './auto-complete/auto-complete.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ErrorComponent,
-    LoadingAnimationComponent
+    LoadingAnimationComponent,
+    AutoCompleteComponent
   ],
   exports: [
     NavbarComponent,
-    LoadingAnimationComponent
+    LoadingAnimationComponent,
+    AutoCompleteComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,7 @@ import {LoadingAnimationComponent} from './loading-animation/loading-animation.c
     MatButtonModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
   ]
 })
 export class ComponentsModule {

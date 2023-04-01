@@ -36,6 +36,10 @@ public class FlightRepository : IFlightRepository
         var query =  _context.Flights
             .Where(f => f.Departure.Date == flightsQuery.Date
             && f.AvailableSeats >= flightsQuery.PassengersNumber
+            && f.Departure.Address.Country.Trim().ToLower().Equals(flightsQuery.CountryFrom.Trim().ToLower())
+            && f.Departure.Address.City.Trim().ToLower().Equals(flightsQuery.CityFrom.Trim().ToLower())
+            && f.Arrival.Address.Country.Trim().ToLower().Equals(flightsQuery.CountryTo.Trim().ToLower())
+            && f.Arrival.Address.City.Trim().ToLower().Equals(flightsQuery.CityTo.Trim().ToLower())
             );
         return await query.ToListAsync(cancellationToken);
     }
