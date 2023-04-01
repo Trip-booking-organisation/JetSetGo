@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersTicketResult } from 'src/app/shared/model/UsersTicketResult';
+import { TicketsService } from 'src/app/shared/services/ticketService';
 import { TokenStorageService } from 'src/app/shared/services/tokenStorage.service';
 
 @Component({
@@ -8,9 +10,15 @@ import { TokenStorageService } from 'src/app/shared/services/tokenStorage.servic
 })
 export class UsersTicketsComponent implements OnInit {
   userId =  "1"
-  constructor(private tokenStorageService: TokenStorageService){}
+  public usersTickets: UsersTicketResult[] = [];
+  constructor(private tokenStorageService: TokenStorageService, private ticketService: TicketsService){}
   ngOnInit(): void {
    this.userId = this.tokenStorageService.getUser().id
+   this.ticketService.getAllTicketsByPassenger(this.userId).subscribe(res => {
+    this.usersTickets = res;
+    console.log(this.usersTickets)
+  })
+
    //console.log(this.tokenStorageService.getUser().id)
     
   }
