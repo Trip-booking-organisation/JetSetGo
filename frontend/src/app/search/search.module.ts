@@ -8,10 +8,13 @@ import {ComponentsModule} from "../components/components.module";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {SearchCardComponent} from './ui/search-card/search-card.component';
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
-    SearchComponent
+    SearchComponent,
+    SearchCardComponent
   ],
   exports: [
     SearchComponent
@@ -24,7 +27,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     ComponentsModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDividerModule
   ]
 })
 export class SearchModule {

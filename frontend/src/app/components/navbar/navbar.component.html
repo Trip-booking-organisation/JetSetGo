@@ -28,6 +28,12 @@
       <ul class="menu flex">
         <li (click)="removeNavBar()" class="list-item"
             *ngFor="let data of navDataPassenger">
+          <!--          <a [routerLink]="[data.routerLink]"-->
+          <!--             routerLinkActive="active"-->
+          <!--             [routerLinkActiveOptions]="{exact:true}"-->
+          <!--          >-->
+          <!--            {{data.label}}-->
+          <!--          </a>-->
           {{data.label}}
         </li>
       </ul>

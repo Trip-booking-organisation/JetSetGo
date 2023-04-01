@@ -5,7 +5,7 @@ export const navData = [
   },
   {
     label: 'About',
-    routerLink: '/home'
+    routerLink: '/flights'
   },
   {
     label: 'Offers',
