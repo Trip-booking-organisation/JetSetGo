@@ -4,9 +4,10 @@
       <div class="flight-info">
         <img src="assets/images/departures.png" alt="Departure Icon">
         <div class="flight-time">
-          <p class="time">8:00</p>
-          <p class="date">Tue, 05 Apr</p>
-          <p class="place">New York, JFK</p>
+          <p class="time">{{flight.departureTime}}</p>
+          <p class="date">{{flight.departureDate}}</p>
+          <p class="place">{{flight.departureAddress.city}}, {{flight.departureAddress.country}}</p>
+          <p class="place">{{flight.departureAddress.airportName}}</p>
         </div>
       </div>
       <div class="flight-divider">
@@ -17,32 +18,35 @@
       <div class="flight-info">
         <img src="assets/images/arrivals.png" alt="Arrival Icon">
         <div class="flight-time">
-          <p class="time">8:00</p>
-          <p class="date">Tue, 05 Apr</p>
-          <p class="place">Los Angeles,JFK</p>
+          <p class="time">{{flight.arrivalTime}}</p>
+          <p class="date">{{flight.arrivalDate}}</p>
+          <p class="place">{{flight.arrivalAddress.city}}, {{flight.arrivalAddress.country}}</p>
+          <p class="place">{{flight.arrivalAddress.airportName}}</p>
         </div>
       </div>
     </div>
     <div class="flight-airline">
       <img src="assets/images/airline.png" alt="Airline Logo">
-      <p class="airline-name">Delta Airlines</p>
+      <p class="airline-name">{{flight.companyName}}</p>
     </div>
   </div>
   <div class="one-price">
     <h4 class="price-text">Price per passenger</h4>
     <div class="class-price">
-      <p>Economy class: <span>100€</span></p>
+      <p>Economy class: <span>{{filterSeats("First")}}€</span></p>
     </div>
     <div class="class-price">
-      <p>Business class: <span>100€</span></p>
+      <p>Business class: <span>{{filterSeats("Business")}}€</span></p>
     </div>
     <div class="class-price">
-      <p>First class: <span>100€</span></p>
+      <p>First class: <span>{{filterSeats("Economy")}}€</span></p>
     </div>
   </div>
   <div class="total-price">
-    <h4 class="price-tot">Additional Details</h4>
-    <p class="price-text">Total price for all passengers <span class="price">249€</span></p>
+    <h4 class="price-h">Additional Details</h4>
+    <div class="total">
+      <p class="price-text">Total price for all passengers <span class="price">{{flight.totalTicketPrize}}€</span></p>
+    </div>
     <div class="price-group flex">
       <p>Included: personal item, carry-on bag</p>
       <img src="assets/images/luggage.png" alt="bag"/>

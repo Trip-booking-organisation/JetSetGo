@@ -2,10 +2,6 @@ import {FlightAddress} from "../model/FlightAddress";
 
 export const flightsAutoComplete: FlightAddress[] = [
   {
-    "city": "Novi Sad",
-    "country": "Serbia"
-  },
-  {
     "city": "Belgrade",
     "country": "Serbia"
   },
@@ -60,6 +56,10 @@ export const flightsAutoComplete: FlightAddress[] = [
   {
     "city": "Rome",
     "country": "Italy"
+  },
+  {
+    "city": "Sarajevo",
+    "country": "Bosnia and Herzegovina",
   },
   {
     "city": "Moscow",

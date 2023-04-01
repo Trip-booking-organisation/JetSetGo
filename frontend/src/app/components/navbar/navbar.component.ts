@@ -1,5 +1,5 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
-import {navData} from "./passenger-nav-data";
+import {navDataPassenger} from "./data-access/passenger-nav-data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TokenStorageService} from "../../shared/services/tokenStorage.service";
 import {AutentificationService} from "../../shared/services/autentificationService";
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   activeClass: string = 'navbar-menu';
   addBackground: string = 'navbar-two';
   isCollapsed: boolean = false
-  navDataPassenger = navData;
+  navDataPassenger = navDataPassenger;
   @Input() second_nav_visibility = true;
   @Output() on_register_route: EventEmitter<boolean> = new EventEmitter();
 
@@ -40,9 +40,9 @@ export class NavbarComponent implements OnInit {
       : 'navbar-two nav-bg';
   }
 
-  removeNavBar(routerLink: string) {
+  navigate(routerLink: string) {
     this.activeClass = 'navbar-menu'
-    this.router.navigate([routerLink])
+    this.router.navigate([routerLink]).then()
 
   }
 

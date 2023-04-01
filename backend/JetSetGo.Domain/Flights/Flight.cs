@@ -7,11 +7,12 @@ namespace JetSetGo.Domain.Flights;
 
 public class Flight
 {
-    public Flight(List<Seat> seats, FlightDetails departure, FlightDetails arrival)
+    public Flight(List<Seat> seats, FlightDetails departure, FlightDetails arrival, string companyName)
     {
         Seats = seats;
         Departure = departure;
         Arrival = arrival;
+        CompanyName = companyName;
         Seats = seats;
         AvailableSeats = InitAvailableSeats();
     }
@@ -21,6 +22,7 @@ public class Flight
     public FlightDetails Departure { get; private set; }
     public FlightDetails Arrival { get; private set; }
     public int AvailableSeats { get; set; }
+    public string CompanyName { get;private set; }
 
     public Result Validate()
     {
@@ -35,7 +37,7 @@ public class Flight
 
     private Result ValidateArrivalAndDeparture()
     {
-        return Arrival.IsAfterDate(Departure) ? Result.Fail(DomainException.Flight.DateError) : Result.Ok();
+        return Departure.IsAfterDate(Arrival) ? Result.Fail(DomainException.Flight.DateError) : Result.Ok();
     }
 
     private int InitAvailableSeats()

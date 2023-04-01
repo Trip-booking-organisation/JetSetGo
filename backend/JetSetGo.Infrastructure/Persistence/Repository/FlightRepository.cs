@@ -10,12 +10,10 @@ namespace JetSetGo.Infrastructure.Persistence.Repository;
 public class FlightRepository : IFlightRepository
 {
     private readonly JetSetGoContext _context;
-    private ILogger<FlightRepository> _logger;
 
-    public FlightRepository(JetSetGoContext context, ILogger<FlightRepository> logger)
+    public FlightRepository(JetSetGoContext context)
     {
         _context = context;
-        _logger = logger;
     }
 
     public async Task<Flight?> GetById(Guid id)

@@ -1,4 +1,4 @@
-export const navData = [
+export const navDataPassenger = [
   {
     label: 'Home',
     routerLink: '/'

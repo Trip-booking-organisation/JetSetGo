@@ -41,7 +41,8 @@ public class SearchFlightsQueryHandler:IRequestHandler<SearchFlightsQuery,IEnume
                 ArrivalTime = flight.Arrival.Time,
                 DepartureTime = flight.Departure.Time,
                 DepartureDate = flight.Departure.Date,
-                ArrivalDate = flight.Arrival.Date
+                ArrivalDate = flight.Arrival.Date,
+                CompanyName = flight.CompanyName
             };
         });
        return result;

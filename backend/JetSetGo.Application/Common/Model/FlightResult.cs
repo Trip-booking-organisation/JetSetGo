@@ -13,4 +13,5 @@ public class FlightResult
     public TimeOnly DepartureTime { get; set; }
     public DateOnly DepartureDate { get; set; }
     public DateOnly ArrivalDate { get; set; }
+    public string CompanyName { get; set; } = null!;
 }

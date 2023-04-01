@@ -56,7 +56,7 @@ public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Re
                 Class = s.Class
             }).ToList();
 
-        var flight = new Flight(seats, departure, arrival);
+        var flight = new Flight(seats, departure, arrival,request.CompanyName);
         var resultValidation = flight.Validate();
         if (resultValidation.IsFailed)
         {
