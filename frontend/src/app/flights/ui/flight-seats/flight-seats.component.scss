@@ -1,0 +1,86 @@
+@import "src/sass/variables";
+.seats{
+  padding-top: 12rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .content-container{
+    background: $sonic-silver;
+    height: 50rem;
+    width: 40%;
+    .place-container{
+      background: white;
+      border-radius: 15px;
+      border: none;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      margin-left: 10%;
+      p{
+        color: $text-color;
+        padding-left: 10%;
+      }
+      .divider-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        mat-divider{
+          margin-top: 8px;
+          height: 1px;
+          width: 100%;
+        }
+        mat-icon{
+          color: $text-color;
+        }
+      }
+    }
+    .date-container{
+      flex-direction: row;
+      justify-content: flex-start;
+      .date{
+        border-radius: 15px;
+        background: $white-color;
+      }
+    }
+  }
+  .image-container{
+    position: relative;
+    float: right;
+    background-image: url('../../../../assets/images/plane.jpeg');
+    background-size: cover;
+    background-position: center center;
+    height: 50rem;
+    width: 100%;
+   /*
+    margin-left: 30%;*/
+    .grid-container{
+     /* width: 20%;
+      margin-right: 20%;*/
+      display: grid;
+      grid-template-columns:1.5fr  1.5fr 1.5fr;
+      grid-column-gap: 50px;
+      float: right;
+      .column{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding-bottom: 15%;
+        .inner-grid{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 10px;
+        }
+      }
+    }
+
+  }
+ /* img{
+    width: 70%;
+    float: right;
+
+    position: relative;
+    display: inline-block;
+   }
+ */
+}

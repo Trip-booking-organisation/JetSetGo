@@ -1,0 +1,35 @@
+<div class="seats flex">
+  <div class="content-container">
+    <h1>Choose your seats</h1>
+    <div class="place-container">
+      <p>from</p>
+      <p>NewYork City, USA</p>
+      <div class="divider-container">
+        <mat-divider/>
+        <mat-icon class="icon">sync</mat-icon>
+      </div>
+      <p>to</p>
+      <p>California, USA</p>
+    </div>
+    <div class="date-container">
+      <div class="date"></div>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <div class="grid-container">
+      <div class="column" *ngFor="let number of numbers">
+        <div class="inner-grid" >
+          <app-rounded-rectangle *ngFor="let number of numbers"/>
+        </div>
+      </div>
+      <div></div>
+      <div class="column" *ngFor="let number of numbers">
+        <div class="inner-grid" >
+          <app-rounded-rectangle *ngFor="let number of numbers"/>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
