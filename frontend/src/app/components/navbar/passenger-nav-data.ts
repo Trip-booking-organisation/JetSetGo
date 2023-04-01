@@ -19,4 +19,8 @@ export const navData = [
     label: 'Destination',
     routerLink: '/home'
   },
+  {
+    label: 'Your Tickets',
+    routerLink: '/users-tickets'
+  },
 ]

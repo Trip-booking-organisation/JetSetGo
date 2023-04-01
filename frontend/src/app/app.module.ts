@@ -12,11 +12,13 @@ import {AuthInterceptor} from "./interceptors/AuthInterceptor";
 import {AuthenticationModule} from "./autentification/authentication.module";
 import {ToastrModule} from 'ngx-toastr';
 import {SearchModule} from "./search/search.module";
+import { UsersTicketsComponent } from './components/users-tickets/users-tickets.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    UsersTicketsComponent,
   ],
   imports: [
     BrowserModule,

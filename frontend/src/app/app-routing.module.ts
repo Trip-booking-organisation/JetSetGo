@@ -6,6 +6,7 @@ import {SignInComponent} from "./autentification/view/sign-in/sign-in.component"
 import {HasRoleGuard} from "./guards/roleGuard/has-role.guard";
 import {IsAuthentificatedGuard} from "./guards/authentificationGuard/is-authentificated.guard";
 import {ErrorComponent} from './components/errors/errorPage/error.component';
+import { UsersTicketsComponent } from './components/users-tickets/users-tickets.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: "error",
     component: ErrorComponent
+  },
+  {
+    path: "users-tickets",
+    component: UsersTicketsComponent
   }
 ];
 

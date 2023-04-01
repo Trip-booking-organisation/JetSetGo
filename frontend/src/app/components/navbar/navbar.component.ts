@@ -40,8 +40,10 @@ export class NavbarComponent implements OnInit {
       : 'navbar-two nav-bg';
   }
 
-  removeNavBar() {
+  removeNavBar(routerLink: string) {
     this.activeClass = 'navbar-menu'
+    this.router.navigate([routerLink])
+
   }
 
   goToSignIn() {
