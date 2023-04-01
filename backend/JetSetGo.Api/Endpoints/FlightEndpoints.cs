@@ -15,9 +15,9 @@ public static class FlightEndpoints
     public static void MapFlightsEndpoints(this WebApplication application)
     {
         application.MapGet("api/v1/flights",GetAllFlights);
-        application.MapPost("api/v1/flights",CreateFlight);
-        application.MapGet("api/v1/flights/{id:guid}", GetFlightById);
-        application.MapDelete("api/v1/flights/{id:guid}", DeleteFlight);
+        application.MapPost("api/v1/flights",CreateFlight).RequireAuthorization("AdminPolicy");
+        application.MapGet("api/v1/flights/{id:guid}", GetFlightById).RequireAuthorization();
+        application.MapDelete("api/v1/flights/{id:guid}", DeleteFlight).RequireAuthorization("AdminPolicy");
         application.MapGet("api/v1/flights/search", SearchFlights);
         application.MapGet("/", () => Results.Ok("Hello"));
     }
