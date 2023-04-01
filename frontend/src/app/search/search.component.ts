@@ -108,6 +108,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.searchResults$.unsubscribe();
+    //this.searchResults$.unsubscribe();
   }
 }

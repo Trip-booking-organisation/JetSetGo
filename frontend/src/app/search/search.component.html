@@ -77,15 +77,14 @@
         Search flights
       </button>
     </div>
-    <ng-container *ngIf="isLoading; else dataComponent">
+    <ng-container *ngIf="isLoading; else results">
       <app-loading-animation/>
     </ng-container>
-
-    <ng-template #dataComponent>
+    <app-search-card></app-search-card>
+    <ng-template #results>
       <div *ngFor="let result of searchResults">
         {{result.id}}
       </div>
-      <!-- show data component -->
     </ng-template>
   </div>
 </div>

@@ -11,6 +11,7 @@ import { RoundedRectangleComponent } from './rounded-rectangle/rounded-rectangle
 import {LoadingAnimationComponent} from './loading-animation/loading-animation.component';
 import {AutoCompleteComponent} from './auto-complete/auto-complete.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatTooltipModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    RouterLinkActive,
+    RouterLink,
   ]
 })
 export class ComponentsModule {
