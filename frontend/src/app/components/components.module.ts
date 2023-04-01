@@ -7,16 +7,19 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ErrorComponent} from "./errors/errorPage/error.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { RoundedRectangleComponent } from './rounded-rectangle/rounded-rectangle.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    RoundedRectangleComponent
   ],
-  exports: [
-    NavbarComponent
-  ],
+    exports: [
+        NavbarComponent,
+        RoundedRectangleComponent
+    ],
   imports: [
     CommonModule,
     MatIconModule,
