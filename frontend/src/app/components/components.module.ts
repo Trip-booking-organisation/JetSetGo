@@ -8,17 +8,25 @@ import {MatButtonModule} from "@angular/material/button";
 import {ErrorComponent} from "./errors/errorPage/error.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { RoundedRectangleComponent } from './rounded-rectangle/rounded-rectangle.component';
+import {LoadingAnimationComponent} from './loading-animation/loading-animation.component';
+import {AutoCompleteComponent} from './auto-complete/auto-complete.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ErrorComponent,
+    LoadingAnimationComponent,
+    AutoCompleteComponent
+    ErrorComponent,
     RoundedRectangleComponent
   ],
     exports: [
         NavbarComponent,
-        RoundedRectangleComponent
+        RoundedRectangleComponent,
+      LoadingAnimationComponent,
+      AutoCompleteComponent
     ],
   imports: [
     CommonModule,
@@ -28,6 +36,7 @@ import { RoundedRectangleComponent } from './rounded-rectangle/rounded-rectangle
     MatButtonModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
   ]
 })
 export class ComponentsModule {

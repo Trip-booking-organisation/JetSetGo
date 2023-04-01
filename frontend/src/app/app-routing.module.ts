@@ -7,6 +7,7 @@ import {HasRoleGuard} from "./guards/roleGuard/has-role.guard";
 import {IsAuthentificatedGuard} from "./guards/authentificationGuard/is-authentificated.guard";
 import {ErrorComponent} from './components/errors/errorPage/error.component';
 import {FlightSeatsComponent} from "./flights/ui/flight-seats/flight-seats.component";
+import { UsersTicketsComponent } from './components/users-tickets/users-tickets.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'flights/seats',
     component: FlightSeatsComponent
+  },
+  {
+    path: "users-tickets",
+    component: UsersTicketsComponent
   }
 ];
 

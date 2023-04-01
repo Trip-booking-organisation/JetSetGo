@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FlightResult} from "../model/FlightResult";
+import {SearchQuery} from "../../search/model/SearchQuery";
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,8 @@ export class FlightsService {
   constructor(private readonly httpClient: HttpClient) {
   }
 
-  public searchFlights(locationFrom: string, locationTo: string,
-                       passengersNumber: number, date: string): Observable<FlightResult[]> {
+  public searchFlights(query: SearchQuery): Observable<FlightResult[]> {
     return this.httpClient
-    .get<FlightResult[]>(`${this.baseUrl}/search?locationFrom=${locationFrom}&locationTo=${locationTo}&passengersNumber=${passengersNumber}&date=${date}`);
+    .get<FlightResult[]>(`${this.baseUrl}/search?cityFrom=${query.fromCity}&countryFrom=${query.fromCountry}&cityTo=${query.toCity}&countryTo=${query.toCountry}&passengersNumber=${query.passengersNumber}&date=${query.date}`);
   }
 }

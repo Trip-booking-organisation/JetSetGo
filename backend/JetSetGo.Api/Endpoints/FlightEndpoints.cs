@@ -19,7 +19,7 @@ public static class FlightEndpoints
         application.MapGet("api/v1/flights/{id:guid}", GetFlightById);
         application.MapDelete("api/v1/flights/{id:guid}", DeleteFlight);
         application.MapGet("api/v1/flights/search", SearchFlights);
-        application.MapGet("/", () => Results.Ok("Hello"));
+        application.MapGet("/", () => Results.Content("<h1>jet set go</h1>"));
     }
 
     private static async Task<IResult> DeleteFlight(ISender sender,[FromRoute] Guid id)
@@ -48,10 +48,10 @@ public static class FlightEndpoints
             : Results.Created("/api/v1/flights/{id}", new { Id = result.Value});
     }
 
-    private static async Task<IResult> SearchFlights(string locationFrom, string locationTo,
-        int passengersNumber, DateOnly date,ISender sender)
+    private static async Task<IResult> SearchFlights(string cityFrom, string countryFrom
+        ,string cityTo,string countryTo, int passengersNumber, DateOnly date,ISender sender)
     {
-        var query = new SearchFlightsQuery(locationFrom, locationTo, passengersNumber, date);
+        var query = new SearchFlightsQuery(cityFrom,countryFrom, cityTo,countryTo, passengersNumber, date);
         var flights = await sender.Send(query);
         return Results.Ok(flights);
     }

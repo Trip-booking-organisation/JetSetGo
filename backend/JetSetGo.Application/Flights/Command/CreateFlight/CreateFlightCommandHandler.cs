@@ -55,14 +55,14 @@ public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Re
                 Available = s.Available,
                 Class = s.Class
             }).ToList();
-        var seatsValidation = Flight.ValidateSets(seats);
-        if (seatsValidation.IsFailed)
-        {
-            return Result.Fail<Guid>("Same seat provided");
-        }
 
-        var flight = new Flight(seats, departure, arrival,request.AvailableSeats);
-        var id = await _flightRepository.Create(flight);
+        var flight = new Flight(seats, departure, arrival);
+        var resultValidation = flight.Validate();
+        if (resultValidation.IsFailed)
+        {
+            return resultValidation;
+        }
+        var id = await _flightRepository.Create(flight,cancellationToken);
         return id;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using backend.Dto.Requests.Tickets;
+using backend.Helpers;
 using JetSetGo.Application.Tickets.Commands.CreateNewTicket;
 using JetSetGo.Application.Tickets.Commands.DeleteTicket;
 using JetSetGo.Application.Tickets.Queries.GetTicketById;
@@ -23,14 +24,14 @@ public static class TicketEndpoint
     {
         var request = new GetTicketsByPassengerQuery(id);
         var result = await sender.Send(request);
-        return result.IsFailed ? Results.NotFound(result.Errors) : Results.Ok(result.Value);
+        return result.IsFailed ? Results.NotFound(result.Errors.ToResponse()) : Results.Ok(result.Value);
     }
 
     private static async Task<IResult> GetTicketById(ISender sender, Guid id)
     {
         var request = new GetTicketByIdQuery(id);
         var result = await sender.Send(request);
-        return result.IsFailed ? Results.NotFound(result.Errors) : Results.Ok(result.Value);
+        return result.IsFailed ? Results.NotFound(result.Errors.ToResponse()) : Results.Ok(result.Value);
     }
 
     private static async Task<IResult> CreateTicket(IMapper mapper,ISender sender,[FromBody] NewTicketsRequest request)
@@ -43,7 +44,7 @@ public static class TicketEndpoint
     {
         var ticket = new DeleteTicketCommand(id);
         var result = await sender.Send(ticket);
-        return result.IsFailed ? Results.NotFound(result.Errors) : Results.NoContent();
+        return result.IsFailed ? Results.NotFound(result.Errors.ToResponse()) : Results.NoContent();
     }
 
     /*private static Task UpdateTicket(HttpContext context)
