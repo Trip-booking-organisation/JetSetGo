@@ -13,6 +13,8 @@ export class PassengersComponent  implements OnInit{
   contactFormControl= new FormControl('',Validators.required);
   @Output() eventEmitter: EventEmitter<any> = new EventEmitter<any>();
   ngOnInit(): void {
+    if(this.numberOfTravelers == undefined)
+      this.numberOfTravelers = 1;
     this.generateArray(this.numberOfTravelers);
     console.log(this.array);
   }

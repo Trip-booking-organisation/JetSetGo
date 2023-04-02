@@ -6,6 +6,7 @@ import {CreateTicketsRequest} from "../model/CreateTicketsRequest";
 import {TokenStorageService} from "../../../shared/services/tokenStorage.service";
 import {TicketsService} from "../../../shared/services/ticketService";
 import {ToastrService} from "ngx-toastr";
+import {Seat} from "../../../shared/model/Seat";
 
 @Component({
   selector: 'app-flight-seats',
@@ -15,7 +16,8 @@ import {ToastrService} from "ngx-toastr";
 export class FlightSeatsComponent implements OnInit {
   currentFlight!: FlightResult
   numberOfTravelers = 1;
-  listOfSeats: string[] =[];
+  listOfSeatNumbers: string[] =[];
+  listOfSeats: Seat[]=[]
   listOfContacts: string[]=[];
   price = 0;
 
@@ -36,15 +38,18 @@ export class FlightSeatsComponent implements OnInit {
 
   addSeat($event: any) {
     let seat = false;
-    this.listOfSeats.forEach(seatNumber =>{
+    this.listOfSeatNumbers.forEach(seatNumber =>{
       if (seatNumber === $event.seatNumber)
         seat = true;
     })
     if(seat){
-      const newList = this.listOfSeats.filter(value => value != $event.seatNumber)
-      this.listOfSeats = [...newList]
+      const newList = this.listOfSeatNumbers.filter(value => value != $event.seatNumber)
+      const newSeatList = this.listOfSeats.filter(value => value.seatNumber != $event.seatNumber)
+      this.listOfSeatNumbers = [...newList]
+      this.listOfSeats = [...newSeatList]
     }else
-    this.listOfSeats.push($event.seatNumber);
+    this.listOfSeatNumbers.push($event.seatNumber);
+    this.listOfSeats.push($event)
   }
 
   addContactInfo($event: any) {
@@ -55,11 +60,11 @@ export class FlightSeatsComponent implements OnInit {
       this.toasterService.warning("You haven't filled out all contact informations!");
        return;
     }
-    if (this.listOfSeats.length != this.numberOfTravelers) {
+    if (this.listOfSeatNumbers.length != this.numberOfTravelers) {
       this.toasterService.warning("You must choose " + this.numberOfTravelers + " seats!");
       return;
     }
-    const objects = this.listOfSeats
+    const objects = this.listOfSeatNumbers
       .map((seatNumber, index) => ({seatNumber, contactDetails: this.listOfContacts[index]}));
     const newTickets = this.createRequest(objects);
     this.ticketService.createTickets(newTickets).subscribe({
