@@ -1,35 +1,48 @@
 <div class="seats flex">
   <div class="content-container">
-    <h1>Choose your seats</h1>
+    <div class="main-text">
+      <h1>Choose your seats</h1>
+    </div>
     <div class="place-container">
-      <p>from</p>
-      <p>NewYork City, USA</p>
+      <p class="p-small">from</p>
+      <p class="p-text">{{currentFlight.departureAddress.city +','+currentFlight.departureAddress.country}}</p>
       <div class="divider-container">
         <mat-divider/>
         <mat-icon class="icon">sync</mat-icon>
       </div>
-      <p>to</p>
-      <p>California, USA</p>
+      <p class="p-small">to</p>
+      <p  class="p-text">{{currentFlight.arrivalAddress.city +','+ currentFlight.arrivalAddress.country}}</p>
     </div>
     <div class="date-container">
-      <div class="date"></div>
+      <div class="date">
+        <div class="icon-div">
+          <mat-icon>calendar_today</mat-icon>
+        </div>
+        <div class="arrival">
+          <p class="p-small">departure</p>
+          <p  class="p-text">{{currentFlight.departureDate | date:'mediumDate'}}</p>
+        </div>
+      </div>
+      <div class="date">
+          <div class="icon-div">
+            <mat-icon>calendar_today</mat-icon>
+          </div>
+          <div class="arrival">
+            <p class="p-small">arrival</p>
+            <p  class="p-text">{{currentFlight.arrivalDate | date:'mediumDate'}}</p>
+          </div>
+        </div>
     </div>
+    <div class="passengers-container">
+      <app-passengers [numberOfTravelers]="numberOfTravelers" (eventEmitter)="addContactInfo($event)"/>
+    </div>
+
   </div>
 
   <div class="image-container">
     <div class="grid-container">
-      <div class="column" *ngFor="let number of numbers">
-        <div class="inner-grid" >
-          <app-rounded-rectangle *ngFor="let number of numbers"/>
-        </div>
-      </div>
-      <div></div>
-      <div class="column" *ngFor="let number of numbers">
-        <div class="inner-grid" >
-          <app-rounded-rectangle *ngFor="let number of numbers"/>
-        </div>
-      </div>
+          <app-rounded-rectangle *ngFor="let seat of currentFlight.seats " [seat]="seat" (eventEmitter)="addSeat($event)"/>
     </div>
-
+    <button class="btn" (click)="onBuy()">Buy</button>
   </div>
 </div>

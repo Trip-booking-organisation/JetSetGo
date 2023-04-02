@@ -1,0 +1,14 @@
+<div class="passenger-container">
+  <div class="icon-container">
+    <div  *ngFor="let number of array">
+    <img [src]="getIcon(number)" alt="people-icon">
+    </div>
+  </div>
+  <div class="contact-container">
+    <div *ngFor="let number of array">
+    <mat-form-field>
+      <input type="text" placeholder="contact" matInput [formControl]="contactFormControl" (blur)="onTextEntered()">
+    </mat-form-field>
+    </div>
+  </div>
+</div>

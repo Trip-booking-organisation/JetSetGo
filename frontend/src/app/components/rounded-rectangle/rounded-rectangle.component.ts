@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Seat} from "../../shared/model/Seat";
 
 @Component({
   selector: 'app-rounded-rectangle',
@@ -7,8 +8,10 @@ import { Component } from '@angular/core';
 })
 export class RoundedRectangleComponent {
 clicked = false;
+@Input() seat!: Seat;
+@Output() eventEmitter: EventEmitter<any> = new EventEmitter<any>();
   addSeat() {
-    console.log("1A");
-    this.clicked = true;
+    this.clicked = !this.clicked;
+    this.eventEmitter.emit(this.seat);
   }
 }

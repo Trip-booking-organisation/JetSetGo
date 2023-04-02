@@ -18,9 +18,16 @@ export class CurrentFlightService {
     departureTime: new Date(),
     departureDate: new Date()
   });
+  private numberOfTravelers = 1;
 
   getCurrentFlight(): Observable<FlightResult> {
     return this._currentFlight$.asObservable();
+  }
+  getNumberOfTravelers(){
+    return this.numberOfTravelers;
+  }
+  setNumberOfTravelers(numberOfTravelers: number){
+     this.numberOfTravelers = numberOfTravelers;
   }
 
   setCurrentFlight(flight: FlightResult) {

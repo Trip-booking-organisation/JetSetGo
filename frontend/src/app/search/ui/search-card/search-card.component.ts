@@ -13,9 +13,9 @@ import {ConfirmDialogData, ModalDialogComponent} from "../../../components/modal
 })
 export class SearchCardComponent {
   @Input() flight!: FlightResult;
+  @Input() numberOfTravelers=1;
   userRole: string = ''
   @Output() deletedFlight = new EventEmitter<string>()
-
 
   constructor(private flightSave: CurrentFlightService, private router: Router
     , private storageService: TokenStorageService, private dialog: MatDialog) {
@@ -38,6 +38,7 @@ export class SearchCardComponent {
 
   navigateToBook() {
     this.flightSave.setCurrentFlight(this.flight)
+    this.flightSave.setNumberOfTravelers(this.numberOfTravelers);
     this.router.navigate(['flight/seats']).then()
   }
 

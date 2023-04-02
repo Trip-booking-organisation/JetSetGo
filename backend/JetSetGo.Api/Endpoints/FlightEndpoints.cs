@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using backend.Dto.Requests.Flights;
 using backend.Helpers;
+using JetSetGo.Application.Common.Model;
 using JetSetGo.Application.Flights.Command.CreateFlight;
 using JetSetGo.Application.Flights.Command.DeleteFlight;
 using JetSetGo.Application.Flights.Query.GetAll;
@@ -54,7 +55,7 @@ public static class FlightEndpoints
         ,string cityTo,string countryTo, int passengersNumber, DateOnly date,ISender sender)
     {
         var query = new SearchFlightsQuery(cityFrom,countryFrom, cityTo,countryTo, passengersNumber, date);
-        var flights = await sender.Send(query);
+        IEnumerable<FlightResult> flights = await sender.Send(query);
         return Results.Ok(flights);
     }
 }

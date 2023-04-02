@@ -6,11 +6,19 @@
   border-radius: 20px;
   margin-top: 1%;
   border: none;
+  outline: none;
   color: $black-color;
   background: $white-color;
   align-items: center; // Vertically centers the child elements
   text-align: center; // Centers the text inside the div
   transition: background-color 0.3s ease-in-out;
+  &:disabled{
+    background: $secondary-color;
+  }
+  &:disabled:hover{
+    cursor: not-allowed;
+    background: $secondary-color;
+  }
   &:hover{
     cursor: pointer;
     background-color: $gray-background;
