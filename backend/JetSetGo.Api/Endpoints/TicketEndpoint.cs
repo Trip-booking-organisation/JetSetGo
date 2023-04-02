@@ -14,11 +14,11 @@ public static class TicketEndpoint
 {
     public static void MapTicketsEndpoints(this WebApplication application)
     {
-        application.MapGet("api/v1/tickets/{id:guid}",GetAllTicketsByPassenger);
-        application.MapPost("api/v1/tickets",CreateTicket);
-        application.MapGet("api/v1/tickets/get-ticket/{id:guid}", GetTicketById);
+        application.MapGet("api/v1/tickets/{id:guid}",GetAllTicketsByPassenger).RequireAuthorization();
+        application.MapPost("api/v1/tickets",CreateTicket).RequireAuthorization("PassengerPolicy");
+        application.MapGet("api/v1/tickets/get-ticket/{id:guid}", GetTicketById).RequireAuthorization();
       //  application.MapPut("api/v1/tickets", UpdateTicket);
-        application.MapDelete("api/v1/tickets/{id:guid}", DeleteTicket);
+        application.MapDelete("api/v1/tickets/{id:guid}", DeleteTicket).RequireAuthorization();
     }
     private static async Task<IResult> GetAllTicketsByPassenger(ISender sender,Guid id)
     {

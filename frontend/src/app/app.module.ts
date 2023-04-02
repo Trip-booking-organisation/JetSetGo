@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
@@ -14,6 +14,8 @@ import {ToastrModule} from 'ngx-toastr';
 import {SearchModule} from "./search/search.module";
 import {UsersTicketsComponent} from './components/users-tickets/users-tickets.component';
 import {CreateFlightModule} from "./create-flight/create-flight.module";
+
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import {CreateFlightModule} from "./create-flight/create-flight.module";
       useClass: AuthInterceptor,
       multi: true
     }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
+
 }
