@@ -1,18 +1,42 @@
 <div class="seats flex">
   <div class="content-container">
-    <h1>Choose your seats</h1>
+    <div class="main-text">
+      <h1>Choose your seats</h1>
+    </div>
     <div class="place-container">
-      <p>from</p>
-      <p>NewYork City, USA</p>
+      <p class="p-small">from</p>
+      <p class="p-text">NewYork City, USA</p>
       <div class="divider-container">
         <mat-divider/>
         <mat-icon class="icon">sync</mat-icon>
       </div>
-      <p>to</p>
-      <p>California, USA</p>
+      <p class="p-small">to</p>
+      <p  class="p-text">California, USA</p>
     </div>
     <div class="date-container">
-      <div class="date"></div>
+      <div class="date">
+        <div class="icon-div">
+          <mat-icon>calendar_today</mat-icon>
+        </div>
+        <div class="arrival">
+          <p class="p-small">departure</p>
+          <p  class="p-text">Apr,12,2023</p>
+        </div>
+      </div>
+      <div class="date">
+        <div class="date">
+          <div class="icon-div">
+            <mat-icon>calendar_today</mat-icon>
+          </div>
+          <div class="arrival">
+            <p class="p-small">arrival</p>
+            <p  class="p-text">Apr,12,2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="passengers-container">
+      <app-passengers/>
     </div>
   </div>
 

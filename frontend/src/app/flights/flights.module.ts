@@ -5,16 +5,19 @@ import { FlightSeatsComponent } from './ui/flight-seats/flight-seats.component';
 import {ComponentsModule} from "../components/components.module";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
+import { PassengersComponent } from './ui/flight-seats/passengers/passengers.component';
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
-  declarations: [FlightsComponent, FlightSeatsComponent],
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    MatDividerModule,
-    MatIconModule
-  ],
+  declarations: [FlightsComponent, FlightSeatsComponent, PassengersComponent],
+    imports: [
+        CommonModule,
+        ComponentsModule,
+        MatDividerModule,
+        MatIconModule,
+        MatInputModule
+    ],
   exports: [FlightsComponent]
 })
 export class FlightsModule {

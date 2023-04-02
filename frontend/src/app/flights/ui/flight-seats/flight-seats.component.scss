@@ -6,20 +6,36 @@
   flex-direction: row;
   justify-content: flex-start;
   .content-container{
-    background: $sonic-silver;
+    background: $white-color;
     height: 50rem;
     width: 40%;
-    .place-container{
-      background: white;
-      border-radius: 15px;
-      border: none;
+    border-radius: 15px;
+    box-shadow: $box-shadow;
+    .main-text {
       width: 70%;
+      padding-bottom: 1.5rem;
+      font-size: 22px;
+      line-height: 4rem;
+      margin-left: 10%;
+      color: $text-color;
+    }
+    .place-container{
+      background: $secondary-color;
+      border-radius: 15px;
+      width: 86%;
       display: flex;
       flex-direction: column;
       margin-left: 10%;
+      padding: 5px;
       p{
         color: $text-color;
         padding-left: 10%;
+      }
+      .p-text{
+        font-weight: bold;
+      }
+      .p-small{
+        font-size: smaller;
       }
       .divider-container{
         display: flex;
@@ -36,27 +52,61 @@
       }
     }
     .date-container{
+      display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      margin-left: 10%;
+      margin-top: 3%;
+      gap: .8rem;
       .date{
         border-radius: 15px;
-        background: $white-color;
+        background: $secondary-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: .4rem;
+        width: 46.5%;
+        .p-text{
+          font-weight: bold;
+        }
+        .p-small{
+          font-size: smaller;
+        }
+        .icon-div {
+          justify-content: center;
+          color: $primary-color;
+          background: $baby-blue;
+          width: max-content;
+          padding: 1.2rem;
+          border-radius: 3rem;
+          .icon {
+            color: $black-color;
+            opacity: .7;
+          }
+        }
+        .arrival{
+          margin-left: .6rem;
+        }
       }
+    }
+    .passenger-container{
+      width: 86%;
     }
   }
   .image-container{
     position: relative;
-    float: right;
     background-image: url('../../../../assets/images/plane.jpeg');
     background-size: cover;
-    background-position: center center;
+    background-position: right;
+    width: 70%;
     height: 50rem;
-    width: 100%;
    /*
     margin-left: 30%;*/
     .grid-container{
      /* width: 20%;
       margin-right: 20%;*/
+      margin-left:55%;
       display: grid;
       grid-template-columns:1.5fr  1.5fr 1.5fr;
       grid-column-gap: 50px;
