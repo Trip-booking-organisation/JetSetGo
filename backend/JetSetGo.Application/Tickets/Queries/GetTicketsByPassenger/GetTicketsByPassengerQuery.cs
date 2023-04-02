@@ -1,5 +1,4 @@
-﻿using backend.Dto.Shared;
-using FluentResults;
+﻿using FluentResults;
 using JetSetGo.Domain.Tickets;
 using MediatR;
 

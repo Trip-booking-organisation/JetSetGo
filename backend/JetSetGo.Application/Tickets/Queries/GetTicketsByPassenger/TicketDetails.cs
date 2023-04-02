@@ -1,15 +1,12 @@
 ﻿using JetSetGo.Domain.Flights.ValueObjects;
 
-namespace backend.Dto.Shared;
+namespace JetSetGo.Application.Tickets.Queries.GetTicketsByPassenger;
 
 public class TicketDetails
 {
-    public string contactDetails { get; set; }
-    public string seatNumber { get; set; }
-    public DateTime bookingTime { get; set; }
-    public FlightDetails departure { get; set; }
-    public FlightDetails arrival { get; set; }
-
-
-
+    public string ContactDetails { get; set; } = null!;
+    public string SeatNumber { get; set; } = null!;
+    public DateTime BookingTime { get; set; }
+    public FlightDetails Departure { get; set; } = null!;
+    public FlightDetails Arrival { get; set; } = null!;
 }
