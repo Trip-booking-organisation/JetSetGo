@@ -32,7 +32,7 @@ public static class FlightEndpoints
 
     private static async Task<IResult> GetAllFlights(ISender sender)
     {
-        int limit = 5;
+        var limit = 5;
         var flights = await sender.Send(new GetAllQuery(limit));
         return Results.Ok(flights);
     }

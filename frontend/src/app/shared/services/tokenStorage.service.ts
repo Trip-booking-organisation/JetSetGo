@@ -17,6 +17,9 @@ export class TokenStorageService {
   }
 
   constructor() {
+    if (this.isLoggedIn()) {
+      this.login()
+    }
   }
 
   public saveToken(token: string) {

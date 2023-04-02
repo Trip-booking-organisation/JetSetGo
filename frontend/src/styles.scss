@@ -109,6 +109,25 @@ li {
   }
 }
 
+.btn-delete-lg {
+  padding: .7rem 1.5rem;
+  background: $warning-trans;
+  border: none;
+  outline: none;
+  border-radius: 3rem;
+  cursor: pointer;
+  color: $white-color;
+
+  a {
+    color: $white-color;
+    font-weight: 500;
+  }
+
+  &:hover {
+    background: black;
+  }
+}
+
 .btn-delete {
   padding: .5rem 1.2rem;
   background: $warning-trans;

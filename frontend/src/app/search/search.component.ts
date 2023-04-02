@@ -1,8 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {FlightsService} from "../shared/services/flights.service";
 import {ToastrService} from "ngx-toastr";
-import {map, Observable, startWith, Subscription} from "rxjs";
+import {map, Observable, startWith} from "rxjs";
 import {FlightResult} from "../shared/model/FlightResult";
 import {flightsAutoComplete} from "./data-access/cityAndCountryData";
 import {FlightAddress} from "./model/FlightAddress";
@@ -13,9 +13,8 @@ import {SearchQuery} from "./model/SearchQuery";
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnInit {
   @Input() searchResults: FlightResult[] = [];
-  searchResults$!: Subscription;
   classSeats: string[] = ['First', 'Business', 'Economy'];
   flightControlFrom = new FormControl();
   flightControlTo = new FormControl();
@@ -81,7 +80,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       date: dateString,
       passengersNumber: number
     }
-    this.searchResults$ = this.flightsService.searchFlights(query)
+    this.flightsService.searchFlights(query)
     .subscribe({
       next: (data: FlightResult[]) => {
         this.searchResults = data
@@ -105,7 +104,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchResults = [...filter]
   }
 
-  ngOnDestroy(): void {
-    //this.searchResults$.unsubscribe();
+  deleteFlight(id: string) {
+    const newList = this.searchResults.filter(f => f.id !== id);
+    this.searchResults = [...newList]
   }
 }
