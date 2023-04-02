@@ -7,7 +7,7 @@
   <div class="contact-container">
     <div *ngFor="let number of array">
     <mat-form-field>
-      <input type="text" placeholder="contact" matInput>
+      <input type="text" placeholder="contact" matInput [formControl]="contactFormControl" (blur)="onTextEntered()">
     </mat-form-field>
     </div>
   </div>

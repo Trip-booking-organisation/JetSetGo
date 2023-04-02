@@ -10,6 +10,7 @@ import {CurrentFlightService} from "../../../shared/services/current-flight.serv
 })
 export class SearchCardComponent {
   @Input() flight!: FlightResult;
+  @Input() numberOfTravelers=1;
 
 
   constructor(private flightSave: CurrentFlightService, private router: Router) {
@@ -26,6 +27,7 @@ export class SearchCardComponent {
 
   navigateToBook() {
     this.flightSave.setCurrentFlight(this.flight)
+    this.flightSave.setNumberOfTravelers(this.numberOfTravelers);
     this.router.navigate(['flight/seats']).then()
   }
 }

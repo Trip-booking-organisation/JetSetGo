@@ -8,6 +8,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {SearchModule} from "../search/search.module";
 import { PassengersComponent } from './ui/flight-seats/passengers/passengers.component';
 import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatInputModule} from "@angular/material/input";
         MatDividerModule,
         MatIconModule,
         MatInputModule,
-      SearchModule
+        SearchModule,
+        ReactiveFormsModule
     ],
 
   exports: [FlightsComponent]
