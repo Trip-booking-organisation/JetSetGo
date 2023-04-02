@@ -9,6 +9,7 @@ import {UsersTicketsComponent} from './components/users-tickets/users-tickets.co
 import {CreateFlightComponent} from "./create-flight/ui/create-flight.component";
 import {HasRoleGuard} from "./guards/roleGuard/has-role.guard";
 import {IsAuthentificatedGuard} from "./guards/authentificationGuard/is-authentificated.guard";
+import {TicketPrinterComponent} from "./flights/ui/ticket-printer/ticket-printer.component";
 
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: "users-tickets",
     component: UsersTicketsComponent
+  },
+  {
+    path: "your-tickets",
+    component: TicketPrinterComponent
   },
   {
     path: 'create-flight',

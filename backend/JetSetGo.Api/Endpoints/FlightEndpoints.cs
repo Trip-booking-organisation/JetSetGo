@@ -31,7 +31,8 @@ public static class FlightEndpoints
 
     private static async Task<IResult> GetAllFlights(ISender sender)
     {
-        var flights = await sender.Send(new GetAllQuery());
+        int limit = 5;
+        var flights = await sender.Send(new GetAllQuery(limit));
         return Results.Ok(flights);
     }
     private static async Task<IResult> GetFlightById(ISender sender,Guid id)
