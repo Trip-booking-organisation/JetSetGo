@@ -5,8 +5,9 @@
   <div class="top">
     <div class="printer"></div>
   </div>
-  <div class="tickets">
-    <app-ticket/>
-    <app-ticket/>
+  <div class="tickets" >
+    <div *ngFor="let ticket of currentTickets.newTickets">
+      <app-ticket [flight]="currentFlight" [ticketDetails]="ticket"/>
+    </div>
   </div>
 </div>

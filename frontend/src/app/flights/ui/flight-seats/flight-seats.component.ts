@@ -7,6 +7,8 @@ import {TokenStorageService} from "../../../shared/services/tokenStorage.service
 import {TicketsService} from "../../../shared/services/ticketService";
 import {ToastrService} from "ngx-toastr";
 import {Seat} from "../../../shared/model/Seat";
+import {CurrentTicketsService} from "../../../shared/services/current-tickets.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-flight-seats',
@@ -24,7 +26,9 @@ export class FlightSeatsComponent implements OnInit {
   constructor(private currentFlightService: CurrentFlightService,
               private  tokenStorage: TokenStorageService,
               private ticketService: TicketsService,
-              private toasterService: ToastrService) {
+              private toasterService: ToastrService,
+              private router: Router,
+              private ticketsSave: CurrentTicketsService) {
   }
 
   ngOnInit(): void {
@@ -72,8 +76,9 @@ export class FlightSeatsComponent implements OnInit {
       .map((seatNumber, index) => ({seatNumber, contactDetails: this.listOfContacts[index]}));
     const newTickets = this.createRequest(objects);
     this.ticketService.createTickets(newTickets).subscribe({
-      next: response =>{
-        console.log(response)
+      next: _ =>{
+       this.ticketsSave.setCurrentTickets(newTickets);
+       this.router.navigate(['your-tickets']).then()
     }
     })
   }
