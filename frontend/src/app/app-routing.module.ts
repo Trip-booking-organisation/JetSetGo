@@ -19,13 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'flights',
-    component: FlightsComponent,
-    // canActivate: [IsAuthentificatedGuard, HasRoleGuard],
-    // data: {
-    //   role: ["Admin"
-    //     // ,"Passenger"
-    //   ]
-    //}
+    component: FlightsComponent
   },
   {
     path: 'signIn',
