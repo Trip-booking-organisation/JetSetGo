@@ -5,6 +5,8 @@ import {CurrentFlightService} from "../../../shared/services/current-flight.serv
 import {TokenStorageService} from "../../../shared/services/tokenStorage.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDialogData, ModalDialogComponent} from "../../../components/modal-dialog/modal-dialog.component";
+import {FlightsService} from "../../../shared/services/flights.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-search-card',
@@ -13,12 +15,13 @@ import {ConfirmDialogData, ModalDialogComponent} from "../../../components/modal
 })
 export class SearchCardComponent {
   @Input() flight!: FlightResult;
-  @Input() numberOfTravelers=1;
+  @Input() numberOfTravelers = 1;
   userRole: string = ''
   @Output() deletedFlight = new EventEmitter<string>()
 
   constructor(private flightSave: CurrentFlightService, private router: Router
-    , private storageService: TokenStorageService, private dialog: MatDialog) {
+    , private storageService: TokenStorageService, private dialog: MatDialog,
+              private flightsService: FlightsService, private toastrService: ToastrService) {
     storageService.isAuthenticated.subscribe({
       next: value => {
         if (value) {
@@ -55,6 +58,14 @@ export class SearchCardComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.flightsService.delete(this.flight.id).subscribe({
+          next: _ => {
+            this.toastrService.success("You successfully deleted flight", "Success")
+          },
+          error: err => {
+            this.toastrService.success("Flight contains ticket", "Error")
+          }
+        })
         this.deletedFlight.emit(this.flight.id)
       }
     });

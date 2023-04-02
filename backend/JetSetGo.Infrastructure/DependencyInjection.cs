@@ -3,7 +3,9 @@ using DotNetEnv.Configuration;
 using JetSetGo.Application.Common.Interfaces.Autentification;
 using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Application.Common.Services;
+using JetSetGo.Application.Email;
 using JetSetGo.Infrastructure.Autentification;
+using JetSetGo.Infrastructure.Email;
 using JetSetGo.Infrastructure.Persistence;
 using JetSetGo.Infrastructure.Persistence.Repository;
 using JetSetGo.Infrastructure.Services;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
+using EmailService = JetSetGo.Infrastructure.Email.EmailService;
 
 namespace JetSetGo.Infrastructure;
 
@@ -23,11 +26,10 @@ public static class DependencyInjection
     {
         builderConfiguration.AddDotNetEnv();
         services.AddAuth(builderConfiguration);
-        
-
         services.AddPersistence();
         services.AddServices();
         services.AddSecurity();
+        services.AddEmail(builderConfiguration);
     }
     private static void AddPersistence(this IServiceCollection services){
         services.AddDbContext<JetSetGoContext>();
@@ -35,7 +37,13 @@ public static class DependencyInjection
         services.AddScoped<IFlightRepository, FlightRepository>();
         services.AddScoped<ITicketRepository, TicketRepository>();
     }
+    private static void AddEmail(this IServiceCollection services,IConfiguration builderConfiguration){
+        services.Configure<EmailOptions>(options => builderConfiguration.GetSection("EmailOptions")
+            .Bind(options));
+        services.AddScoped<IEmailService, EmailService>();
 
+    }
+    
     private static void AddServices(this IServiceCollection services){
         services.AddSingleton<IDateTimeProvider,DateTimeProvider>();
     }

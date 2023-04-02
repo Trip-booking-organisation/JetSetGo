@@ -23,8 +23,10 @@ public class DeleteFlightHandler : IRequestHandler<DeleteFlightCommand,Result>
 
         var tickets = await _ticketRepository.GetTicketsByFlight(request.Id);
         if (tickets.Any()) return Result.Fail(FlightErrors.FlightHasTickets);
-
+        
         await _flightRepository.Delete(flight);
         return Result.Ok();
     }
+
+
 }
