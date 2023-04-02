@@ -32,6 +32,7 @@ export class PassengersComponent  implements OnInit{
 
 
   onTextEntered() {
+    console.log(this.contactFormControl.value)
     this.eventEmitter.emit(this.contactFormControl.value)
   }
 }

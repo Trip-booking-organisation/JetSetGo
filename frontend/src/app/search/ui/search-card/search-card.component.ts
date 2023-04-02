@@ -13,7 +13,7 @@ import {ConfirmDialogData, ModalDialogComponent} from "../../../components/modal
 })
 export class SearchCardComponent {
   @Input() flight!: FlightResult;
-  @Input() numberOfTravelers=1;
+  @Input() numberOfTravelers = 1;
   userRole: string = ''
   @Output() deletedFlight = new EventEmitter<string>()
 

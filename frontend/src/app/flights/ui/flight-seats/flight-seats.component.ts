@@ -32,8 +32,12 @@ export class FlightSeatsComponent implements OnInit {
       (flight: FlightResult) => {
         this.currentFlight = flight;
         this.numberOfTravelers = this.currentFlightService.getNumberOfTravelers();
+        if(!this.numberOfTravelers)
+          this.numberOfTravelers = 1;
       }
+
     );
+    console.log(this.numberOfTravelers)
   }
 
   addSeat($event: any) {
