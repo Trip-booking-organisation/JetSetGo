@@ -3,6 +3,7 @@ using backend.Dto.Requests.Flights;
 using backend.Helpers;
 using JetSetGo.Application.Flights.Command.CreateFlight;
 using JetSetGo.Application.Flights.Command.DeleteFlight;
+using JetSetGo.Application.Flights.Query.GetAll;
 using JetSetGo.Application.Flights.Query.GetById;
 using JetSetGo.Application.Flights.Query.Search;
 using MediatR;
@@ -30,8 +31,8 @@ public static class FlightEndpoints
 
     private static async Task<IResult> GetAllFlights(ISender sender)
     {
-        await Task.CompletedTask;
-        return Results.Ok();
+        var flights = await sender.Send(new GetAllQuery());
+        return Results.Ok(flights);
     }
     private static async Task<IResult> GetFlightById(ISender sender,Guid id)
     {

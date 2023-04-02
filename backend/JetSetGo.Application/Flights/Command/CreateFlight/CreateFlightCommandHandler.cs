@@ -1,26 +1,31 @@
 ﻿using FluentResults;
 using JetSetGo.Application.Common.Interfaces.Persistence;
+using JetSetGo.Application.Converters;
 using JetSetGo.Domain.DomainExceptions;
 using JetSetGo.Domain.Flights;
 using JetSetGo.Domain.Flights.Entities;
 using JetSetGo.Domain.Flights.Enum;
 using JetSetGo.Domain.Flights.ValueObjects;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace JetSetGo.Application.Flights.Command.CreateFlight;
 
 public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Result<Guid>>
 {
     private readonly IFlightRepository _flightRepository;
+    private readonly ILogger<CreateFlightCommandHandler> _logger;
 
-    public CreateFlightCommandHandler(IFlightRepository flightRepository)
+    public CreateFlightCommandHandler(IFlightRepository flightRepository,
+        ILogger<CreateFlightCommandHandler> logger)
     {
         _flightRepository = flightRepository;
+        _logger = logger;
     }
 
     public async Task<Result<Guid>> Handle(CreateFlightCommand request, CancellationToken cancellationToken)
     {
-        await Task.CompletedTask;
+        _logger.LogInformation($"{request.ToString()} is sended");
         var arrival = new FlightDetails
         {
             Date = request.Arrival.Date,
@@ -56,10 +61,11 @@ public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Re
                 Class = s.Class
             }).ToList();
 
-        var flight = new Flight(seats, departure, arrival);
+        var flight = new Flight(seats, departure, arrival,request.CompanyName);
         var resultValidation = flight.Validate();
         if (resultValidation.IsFailed)
         {
+            _logger.LogError($"{resultValidation.Errors[0].Message} error occurs");
             return resultValidation;
         }
         var id = await _flightRepository.Create(flight,cancellationToken);

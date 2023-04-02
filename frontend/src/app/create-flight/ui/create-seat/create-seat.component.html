@@ -1,0 +1,31 @@
+<mat-card class="form-data" [@slideInOut]="slideState">
+  <mat-card-header class="side-text">
+    <mat-card-title>Add One Seats</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="seatForm">
+      <mat-form-field appearance="fill" class="input-base">
+        <mat-label>Seat Number</mat-label>
+        <input matInput formControlName="seatNumber" required>
+        <mat-error *ngIf="seatForm.get('seatNumber')!.hasError('required')">Seat number is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-base">
+        <mat-label>Price in €</mat-label>
+        <input type="number" matInput formControlName="price" required>
+        <mat-error *ngIf="seatForm.get('price')!.hasError('required')">Price is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-base">
+        <mat-label>Class</mat-label>
+        <mat-select formControlName="class" required>
+          <mat-option value="Economy">Economy</mat-option>
+          <mat-option value="Business">Business</mat-option>
+          <mat-option value="First Class">First Class</mat-option>
+        </mat-select>
+        <mat-error *ngIf="seatForm.get('class')!.hasError('required')">Class is required</mat-error>
+      </mat-form-field>
+      <button class="btn butt-step-md" (click)="addSeat()" [disabled]="!seatForm.valid">Add seat</button>
+    </form>
+  </mat-card-content>
+</mat-card>

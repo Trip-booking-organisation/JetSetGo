@@ -5,7 +5,8 @@ import {FlightsComponent} from "./flights/ui/flights/flights.component";
 import {SignInComponent} from "./autentification/view/sign-in/sign-in.component";
 import {ErrorComponent} from './components/errors/errorPage/error.component';
 import {FlightSeatsComponent} from "./flights/ui/flight-seats/flight-seats.component";
-import { UsersTicketsComponent } from './components/users-tickets/users-tickets.component';
+import {UsersTicketsComponent} from './components/users-tickets/users-tickets.component';
+import {CreateFlightComponent} from "./create-flight/ui/create-flight.component";
 
 
 const routes: Routes = [
@@ -32,12 +33,16 @@ const routes: Routes = [
     component: ErrorComponent
   },
   {
-    path: 'flights/seats',
+    path: 'flight/seats',
     component: FlightSeatsComponent
   },
   {
     path: "users-tickets",
     component: UsersTicketsComponent
+  },
+  {
+    path: 'create-flight',
+    component: CreateFlightComponent
   }
 ];
 

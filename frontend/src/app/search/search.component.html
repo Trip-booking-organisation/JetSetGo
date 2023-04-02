@@ -80,10 +80,9 @@
     <ng-container *ngIf="isLoading; else results">
       <app-loading-animation/>
     </ng-container>
-    <app-search-card></app-search-card>
     <ng-template #results>
       <div *ngFor="let result of searchResults">
-        {{result.id}}
+        <app-search-card [flight]="result"/>
       </div>
     </ng-template>
   </div>

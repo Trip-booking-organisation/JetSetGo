@@ -1,8 +1,12 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
-import {navData} from "./passenger-nav-data";
+import {navDataPassenger} from "./data-access/passenger-nav-data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TokenStorageService} from "../../shared/services/tokenStorage.service";
 import {AutentificationService} from "../../shared/services/autentificationService";
+import {noRegisterUserNavData} from "./data-access/no-register-user-nav-data";
+import {User} from "../../shared/model/User";
+import {adminNavData} from "./data-access/admin-nav-data";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-navbar',
@@ -13,15 +17,25 @@ export class NavbarComponent implements OnInit {
   activeClass: string = 'navbar-menu';
   addBackground: string = 'navbar-two';
   isCollapsed: boolean = false
-  navDataPassenger = navData;
+  navDataPassenger = navDataPassenger;
+  navDataNoRegister = noRegisterUserNavData;
+  navDataAdmin = adminNavData;
+  userToken: User;
+  isLogged!: boolean;
   @Input() second_nav_visibility = true;
   @Output() on_register_route: EventEmitter<boolean> = new EventEmitter();
 
 
   constructor(private router: Router, private route: ActivatedRoute,
               private tokenStorage: TokenStorageService,
-              private authenticationService: AutentificationService) {
-
+              private authenticationService: AutentificationService, private toast: ToastrService) {
+    this.userToken = this.tokenStorage.getUser()
+    this.tokenStorage.isAuthenticated.subscribe(
+      (authenticated: boolean) => {
+        this.userToken = this.tokenStorage.getUser()
+        this.isLogged = authenticated;
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -40,9 +54,9 @@ export class NavbarComponent implements OnInit {
       : 'navbar-two nav-bg';
   }
 
-  removeNavBar(routerLink: string) {
+  navigate(routerLink: string) {
     this.activeClass = 'navbar-menu'
-    this.router.navigate([routerLink])
+    this.router.navigate([routerLink]).then()
 
   }
 
@@ -64,7 +78,9 @@ export class NavbarComponent implements OnInit {
 
   LogOut() {
     this.tokenStorage.signOut();
-    this.router.navigate(['']).then()
+    this.router.navigate(['']).then(_ => {
+      this.toast.success("You are successfully logged out", "Log out")
+    })
   }
 
   checkAuthorisation() {

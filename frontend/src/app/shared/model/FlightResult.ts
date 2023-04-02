@@ -11,4 +11,5 @@ export interface FlightResult {
   departureDate: Date,
   arrivalTime: Date,
   arrivalDate: Date,
+  companyName: string,
 }

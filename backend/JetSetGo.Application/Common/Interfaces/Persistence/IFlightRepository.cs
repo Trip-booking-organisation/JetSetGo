@@ -9,6 +9,7 @@ public interface IFlightRepository
     Task<Flight?> GetById(Guid id);
     Task<Guid> Create(Flight flight,CancellationToken cancellationToken);
     Task<List<Flight>> SearchFlights(SearchFlightsQuery flightsQuery,CancellationToken cancellationToken);
+    Task<List<Flight>> GetAllFlights(CancellationToken cancellationToken);
     Task Update(Flight flight);
     Task Delete(Flight flight);
 

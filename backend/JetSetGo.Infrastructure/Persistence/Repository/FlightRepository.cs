@@ -10,12 +10,10 @@ namespace JetSetGo.Infrastructure.Persistence.Repository;
 public class FlightRepository : IFlightRepository
 {
     private readonly JetSetGoContext _context;
-    private ILogger<FlightRepository> _logger;
 
-    public FlightRepository(JetSetGoContext context, ILogger<FlightRepository> logger)
+    public FlightRepository(JetSetGoContext context)
     {
         _context = context;
-        _logger = logger;
     }
 
     public async Task<Flight?> GetById(Guid id)
@@ -42,6 +40,13 @@ public class FlightRepository : IFlightRepository
             && f.Arrival.Address.City.Trim().ToLower().Equals(flightsQuery.CityTo.Trim().ToLower())
             );
         return await query.ToListAsync(cancellationToken);
+    }
+
+    public async Task<List<Flight>> GetAllFlights(CancellationToken cancellationToken)
+    {
+        var flights = _context.Flights.Where(flight => flight.Departure.Date >= new DateOnly());
+        return await flights
+            .ToListAsync(cancellationToken);
     }
 
     public async Task Update(Flight flight)

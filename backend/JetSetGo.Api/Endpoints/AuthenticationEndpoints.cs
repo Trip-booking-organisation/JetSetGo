@@ -13,8 +13,6 @@ public static class AuthenticationEndpoints
     public static void MapAuthenticationEndpoints(this WebApplication application)
     {
         application.MapGet("authentication/users", GetAllUsers).RequireAuthorization("AdminPolicy");
-        
-       
         application.MapPost("authentication/register", Register);
         application.MapPost("authentication/signIn", SignIn).AllowAnonymous();
     }

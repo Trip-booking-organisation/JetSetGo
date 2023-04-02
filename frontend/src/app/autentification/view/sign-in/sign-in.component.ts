@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
   @Output() onSignInOrRegister: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(private autentificationService: AutentificationService, private tokenStorage: TokenStorageService,
+  constructor(private authenticationService: AutentificationService, private tokenStorage: TokenStorageService,
               private router: Router, private toast: ToastrService, private route: ActivatedRoute) {
     Aos.init({duration: 2000})
   }
@@ -69,7 +69,7 @@ export class SignInComponent implements OnInit {
         password: this.password
       }
     );
-    this.autentificationService.signInUser(user).subscribe({
+    this.authenticationService.signInUser(user).subscribe({
 
       next: res => {
         this.logInUser(res)
@@ -113,7 +113,7 @@ export class SignInComponent implements OnInit {
     registerRequest.LastName = this.signUpSurname;
     registerRequest.Email = this.signUpEmail;
     registerRequest.Password = this.signUpPassword;
-    this.autentificationService.registerUser(registerRequest).subscribe({
+    this.authenticationService.registerUser(registerRequest).subscribe({
       next: res => {
         console.log(res)
         this.logInUser(res)
