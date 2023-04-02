@@ -1,0 +1,45 @@
+<form [formGroup]="stepControl" class="form-data">
+  <div class="main-text">
+    <h1>Departure and Arrival Date and Time</h1>
+  </div>
+  <mat-form-field class="input-base">
+    <input matInput [matDatepicker]="picker" placeholder="Enter Departure Date" formControlName="departureDate">
+    <mat-error *ngIf="stepControl.get('departureDate')!.hasError('required')">
+      Departure date is required
+    </mat-error>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"/>
+    <mat-datepicker #picker/>
+  </mat-form-field>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter Departure Time" matInput formControlName="departureTime"
+    >
+    <mat-error *ngIf="stepControl.get('departureTime')!.hasError('required')">
+      Departure time is required
+    </mat-error>
+    <mat-error *ngIf="stepControl.get('departureTime')!.hasError('invalidFormat')">
+      Invalid departure time format. Expected format: HH:mm:ss
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="input-base">
+    <input matInput [matDatepicker]="picker1" placeholder="Enter Arrival Date" formControlName="arrivalDate">
+    <mat-error *ngIf="stepControl.get('arrivalDate')!.hasError('required')">
+      Arrival date is required
+    </mat-error>
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"/>
+    <mat-datepicker #picker1/>
+  </mat-form-field>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter Arrival Time" matInput formControlName="arrivalTime"
+    >
+    <mat-error *ngIf="stepControl.get('arrivalTime')!.hasError('required')">
+      Arrival time is required
+    </mat-error>
+    <mat-error *ngIf="stepControl.get('arrivalTime')!.hasError('invalidFormat')">
+      Invalid arrival time format. Expected format: HH:mm:ss
+    </mat-error>
+  </mat-form-field>
+  <div class="button-group">
+    <button (click)="emitEventBack()" class="btn butt-step">Back</button>
+    <button (click)="emitEventNext()" class="btn butt-step">Next</button>
+  </div>
+</form>

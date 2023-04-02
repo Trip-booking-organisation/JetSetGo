@@ -3,6 +3,8 @@
 .lounge {
   .section-container {
     gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
 
     .img-div {
       margin: auto;
@@ -14,6 +16,8 @@
     }
 
     .text {
+      margin-left: 5rem;
+
       h2 {
         background: $gradient-blue;
         -webkit-background-clip: text;

@@ -1,0 +1,25 @@
+@import "src/sass/variables";
+
+.flights {
+  padding-top: 12rem;
+  text-align: center;
+  gap: 2rem;
+  flex-direction: column;
+
+  .main-text {
+    background: $gradient-blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .flight-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+  }
+}

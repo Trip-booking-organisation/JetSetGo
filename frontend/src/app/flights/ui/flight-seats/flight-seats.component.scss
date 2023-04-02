@@ -1,0 +1,130 @@
+@import "src/sass/variables";
+.seats{
+  padding-top: 12rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .content-container{
+    background: $white-color;
+    height: 50rem;
+    width: 40%;
+    border-radius: 15px;
+    box-shadow: $box-shadow;
+    .main-text {
+      width: 70%;
+      padding-bottom: 1.5rem;
+      font-size: 22px;
+      line-height: 4rem;
+      margin-left: 10%;
+      color: $text-color;
+    }
+    .place-container{
+      background: $secondary-color;
+      border-radius: 15px;
+      width: 86%;
+      display: flex;
+      flex-direction: column;
+      margin-left: 10%;
+      padding: 5px;
+      p{
+        color: $text-color;
+        padding-left: 10%;
+      }
+      .p-text{
+        font-weight: bold;
+      }
+      .p-small{
+        font-size: smaller;
+      }
+      .divider-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        mat-divider{
+          margin-top: 8px;
+          height: 1px;
+          width: 100%;
+        }
+        mat-icon{
+          color: $text-color;
+        }
+      }
+    }
+
+    .date-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-left: 10%;
+      margin-top: 3%;
+      gap: 1rem;
+      .date{
+        border-radius: 15px;
+        background: $secondary-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: .6rem;
+        width: 46.2%;
+        .p-text{
+          font-weight: bold;
+          font-size: small;
+        }
+        .p-small{
+          font-size: smaller;
+        }
+        .icon-div {
+          justify-content: center;
+          color: $primary-color;
+          background: $baby-blue;
+          width: max-content;
+          padding: 1.2rem;
+          border-radius: 3rem;
+          .icon {
+            color: $black-color;
+            opacity: .7;
+          }
+        }
+        .arrival{
+          margin-left: .6rem;
+        }
+      }
+    }
+    .passenger-container{
+      width: 86%;
+    }
+  }
+  .image-container{
+    position: relative;
+    background-image: url('../../../../assets/images/plane.jpeg');
+    background-size: cover;
+    background-position: right;
+    width: 70%;
+    height: 50rem;
+    button{
+      margin-top: 3%;
+      float: right;
+      margin-right: 75px;
+      width: 40%;
+    }
+    .grid-container{
+      display: grid;
+      grid-template-columns:0.1fr  0.1fr 0.1fr 0.1fr;
+      grid-column-gap: 15px;
+      row-gap: 25px;
+      margin-left: 55%;
+      .column{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding-bottom: 15%;
+        .inner-grid{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+  }
+}

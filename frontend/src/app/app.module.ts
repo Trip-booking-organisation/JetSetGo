@@ -12,11 +12,14 @@ import {AuthInterceptor} from "./interceptors/AuthInterceptor";
 import {AuthenticationModule} from "./autentification/authentication.module";
 import {ToastrModule} from 'ngx-toastr';
 import {SearchModule} from "./search/search.module";
+import {UsersTicketsComponent} from './components/users-tickets/users-tickets.component';
+import {CreateFlightModule} from "./create-flight/create-flight.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    UsersTicketsComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import {SearchModule} from "./search/search.module";
     ComponentsModule,
     BrowserAnimationsModule,
     AuthenticationModule,
+    CreateFlightModule,
     CommonModule,
     SearchModule,
     ToastrModule.forRoot()

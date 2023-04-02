@@ -1,2 +1,9 @@
-<p style="padding-top: 300px">flights works!</p>
-<h1>{{flights$ | async}}</h1>
+<div class="container-main flights">
+  <div class="main-text">
+    <h1>Flying might not be all plain sailing, but the fun of it is worth the price!</h1>
+  </div>
+  <app-plane-animation/>
+  <div class="flight-container">
+    <app-search [searchResults]="flights"></app-search>
+  </div>
+</div>

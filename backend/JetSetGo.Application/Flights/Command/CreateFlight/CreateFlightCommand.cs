@@ -9,7 +9,7 @@ public record CreateFlightCommand : IRequest<Result<Guid>>
     public List<SeatCommand> Seats { get; set; } = null!;
     public DetailCommand Departure { get; set; } = null!;
     public DetailCommand Arrival { get; set; } = null!;
-    public int AvailableSeats { get; set; }
+    public string CompanyName { get; set; } = null!;
     public record DetailCommand
     {
         public DateOnly Date { get; set; }

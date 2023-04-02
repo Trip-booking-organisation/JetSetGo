@@ -11,17 +11,23 @@
         First Class
       </button>
     </div>
-    <form class="search-inputs flex" [formGroup]="searchForm">
+    <div class="search-inputs flex">
       <div class="single-input flex">
         <div class="icon-div">
           <mat-icon>where_to_vote</mat-icon>
         </div>
         <div class="texts">
           <h4>Location from</h4>
-          <input matInput type="text"
-                 placeholder="Where you are now?"
-                 formControlName="from"
-          >
+          <mat-form-field>
+            <input type="text" placeholder="Where you want to go?" matInput [formControl]="flightControlFrom"
+                   [matAutocomplete]="autoFrom">
+            <mat-autocomplete #autoFrom="matAutocomplete">
+              <mat-option *ngFor="let flight of filteredFlightsFrom | async"
+                          [value]="flight.city + ', ' + flight.country">
+                {{ flight.city }}, {{ flight.country }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
       </div>
       <div class="single-input flex">
@@ -30,10 +36,16 @@
         </div>
         <div class="texts">
           <h4>Location to</h4>
-          <input matInput type="text"
-                 placeholder="Where you want to go?"
-                 formControlName="to"
-          >
+          <mat-form-field>
+            <input type="text" placeholder="Where you want to go?" matInput [formControl]="flightControlTo"
+                   [matAutocomplete]="autoTo">
+            <mat-autocomplete #autoTo="matAutocomplete">
+              <mat-option *ngFor="let flight of filteredFlightsTo | async"
+                          [value]="flight.city + ', ' + flight.country">
+                {{ flight.city }}, {{ flight.country }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
       </div>
       <div class="single-input flex">
@@ -42,10 +54,10 @@
         </div>
         <div class="texts">
           <h4>Travelers</h4>
-          <input matInput type="number"
-                 placeholder="Add passenger number"
-                 formControlName="numberOfTravelers"
-          >
+          <mat-form-field class="small-input">
+            <input type="number" placeholder="Add passenger number" matInput
+                   [formControl]="numberOfTravelers">
+          </mat-form-field>
         </div>
       </div>
       <div class="single-input flex">
@@ -54,18 +66,24 @@
         </div>
         <div class="texts">
           <h4>Date</h4>
-          <input matInput type="date"
-                 placeholder="Add date"
-                 formControlName="date"
-          >
+          <mat-form-field class="medium-input">
+            <input matInput [matDatepicker]="picker" [formControl]="date" placeholder="Add date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"/>
+            <mat-datepicker #picker/>
+          </mat-form-field>
         </div>
       </div>
       <button (click)="searchFlights()" class="btn btn-block flex">
         Search flights
       </button>
-    </form>
-    <div *ngFor="let result of searchResults">
-      {{result.id}}
     </div>
+    <ng-container *ngIf="isLoading; else results">
+      <app-loading-animation/>
+    </ng-container>
+    <ng-template #results>
+      <div *ngFor="let result of searchResults">
+        <app-search-card [flight]="result" [numberOfTravelers]="numberOfTravelers.value" (deletedFlight)="deleteFlight($event)"/>
+      </div>
+    </ng-template>
   </div>
 </div>

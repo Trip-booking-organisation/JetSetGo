@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using backend.Dto.Requests.Flights;
 using backend.Helpers;
+using JetSetGo.Application.Common.Model;
 using JetSetGo.Application.Flights.Command.CreateFlight;
 using JetSetGo.Application.Flights.Command.DeleteFlight;
+using JetSetGo.Application.Flights.Query.GetAll;
 using JetSetGo.Application.Flights.Query.GetById;
 using JetSetGo.Application.Flights.Query.Search;
 using MediatR;
@@ -19,7 +21,7 @@ public static class FlightEndpoints
         application.MapGet("api/v1/flights/{id:guid}", GetFlightById).RequireAuthorization();
         application.MapDelete("api/v1/flights/{id:guid}", DeleteFlight).RequireAuthorization("AdminPolicy");
         application.MapGet("api/v1/flights/search", SearchFlights);
-        application.MapGet("/", () => Results.Ok("Hello"));
+        application.MapGet("/", () => Results.Content("<h1>jet set go</h1>"));
     }
 
     private static async Task<IResult> DeleteFlight(ISender sender,[FromRoute] Guid id)
@@ -30,8 +32,9 @@ public static class FlightEndpoints
 
     private static async Task<IResult> GetAllFlights(ISender sender)
     {
-        await Task.CompletedTask;
-        return Results.Ok();
+        var limit = 5;
+        var flights = await sender.Send(new GetAllQuery(limit));
+        return Results.Ok(flights);
     }
     private static async Task<IResult> GetFlightById(ISender sender,Guid id)
     {
@@ -48,11 +51,11 @@ public static class FlightEndpoints
             : Results.Created("/api/v1/flights/{id}", new { Id = result.Value});
     }
 
-    private static async Task<IResult> SearchFlights(string locationFrom, string locationTo,
-        int passengersNumber, DateOnly date,ISender sender)
+    private static async Task<IResult> SearchFlights(string cityFrom, string countryFrom
+        ,string cityTo,string countryTo, int passengersNumber, DateOnly date,ISender sender)
     {
-        var query = new SearchFlightsQuery(locationFrom, locationTo, passengersNumber, date);
-        var flights = await sender.Send(query);
+        var query = new SearchFlightsQuery(cityFrom,countryFrom, cityTo,countryTo, passengersNumber, date);
+        IEnumerable<FlightResult> flights = await sender.Send(query);
         return Results.Ok(flights);
     }
 }

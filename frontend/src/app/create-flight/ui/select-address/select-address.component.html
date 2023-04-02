@@ -1,0 +1,32 @@
+<form [formGroup]="stepControl" class="form-data">
+  <div class="main-text">
+    <h1>Departure and Arrival Locations</h1>
+  </div>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter departure Location" matInput formControlName="departureLocation"
+           [matAutocomplete]="autoFrom">
+    <mat-error *ngIf="stepControl.get('departureLocation')!.hasError('required')">
+      Departure location is required
+    </mat-error>
+    <mat-autocomplete #autoFrom="matAutocomplete">
+      <mat-option *ngFor="let flight of filteredFlightsFrom | async"
+                  [value]="flight.city + ', ' + flight.country">
+        {{ flight.city }}, {{ flight.country }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter Arrival Location" matInput formControlName="arrivalLocation"
+           [matAutocomplete]="autoTo">
+    <mat-error *ngIf="stepControl.get('arrivalLocation')!.hasError('required')">Arrival location is required
+    </mat-error>
+    <mat-autocomplete #autoTo="matAutocomplete">
+      <mat-option *ngFor="let flight of filteredFlightsTo | async"
+                  [value]="flight.city + ', ' + flight.country">
+        {{ flight.city }}, {{ flight.country }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button (click)="emitEvent()" class="btn butt-step-lg">Next</button>
+</form>
+

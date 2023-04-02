@@ -46,7 +46,7 @@
 
       .single-input {
         .icon-div {
-          padding: 18px 12px;
+          padding: 24px 16px;
           border-radius: 3rem;
           background: $secondary-color;
           margin-right: 1rem;
@@ -87,6 +87,7 @@
       .btn-block {
         text-align: center;
         justify-content: center;
+        height: 40px;
       }
     }
   }
@@ -134,11 +135,37 @@
   }
 }
 
+
 @media screen and (min-width: 768px) {
   .search {
     .section-container {
       .btn-multi {
         width: 70%;
+        border-radius: 3rem;
+        flex-direction: row;
+      }
+
+      .search-inputs {
+        grid-template-columns: repeat(3, 1fr);
+
+        .single-input {
+          .texts {
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .search {
+    .section-container {
+      .btn-multi {
+        width: 60%;
         border-radius: 3rem;
         flex-direction: row;
       }
@@ -159,7 +186,7 @@
   }
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1024px) {
   .search {
     .section-container {
       .btn-multi {
