@@ -27,4 +27,8 @@ export class FlightsService {
   public getAllFlights(): Observable<FlightResult[]> {
     return this.httpClient.get<FlightResult[]>(this.baseUrl);
   }
+
+  public DeleteFlight(flightId: number): Observable<any> {
+    return this.httpClient.get<FlightResult[]>(this.baseUrl);
+  }
 }

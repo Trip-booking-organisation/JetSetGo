@@ -53,5 +53,6 @@
       <img src="assets/images/suitcase.png" alt="bag"/>
     </div>
     <button class="btn book" (click)="navigateToBook()">Book Now</button>
+    <button class="btn-delete-lg book" (click)="deleteFlight()" *ngIf="userRole==='Admin'">Delete Flight</button>
   </div>
 </div>

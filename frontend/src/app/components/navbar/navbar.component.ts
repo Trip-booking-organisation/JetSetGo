@@ -7,6 +7,8 @@ import {noRegisterUserNavData} from "./data-access/no-register-user-nav-data";
 import {User} from "../../shared/model/User";
 import {adminNavData} from "./data-access/admin-nav-data";
 import {ToastrService} from "ngx-toastr";
+import {ConfirmDialogData, ModalDialogComponent} from "../modal-dialog/modal-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +30,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute,
               private tokenStorage: TokenStorageService,
-              private authenticationService: AutentificationService, private toast: ToastrService) {
+              private authenticationService: AutentificationService, private toast: ToastrService
+    , private dialog: MatDialog) {
     this.userToken = this.tokenStorage.getUser()
     this.tokenStorage.isAuthenticated.subscribe(
       (authenticated: boolean) => {
@@ -77,10 +80,25 @@ export class NavbarComponent implements OnInit {
   }
 
   LogOut() {
-    this.tokenStorage.signOut();
-    this.router.navigate(['']).then(_ => {
-      this.toast.success("You are successfully logged out", "Log out")
-    })
+    const data: ConfirmDialogData = {
+      title: 'Are you sure?',
+      message: 'You will be log out now',
+    };
+
+    const dialogRef = this.dialog.open(ModalDialogComponent, {
+      width: '500px',
+      data: data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.tokenStorage.signOut();
+        this.router.navigate(['']).then(_ => {
+          this.toast.success("You are successfully logged out", "Log out")
+        })
+      }
+    });
+
   }
 
   checkAuthorisation() {

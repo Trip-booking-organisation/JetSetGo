@@ -82,7 +82,7 @@
     </ng-container>
     <ng-template #results>
       <div *ngFor="let result of searchResults">
-        <app-search-card [flight]="result"/>
+        <app-search-card [flight]="result" (deletedFlight)="deleteFlight($event)"/>
       </div>
     </ng-template>
   </div>
