@@ -37,16 +37,28 @@ const routes: Routes = [
   },
   {
     path: 'flight/seats',
-    component: FlightSeatsComponent
+    component: FlightSeatsComponent,
+    canActivate: [IsAuthentificatedGuard, HasRoleGuard],
+    data: {
+      role: ["Passenger"]
+    }
   },
   {
     path: "users-tickets",
-    component: UsersTicketsComponent
-    
+    component: UsersTicketsComponent,
+    canActivate: [IsAuthentificatedGuard, HasRoleGuard],
+    data: {
+      role: ["Passenger"]
+    }
+
   },
   {
     path: "your-tickets",
-    component: TicketPrinterComponent
+    component: TicketPrinterComponent,
+    canActivate: [IsAuthentificatedGuard, HasRoleGuard],
+    data: {
+      role: ["Passenger"]
+    }
   },
   {
     path: 'create-flight',
