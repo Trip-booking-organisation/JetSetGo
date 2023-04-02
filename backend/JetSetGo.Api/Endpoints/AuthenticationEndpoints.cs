@@ -1,10 +1,7 @@
 ﻿using backend.Dto.Requests.User;
-using JetSetGo.Application.Autentification.Command;
 using JetSetGo.Application.Autentification.Command.Register;
 using JetSetGo.Application.Autentification.Query.SignIn;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Endpoints;
 

@@ -1,5 +1,4 @@
-﻿using backend.Dto.Shared;
-using FluentResults;
+﻿using FluentResults;
 using JetSetGo.Application.Common.Errors;
 using JetSetGo.Application.Common.Interfaces.Persistence;
 using JetSetGo.Domain.Tickets;
@@ -22,7 +21,7 @@ public class GetTicketsByPassengerHandler: IRequestHandler<GetTicketsByPassenger
 
     public async Task<List<TicketDetails>> CreateTicketDetailsList(List<Ticket> ticketsList)
     {
-        List<TicketDetails> ticketDetailList = new List<TicketDetails>();
+        var ticketDetailList = new List<TicketDetails>();
         foreach (var ticket in ticketsList)
         {
             var ticket1 = await CreateTicketDetails(ticket);
@@ -35,12 +34,18 @@ public class GetTicketsByPassengerHandler: IRequestHandler<GetTicketsByPassenger
     public async Task<TicketDetails> CreateTicketDetails(Ticket ticket)
     {
         var flight = await _flightRepository.GetById(ticket.FlightId);
-        var ticketDetail = new TicketDetails();
-        ticketDetail.arrival = flight.Arrival;
-        ticketDetail.departure = flight.Departure;
-        ticketDetail.seatNumber = ticket.SeatNumber;
-        ticketDetail.bookingTime = ticket.BookingTime;
-        ticketDetail.contactDetails = ticket.ContactDetails;
+        if (flight is null)
+        {
+            return new TicketDetails();
+        }
+        var ticketDetail = new TicketDetails
+        {
+            Arrival = flight.Arrival,
+            Departure = flight.Departure,
+            SeatNumber = ticket.SeatNumber,
+            BookingTime = ticket.BookingTime,
+            ContactDetails = ticket.ContactDetails
+        };
         return ticketDetail;
     }
 
