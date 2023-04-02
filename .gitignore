@@ -3,3 +3,5 @@ backend/.idea
 frontend/.idea
 frontend/node_modules
 docker.prod.yml
+.env
+.env.prod

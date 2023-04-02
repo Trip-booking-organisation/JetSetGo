@@ -1,0 +1,42 @@
+@import "src/sass/variables";
+
+.printer-container {
+  padding-top: 12rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  .title {
+    text-align: center;
+    background: $gradient-blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .printer {
+      width: 80%;
+      height: 20px;
+      border: 5px solid $primary-color;
+      border-radius: 10px;
+      box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .tickets {
+    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}

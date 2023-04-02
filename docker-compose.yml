@@ -2,7 +2,7 @@ version: '3.8'
 services:
   jet-set-go-be:
     image: ${DOCKER_REGISTRY-}jet-set-go-be
-    container_name: jet-set-go-api
+    container_name: jet-set-go-be
     build: backend
     restart: on-failure
     ports:

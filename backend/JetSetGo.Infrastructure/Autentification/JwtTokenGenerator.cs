@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using JetSetGo.Application.Common.Interfaces.Autentification;
 using JetSetGo.Application.Common.Services;
+using JetSetGo.Domain.Users;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -19,7 +20,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         this._jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(Guid userID, string firstName, string secondName)
+    public string GenerateToken(Guid userID, string firstName, string secondName,string email,UserRole role)
     {
 
         var signingCredentials = new SigningCredentials(
@@ -28,9 +29,12 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             SecurityAlgorithms.HmacSha256);
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-            new Claim(JwtRegisteredClaimNames.FamilyName, secondName),
-            new Claim(JwtRegisteredClaimNames.Sub, userID.ToString()),
+            new Claim(CustomClaimTypes.GivenName, firstName),
+            new Claim(CustomClaimTypes.FamilyName, secondName),
+            new Claim(CustomClaimTypes.Email, email),
+            new Claim(CustomClaimTypes.Role, role.ToString()),
+            new Claim(CustomClaimTypes.Subject, userID.ToString()),
+           // new Claim(CustomClaimTypes.Subject, userID.ToString()),
         };
         var securityToken = new JwtSecurityToken(
             issuer:_jwtSettings.Issuer,
@@ -40,4 +44,5 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             signingCredentials:signingCredentials);
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
     }
+    
 }

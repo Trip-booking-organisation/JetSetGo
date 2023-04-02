@@ -1,0 +1,37 @@
+@import "../../../sass/mixins";
+@import "../../../sass/variables";
+
+.create-flight {
+  @include main-page;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  .stepper {
+    cursor: pointer;
+    margin-top: 8px;
+    padding: 1.2rem;
+    background-color: $white-color;
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    gap: 2rem;
+  }
+
+  .main-text {
+    background: $gradient-blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 2.5rem;
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    padding: .8rem;
+  }
+
+  .main-button {
+    width: 50%;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}

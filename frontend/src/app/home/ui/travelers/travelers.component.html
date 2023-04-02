@@ -1,0 +1,23 @@
+<div class="travelers container-main section">
+  <div class="section-container">
+    <h2>
+      Top travelers of this month!
+    </h2>
+    <div class="travelers-container grid">
+      <ng-container *ngFor="let traveler of travelers">
+        <div class="single-traveler" data-aos="fade-left" data-aos-duration="2000">
+          <img [src]="traveler.destinationImage" alt="dest" class="dest" loading="lazy"/>
+          <div class="traveler-details">
+            <div class="traveler-pic">
+              <img [src]="traveler.travelerImage" alt="traveler" class="traveler-image" loading="lazy"/>
+            </div>
+            <div class="traveler-name">
+              <span>{{traveler.travelerName}}</span>
+              <p>{{traveler.socialLink}}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

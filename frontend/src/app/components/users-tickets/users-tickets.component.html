@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="flight-card1" *ngFor="let ticket of usersTickets; let i=index" data-aos="fade-down" data-aos-duration="1000" [style.animation-delay]="i * 0.5 + 's'">
+        <div class="content-flight">
+          <div class="flight-details">
+            <div class="flight-info">
+                <img src="assets/images/departures.png" alt="Departure Icon">
+                <div class="flight-time">
+                    <div class="time">{{ticket.departure.time}}</div>
+                    <div class="date">{{ticket.departure.date}}</div>
+                    <div class="place">{{ticket.departure.address.city}}, {{ticket.departure.address.country}}</div>
+                    <div class="place">{{ticket.departure.address.airportName}}</div>
+                </div>
+            </div>
+            <div class="flight-divider">
+                <div class="divider-line"></div>
+                <img src="assets/images/mail.png" alt="Plane Icon">
+                <div class="divider-line"></div>
+            </div>
+            <div class="flight-info">
+                <img src="assets/images/arrivals.png" alt="Arrival Icon">
+                <div class="flight-time">
+                    <div class="time">{{ticket.arrival.time}}</div>
+                    <div class="date">{{ticket.arrival.date}}</div>
+                    <div class="place">{{ticket.arrival.address.city}}, {{ticket.arrival.address.country}}</div>
+                    <div class="place">{{ticket.arrival.address.airportName}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="one-price1">
+        Details
+        <div >
+          Seat number: <span>{{ticket.seatNumber}}</span>
+        </div>
+        <div >
+          Booking time: <span >{{ticket.bookingTime | date: 'HH:mm:ss'}}</span>
+        </div>
+        <div>
+          Contact details: <span>{{ticket.contactDetails}}</span>
+        </div>
+      </div>
+
+    </div>
+
+</div>

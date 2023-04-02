@@ -1,0 +1,89 @@
+<div class="search container-main section">
+  <div class="section-container grid" data-aos="fade-up" data-aos-duration="2000">
+    <div class="btn-multi flex">
+      <button class="btn-single" (click)="filterClass(classSeats[2])">
+        Economy
+      </button>
+      <button class="btn-single" (click)="filterClass(classSeats[1])">
+        Business Class
+      </button>
+      <button class="btn-single" (click)="filterClass(classSeats[0])">
+        First Class
+      </button>
+    </div>
+    <div class="search-inputs flex">
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>where_to_vote</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Location from</h4>
+          <mat-form-field>
+            <input type="text" placeholder="Where you want to go?" matInput [formControl]="flightControlFrom"
+                   [matAutocomplete]="autoFrom">
+            <mat-autocomplete #autoFrom="matAutocomplete">
+              <mat-option *ngFor="let flight of filteredFlightsFrom | async"
+                          [value]="flight.city + ', ' + flight.country">
+                {{ flight.city }}, {{ flight.country }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>location_on</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Location to</h4>
+          <mat-form-field>
+            <input type="text" placeholder="Where you want to go?" matInput [formControl]="flightControlTo"
+                   [matAutocomplete]="autoTo">
+            <mat-autocomplete #autoTo="matAutocomplete">
+              <mat-option *ngFor="let flight of filteredFlightsTo | async"
+                          [value]="flight.city + ', ' + flight.country">
+                {{ flight.city }}, {{ flight.country }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Travelers</h4>
+          <mat-form-field class="small-input">
+            <input type="number" placeholder="Add passenger number" matInput
+                   [formControl]="numberOfTravelers">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="single-input flex">
+        <div class="icon-div">
+          <mat-icon>calendar_today</mat-icon>
+        </div>
+        <div class="texts">
+          <h4>Date</h4>
+          <mat-form-field class="medium-input">
+            <input matInput [matDatepicker]="picker" [formControl]="date" placeholder="Add date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"/>
+            <mat-datepicker #picker/>
+          </mat-form-field>
+        </div>
+      </div>
+      <button (click)="searchFlights()" class="btn btn-block flex">
+        Search flights
+      </button>
+    </div>
+    <ng-container *ngIf="isLoading; else results">
+      <app-loading-animation/>
+    </ng-container>
+    <ng-template #results>
+      <div *ngFor="let result of searchResults">
+        <app-search-card [flight]="result" [numberOfTravelers]="numberOfTravelers.value" (deletedFlight)="deleteFlight($event)"/>
+      </div>
+    </ng-template>
+  </div>
+</div>

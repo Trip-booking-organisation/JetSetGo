@@ -1,0 +1,69 @@
+@import "src/sass/variables";
+
+.lounge {
+  .section-container {
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+
+    .img-div {
+      margin: auto;
+
+      img {
+        width: 100%;
+        max-width: 430px;
+      }
+    }
+
+    .text {
+      margin-left: 5rem;
+
+      h2 {
+        background: $gradient-blue;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .grids {
+        margin-top: 1rem;
+        gap: 1.5rem;
+
+        .single-grid {
+          .grid-title {
+            display: block;
+            padding-bottom: .5rem;
+            font-weight: 550;
+            color: $black-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 570px) {
+  .lounge {
+    .section-container {
+      .text {
+        .grids {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .lounge {
+    .section-container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-area: 1;
+
+      .text {
+        .grids {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+  }
+}

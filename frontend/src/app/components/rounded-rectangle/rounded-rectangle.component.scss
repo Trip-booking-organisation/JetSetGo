@@ -1,0 +1,45 @@
+@import "src/sass/variables";
+
+.rounded-rectangle {
+  height: 120%;
+  width: 70px;
+  border-radius: 20px;
+  margin-top: 1%;
+  border: none;
+  outline: none;
+  color: $black-color;
+  background: $white-color;
+  align-items: center; // Vertically centers the child elements
+  text-align: center; // Centers the text inside the div
+  transition: background-color 0.3s ease-in-out;
+  &:disabled{
+    background: $secondary-color;
+    color: $text-color;
+  }
+  &:disabled:hover{
+    cursor: not-allowed;
+    background: $secondary-color;
+    color: $text-color;
+  }
+  &:hover{
+    cursor: pointer;
+    background-color: $gray-background;
+  }
+
+  .text{
+    padding: 20px;
+  }
+
+}
+.rounded-rectangle-clicked{
+  background-color: $black-color;
+  color: $white-color;
+  &:hover{
+    cursor: pointer;
+    background-color: $sonic-silver;
+    color:$white-color;
+  }
+
+}
+
+

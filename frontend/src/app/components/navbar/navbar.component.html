@@ -1,0 +1,57 @@
+<div class="navbar flex">
+  <div class="navbar-one flex " [class.opacity-background]="!second_nav_visibility"
+       [class.visible-background]="second_nav_visibility">
+    <div (click)="navigateHome()" class="navigate-home" matTooltip="Navigate Home">
+      <mat-icon class="icon">airplanemode_active</mat-icon>
+    </div>
+    <div class="none flex">
+      <li class="flex">
+        <mat-icon (click)="checkAuthorisation()">vibration</mat-icon>
+        Support
+      </li>
+      <li class="flex">
+        <mat-icon>language</mat-icon>
+        Languages
+      </li>
+    </div>
+    <div class="gap__ flex">
+      <a *ngIf="!checkIfSignedIn() && second_nav_visibility" (click)="goToSignIn()">Sign In</a>
+      <a *ngIf="!checkIfSignedIn() && second_nav_visibility" (click)="goToRegister()">Sign Up</a>
+      <a *ngIf="checkIfSignedIn()" (click)="LogOut()">Log out</a>
+    </div>
+  </div>
+  <div [class]="addBackground" *ngIf="second_nav_visibility" style="padding-top: 1%">
+    <div class="logo-div">
+      <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
+    </div>
+    <div [class]="activeClass">
+      <ul class="menu flex" *ngIf="!isLogged">
+        <li (click)="navigate(data.routerLink)" class="list-item"
+            *ngFor="let data of navDataNoRegister">
+          {{data.label}}
+        </li>
+      </ul>
+      <ul class="menu flex" *ngIf="isLogged && userToken.role ==='Passenger'">
+        <li (click)="navigate(data.routerLink)" class="list-item"
+            *ngFor="let data of navDataPassenger">
+          {{data.label}}
+        </li>
+      </ul>
+      <ul class="menu flex" *ngIf="isLogged && userToken.role ==='Admin'">
+        <li (click)="navigate(data.routerLink)" class="list-item"
+            *ngFor="let data of navDataAdmin">
+          {{data.label}}
+        </li>
+      </ul>
+      <button class="btn btn-one flex">
+        Contact
+      </button>
+    </div>
+    <button class="btn btn-two flex">
+      Contact
+    </button>
+    <div class="toggle-icon" (click)="showNavBar()">
+      <mat-icon class="icon">menu</mat-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+@import "src/sass/variables";
+
+.travelers {
+  .section-container {
+    text-align: center;
+    width: 80vw;
+
+    h2 {
+      background: $gradient-blue;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .travelers-container {
+      margin-top: 1rem;
+      gap: 1.5rem;
+
+      .single-traveler {
+        position: relative;
+        height: 340px;
+        width: 90%;
+        overflow: hidden;
+        border-radius: 10rem;
+        gap: 1rem;
+        margin: auto;
+
+        .dest, .traveler-image, .traveler-name {
+          position: absolute;
+        }
+
+        .dest {
+          height: 100%;
+          width: 100%;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          object-fit: cover;
+        }
+
+        .traveler-image {
+          height: 50px;
+          width: 50px;
+          object-fit: cover;
+          border-radius: 50%;
+          bottom: 30px;
+          left: 40%;
+          transform: translateX(-50%);
+          border: 5px solid rgba(225, 225, 225, 0.635);
+          transition: $transition;
+          animation: animated 2.3s infinite;
+        }
+
+        @keyframes animated {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(8px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+
+        .traveler-name {
+          bottom: 0;
+          width: 100%;
+          height: max-content;
+          background: $white-color;
+          padding: 1.5rem 1rem;
+          transition: $transition;
+          animation: animated-border 2.3s infinite;
+
+          span {
+            display: block;
+            color: $black-color;
+            font-weight: 700;
+          }
+
+          p {
+            color: $primary-color;
+            font-style: italic;
+          }
+        }
+
+        @keyframes animated-border {
+          0% {
+            border-radius: 0;
+          }
+          50% {
+            border-radius: 3rem;
+          }
+          100% {
+            border-radius: 0;
+          }
+        }
+
+        &:hover {
+          .traveler-name {
+            bottom: 0;
+            transition: 1s ease-in-out;
+          }
+
+          .traveler-image {
+            bottom: 110px;
+            transition: 1s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .travelers {
+
+    .section-container {
+      .travelers-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .travelers {
+
+    .section-container {
+      .travelers-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .travelers {
+
+    .section-container {
+      .travelers-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+}

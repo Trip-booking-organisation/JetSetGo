@@ -1,0 +1,30 @@
+<form [formGroup]="stepControl" class="form-data">
+  <div class="main-text">
+    <h1>Additional info</h1>
+  </div>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter Departure Airport Name" matInput formControlName="departureAirportName"
+    >
+    <mat-error *ngIf="stepControl.get('departureAirportName')!.hasError('required')">
+      Departure Airport Name is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter Arrival Airport Name" matInput formControlName="arrivalAirportName"
+    >
+    <mat-error *ngIf="stepControl.get('arrivalAirportName')!.hasError('required')">
+      Arrival Airport Name is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="input-base">
+    <input type="text" placeholder="Enter Company Name" matInput formControlName="companyName"
+    >
+    <mat-error *ngIf="stepControl.get('companyName')!.hasError('required')">
+      Company Name is required
+    </mat-error>
+  </mat-form-field>
+  <div class="button-group">
+    <button (click)="emitEventBack()" class="btn butt-step">Back</button>
+    <button (click)="emitEventNext()" class="btn butt-step">Next</button>
+  </div>
+</form>

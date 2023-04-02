@@ -1,0 +1,3 @@
+<button [disabled]="!seat.available" class="rounded-rectangle" [ngClass]="clicked ? 'rounded-rectangle-clicked' : 'rounded-rectangle'" (click)="addSeat()">
+  <div class="text">{{seat.seatNumber}}</div>
+</button>

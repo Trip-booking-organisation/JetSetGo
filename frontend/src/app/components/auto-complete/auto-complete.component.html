@@ -1,0 +1,10 @@
+<mat-form-field>
+  <input type="text" placeholder="Where you want to go?" matInput [formControl]="control"
+         [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async" (onSelectionChange)="emitValue()"
+                [value]="option">
+      {{ option[propertyNameOne] }}, {{ option[propertyNameTwo] }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

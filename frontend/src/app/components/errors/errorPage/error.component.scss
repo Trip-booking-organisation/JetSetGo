@@ -1,0 +1,47 @@
+@import "../../../../sass/variables";
+
+.main-container {
+  padding-top: 10%;
+  padding-left: 5%;
+  display: flex;
+  height: 100vh;
+  background-color: #f2f2f2;
+  border-top-color: #000000;
+  border-top-style: solid;
+  border-top-width: 3px;
+
+}
+
+.text-container {
+  max-width: 60%;
+  padding-right: 15%;
+  padding-top: 6%;
+  display: flex;
+  color: $warning-trans;
+  align-items: flex-start;
+
+}
+
+.text{
+  padding: 5% 5% 5% 5%;
+  //background-color: #fff;
+  margin-top: 0; /* remove default margin */
+  vertical-align: top;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: $warning-trans;
+  //background-color: $warning-trans;
+  //border-radius: 5%;
+}
+
+.main-container:before {
+  transform: translate(100%, -50%);
+  right: 52%;
+}
+
+.picture {
+  padding-top: 5%;
+  width: 90%;
+  transition: transform 0.9s ease-in-out;
+  transition-delay: 0.6s;
+}
