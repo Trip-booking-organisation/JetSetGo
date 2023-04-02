@@ -24,7 +24,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   flightsAddresses = flightsAutoComplete;
   filteredFlightsTo!: Observable<FlightAddress[]>;
   filteredFlightsFrom!: Observable<FlightAddress[]>;
-  loadingState: string = 'init';
   isLoading!: boolean;
 
   constructor(private flightsService: FlightsService, private toast: ToastrService) {

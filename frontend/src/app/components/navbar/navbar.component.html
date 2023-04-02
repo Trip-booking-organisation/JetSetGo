@@ -25,9 +25,21 @@
       <img src="assets/air-company-logo.png" class="logo" alt="plane-logo"/>
     </div>
     <div [class]="activeClass">
-      <ul class="menu flex">
+      <ul class="menu flex" *ngIf="!isLogged">
+        <li (click)="navigate(data.routerLink)" class="list-item"
+            *ngFor="let data of navDataNoRegister">
+          {{data.label}}
+        </li>
+      </ul>
+      <ul class="menu flex" *ngIf="isLogged && userToken.role ==='Passenger'">
         <li (click)="navigate(data.routerLink)" class="list-item"
             *ngFor="let data of navDataPassenger">
+          {{data.label}}
+        </li>
+      </ul>
+      <ul class="menu flex" *ngIf="isLogged && userToken.role ==='Admin'">
+        <li (click)="navigate(data.routerLink)" class="list-item"
+            *ngFor="let data of navDataAdmin">
           {{data.label}}
         </li>
       </ul>

@@ -1,0 +1,36 @@
+<div class="container-main create-flight flex">
+  <mat-stepper linear class="stepper" #stepper
+               [animationDuration]="animationDuration"
+               [orientation]="(stepperOrientation | async)!"
+  >
+    <mat-step [stepControl]="stepOneForm">
+      <!-- Step One Form Here -->
+      <ng-template matStepLabel>Departure and Arrival Locations</ng-template>
+      <app-select-address [stepControl]="stepOneForm"
+                          (nextClick)="nextStep(stepper)"/>
+    </mat-step>
+    <mat-step [stepControl]="stepTwoForm">
+      <ng-template matStepLabel>Departure and Arrival Dates and Times</ng-template>
+      <app-select-dates [stepControl]="stepTwoForm"
+                        (nextClick)="nextStep(stepper)"
+                        (prevClick)="prevStep(stepper)"/>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Seats</ng-template>
+      <app-create-multi-seats (prevClick)="prevStep(stepper)" (nextClick)="seatsEvent($event,stepper)"/>
+    </mat-step>
+    <mat-step [stepControl]="stepFourForm">
+      <ng-template matStepLabel>Additional info</ng-template>
+      <app-additional-info [stepControl]="stepFourForm"
+                           (nextClick)="nextStep(stepper)"
+                           (prevClick)="prevStep(stepper)"/>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Finish</ng-template>
+      <div class="main-text">
+        <h1>You are done.Check steps one more time before submit!</h1>
+      </div>
+      <button class="btn main-button" (click)="createFlight()">Submit &#9992;</button>
+    </mat-step>
+  </mat-stepper>
+</div>

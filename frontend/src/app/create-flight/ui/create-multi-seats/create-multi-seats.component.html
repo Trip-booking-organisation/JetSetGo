@@ -1,0 +1,22 @@
+<div class="form-data">
+  <div class="main-text">
+    <h1>Add Seats</h1>
+  </div>
+  <app-create-seat (seatAdded)="addSeat($event)"/>
+  <div class="display-grid">
+    <ng-container *ngFor="let seat of seats;let i = index">
+      <div class="seat">
+        <h3>Seat {{i + 1}}</h3>
+        <p>Seat Number: {{seat.seatNumber}}</p>
+        <p>Available: {{seat.available ? 'Yes' : 'No'}}</p>
+        <p>Price: {{seat.price}}</p>
+        <p>Class: {{switchClassBack(seat.class)}}</p>
+        <button (click)="removeSeat(i)" class="btn-delete">Remove Seat</button>
+      </div>
+    </ng-container>
+  </div>
+  <div class="button-group">
+    <button (click)="emitEventBack()" class="btn butt-step">Back</button>
+    <button (click)="emitEventNext()" class="btn butt-step">Next</button>
+  </div>
+</div>

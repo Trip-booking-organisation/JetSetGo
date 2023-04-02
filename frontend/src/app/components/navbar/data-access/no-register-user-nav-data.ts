@@ -13,6 +13,6 @@ export const noRegisterUserNavData = [
   },
   {
     label: 'Seats',
-    routerLink: '/home'
+    routerLink: '/'
   }
 ]

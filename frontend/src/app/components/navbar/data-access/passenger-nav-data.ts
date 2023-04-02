@@ -4,20 +4,12 @@ export const navDataPassenger = [
     routerLink: '/'
   },
   {
-    label: 'About',
+    label: 'Flights',
     routerLink: '/flights'
   },
   {
-    label: 'Offers',
-    routerLink: '/home'
-  },
-  {
-    label: 'Seats',
-    routerLink: '/home'
-  },
-  {
-    label: 'Destination',
-    routerLink: '/home'
+    label: 'About',
+    routerLink: '/flights'
   },
   {
     label: 'Your Tickets',

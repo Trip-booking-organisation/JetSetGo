@@ -1,0 +1,81 @@
+@import "src/sass/variables";
+
+.form-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  .side-text {
+    font-weight: 500;
+    font-size: 17px;
+    color: #6892d0;
+  }
+
+  .main-text {
+    background: $gradient-blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 2.5rem;
+    margin-top: .8rem;
+  }
+
+  .input-base {
+    width: 60%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    background: transparent;
+
+    input {
+      padding: 0.7rem;
+    }
+  }
+
+  .butt-step-md {
+    margin-top: 1rem;
+    font-size: 17px;
+    width: 60%;
+  }
+
+  .seat {
+    background: $secondary-color;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 1.2rem;
+
+    button {
+      margin-top: 0.8rem;
+    }
+
+  }
+
+  .display-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .butt-step-lg {
+    font-size: 20px;
+    width: 60%;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+
+    .butt-step {
+      font-size: 20px;
+      width: 45%;
+    }
+  }
+}
+

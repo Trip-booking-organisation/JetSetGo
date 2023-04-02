@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
+import {Router} from '@angular/router';
 import {FlightResult} from "../../../shared/model/FlightResult";
+import {CurrentFlightService} from "../../../shared/services/current-flight.service";
 
 @Component({
   selector: 'app-search-card',
@@ -9,11 +11,21 @@ import {FlightResult} from "../../../shared/model/FlightResult";
 export class SearchCardComponent {
   @Input() flight!: FlightResult;
 
+
+  constructor(private flightSave: CurrentFlightService, private router: Router) {
+
+  }
+
   public filterSeats(classValue: string): number {
     const bs = this.flight.seats.filter(value => value.class.includes(classValue))
     if (bs.length === 0) {
       return 0
     }
     return bs.map(value => value.price)[0]
+  }
+
+  navigateToBook() {
+    this.flightSave.setCurrentFlight(this.flight)
+    this.router.navigate(['flight/seats']).then()
   }
 }
