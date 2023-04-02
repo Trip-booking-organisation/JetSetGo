@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {FlightsService} from "../shared/services/flights.service";
 import {ToastrService} from "ngx-toastr";
@@ -14,7 +14,7 @@ import {SearchQuery} from "./model/SearchQuery";
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  searchResults!: FlightResult[];
+  @Input() searchResults: FlightResult[] = [];
   searchResults$!: Subscription;
   classSeats: string[] = ['First', 'Business', 'Economy'];
   flightControlFrom = new FormControl();
@@ -83,12 +83,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
     this.searchResults$ = this.flightsService.searchFlights(query)
     .subscribe({
-      next: (data: any) => {
-        console.log(data)
+      next: (data: FlightResult[]) => {
         this.searchResults = data
         this.isLoading = false
       },
-      error: (data: any) => {
+      error: (_: any) => {
         this.toast.error("Search error occurs!", "Search")
         this.isLoading = false
       }

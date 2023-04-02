@@ -14,26 +14,18 @@ namespace JetSetGo.Application.Flights.Command.CreateFlight;
 public class CreateFlightCommandHandler : IRequestHandler<CreateFlightCommand,Result<Guid>>
 {
     private readonly IFlightRepository _flightRepository;
-    private readonly DateConverter _converter;
     private readonly ILogger<CreateFlightCommandHandler> _logger;
 
-    public CreateFlightCommandHandler(IFlightRepository flightRepository, DateConverter converter,
+    public CreateFlightCommandHandler(IFlightRepository flightRepository,
         ILogger<CreateFlightCommandHandler> logger)
     {
         _flightRepository = flightRepository;
-        _converter = converter;
         _logger = logger;
     }
 
     public async Task<Result<Guid>> Handle(CreateFlightCommand request, CancellationToken cancellationToken)
     {
         _logger.LogInformation($"{request.ToString()} is sended");
-        // var departureDate = _converter.Convert(request.Departure.Date);
-        // var arrivalDate = _converter.Convert(request.Arrival.Date);
-        // if (departureDate is null || arrivalDate is null)
-        // {
-        //     return Result.Fail<Guid>("Cannot convert date");
-        // }
         var arrival = new FlightDetails
         {
             Date = request.Arrival.Date,

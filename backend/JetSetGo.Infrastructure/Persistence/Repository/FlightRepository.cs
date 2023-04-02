@@ -42,6 +42,13 @@ public class FlightRepository : IFlightRepository
         return await query.ToListAsync(cancellationToken);
     }
 
+    public async Task<List<Flight>> GetAllFlights(CancellationToken cancellationToken)
+    {
+        var flights = _context.Flights.Where(flight => flight.Departure.Date >= new DateOnly());
+        return await flights
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task Update(Flight flight)
     {
         _context.Flights.Update(flight);

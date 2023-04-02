@@ -5,6 +5,7 @@ import {FlightSeatsComponent} from './ui/flight-seats/flight-seats.component';
 import {ComponentsModule} from "../components/components.module";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
+import {SearchModule} from "../search/search.module";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MatIconModule} from "@angular/material/icon";
     CommonModule,
     ComponentsModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    SearchModule
   ],
   exports: [FlightsComponent]
 })

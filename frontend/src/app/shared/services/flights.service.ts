@@ -23,4 +23,8 @@ export class FlightsService {
   public createFlight(flight: CreateFlight): Observable<any> {
     return this.httpClient.post(this.baseUrl, flight);
   }
+
+  public getAllFlights(): Observable<FlightResult[]> {
+    return this.httpClient.get<FlightResult[]>(this.baseUrl);
+  }
 }
