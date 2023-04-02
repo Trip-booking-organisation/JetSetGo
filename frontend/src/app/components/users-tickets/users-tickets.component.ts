@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersTicketResult } from 'src/app/shared/model/UsersTicketResult';
 import { TicketsService } from 'src/app/shared/services/ticketService';
 import { TokenStorageService } from 'src/app/shared/services/tokenStorage.service';
+import * as Aos from "aos";
 
 
 
@@ -12,8 +13,11 @@ import { TokenStorageService } from 'src/app/shared/services/tokenStorage.servic
 })
 export class UsersTicketsComponent implements OnInit {
   userId =  "1"
+  duration = 1000
   public usersTickets: UsersTicketResult[] = [];
-  constructor(private tokenStorageService: TokenStorageService, private ticketService: TicketsService){}
+  constructor(private tokenStorageService: TokenStorageService, private ticketService: TicketsService){
+    Aos.init({duration: 2000})
+  }
   ngOnInit(): void {
    this.userId = this.tokenStorageService.getUser().id
    this.ticketService.getAllTicketsByPassenger(this.userId).subscribe(res => {
@@ -22,7 +26,7 @@ export class UsersTicketsComponent implements OnInit {
   })
 
    //console.log(this.tokenStorageService.getUser().id)
-    
+
   }
 
   convertDateTimetoTime(bookingTime:Date){
@@ -33,4 +37,8 @@ export class UsersTicketsComponent implements OnInit {
 
   }
 
+  getAnimationDuration() {
+    this.duration = this.duration + 200
+    return this.duration
+  }
 }
