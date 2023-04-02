@@ -14,10 +14,12 @@
   transition: background-color 0.3s ease-in-out;
   &:disabled{
     background: $secondary-color;
+    color: $text-color;
   }
   &:disabled:hover{
     cursor: not-allowed;
     background: $secondary-color;
+    color: $text-color;
   }
   &:hover{
     cursor: pointer;
