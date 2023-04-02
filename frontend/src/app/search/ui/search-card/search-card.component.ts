@@ -63,7 +63,7 @@ export class SearchCardComponent {
             this.toastrService.success("You successfully deleted flight", "Success")
           },
           error: err => {
-            this.toastrService.success("Flight contains ticket", "Error")
+            this.toastrService.success("Flight cannot be rescheduled", "Error")
           }
         })
         this.deletedFlight.emit(this.flight.id)
