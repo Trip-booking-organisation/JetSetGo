@@ -1,3 +1,47 @@
-<div class="window">{{userId}}
+<div class="card">
+    <div class="flight-card" *ngFor="let ticket of usersTickets">
+        <div class="content-flight">
+          <div class="flight-details">
+            <div class="flight-info">
+                <img src="assets/images/departures.png" alt="Departure Icon">
+                <div class="flight-time">
+                    <p class="time">{{ticket.departure.time}}</p>
+                    <p class="date">{{ticket.departure.date}}</p>
+                    <p class="place">{{ticket.departure.address.city}}, {{ticket.departure.address.country}}</p>
+                    <p class="place">{{ticket.departure.address.airportName}}</p>
+                </div>
+            </div>
+            <div class="flight-divider">
+                <div class="divider-line"></div>
+                <img src="assets/images/mail.png" alt="Plane Icon">
+                <div class="divider-line"></div>
+            </div>
+            <div class="flight-info">
+                <img src="assets/images/arrivals.png" alt="Arrival Icon">
+                <div class="flight-time">
+                    <p class="time">{{ticket.arrival.time}}</p>
+                    <p class="date">{{ticket.arrival.date}}</p>
+                    <p class="place">{{ticket.arrival.address.city}}, {{ticket.arrival.address.country}}</p>
+                    <p class="place">{{ticket.arrival.address.airportName}}</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>    
+    <div class="one-price">
+        <h4 class="detail-text">Details</h4>
+        <div class="class-detail">
+          <p>Seat number: <span>{{ticket.seatNumber}}</span></p>
+        </div>
+        <div class="class-detail">
+          <p>Booking time: <span >{{ticket.bookingTime | date: 'HH:mm:ss'}}</span></p>
+        </div>
+        <div class="class-detail">
+          <p>Contact details: <span>{{ticket.contactDetails}}</span></p>
+        </div>
+      </div>
     
+
+    </div>
+
 </div>

@@ -18,7 +18,7 @@ public class GetAllQueryHandler: IRequestHandler<GetAllQuery,List<FlightResult>>
     public async Task<List<FlightResult>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         var list = await _flightRepository.GetAllFlights(cancellationToken);
-        var flightResults = list.Select(FlightMapper.MapFlightToResult).ToList();
+        var flightResults = list.Select(FlightMapper.MapFlightToResult).Take(request.Limit).ToList();
         return flightResults;
     }
 }

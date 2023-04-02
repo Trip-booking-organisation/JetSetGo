@@ -154,4 +154,8 @@
       margin-top: 1rem;
     }
   }
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }

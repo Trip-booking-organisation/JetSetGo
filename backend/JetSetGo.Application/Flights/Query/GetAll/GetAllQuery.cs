@@ -3,4 +3,4 @@ using MediatR;
 
 namespace JetSetGo.Application.Flights.Query.GetAll;
 
-public record GetAllQuery :IRequest<List<FlightResult>>;
+public record GetAllQuery(int Limit) :IRequest<List<FlightResult>>;

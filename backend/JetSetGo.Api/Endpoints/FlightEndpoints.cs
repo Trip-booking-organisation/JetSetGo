@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using backend.Dto.Requests.Flights;
 using backend.Helpers;
+using JetSetGo.Application.Common.Model;
 using JetSetGo.Application.Flights.Command.CreateFlight;
 using JetSetGo.Application.Flights.Command.DeleteFlight;
 using JetSetGo.Application.Flights.Query.GetAll;
@@ -31,7 +32,8 @@ public static class FlightEndpoints
 
     private static async Task<IResult> GetAllFlights(ISender sender)
     {
-        var flights = await sender.Send(new GetAllQuery());
+        int limit = 5;
+        var flights = await sender.Send(new GetAllQuery(limit));
         return Results.Ok(flights);
     }
     private static async Task<IResult> GetFlightById(ISender sender,Guid id)
@@ -53,7 +55,7 @@ public static class FlightEndpoints
         ,string cityTo,string countryTo, int passengersNumber, DateOnly date,ISender sender)
     {
         var query = new SearchFlightsQuery(cityFrom,countryFrom, cityTo,countryTo, passengersNumber, date);
-        var flights = await sender.Send(query);
+        IEnumerable<FlightResult> flights = await sender.Send(query);
         return Results.Ok(flights);
     }
 }

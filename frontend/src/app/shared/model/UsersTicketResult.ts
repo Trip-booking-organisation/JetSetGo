@@ -1,15 +1,12 @@
 import { Address } from "./Address";
+import { FlightDetails } from "./FlightDetails";
 
 export interface UsersTicketResult {
-    seatNumber: string,
-    bookingTime: Date,
-    contactDetails: string,
-    departureAddress: Address,
-    arrivalAddress: Address,
-    departureTime: Date,
-    arrivalTime: Date,
-    departureDate: Date,
-    arrivalDate: Date
+  contactDetails:string
+  seatNumber: string
+  bookingTime: Date
+  departure: FlightDetails
+  arrival: FlightDetails
     
   }
   
