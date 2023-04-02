@@ -7,6 +7,8 @@ import {ErrorComponent} from './components/errors/errorPage/error.component';
 import {FlightSeatsComponent} from "./flights/ui/flight-seats/flight-seats.component";
 import {UsersTicketsComponent} from './components/users-tickets/users-tickets.component';
 import {CreateFlightComponent} from "./create-flight/ui/create-flight.component";
+import {HasRoleGuard} from "./guards/roleGuard/has-role.guard";
+import {IsAuthentificatedGuard} from "./guards/authentificationGuard/is-authentificated.guard";
 
 
 const routes: Routes = [
@@ -42,7 +44,11 @@ const routes: Routes = [
   },
   {
     path: 'create-flight',
-    component: CreateFlightComponent
+    component: CreateFlightComponent,
+    canActivate: [IsAuthentificatedGuard, HasRoleGuard],
+    data: {
+      role: ["Admin"]
+    }
   }
 ];
 
