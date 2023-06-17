@@ -6,7 +6,7 @@ namespace JetSetGo.Infrastructure.Persistence.Repository;
 
 public class UserRepository : IUserRepository
 {
-    protected readonly JetSetGoContext DbContext;
+    private readonly JetSetGoContext DbContext;
 
     public UserRepository(JetSetGoContext dbContext)
     {
@@ -30,5 +30,11 @@ public class UserRepository : IUserRepository
     {
         var user = await DbContext.Users.FindAsync(id);
         return user;
+    }
+
+    public async Task<List<User>> GetAll()
+    {
+        var users = await DbContext.Users.ToListAsync();
+        return users;
     }
 }

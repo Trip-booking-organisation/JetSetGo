@@ -1,0 +1,17 @@
+<div class="main">
+  <h2 class="main-text">Generate you api key</h2>
+  <mat-form-field class="input-div">
+    <mat-label>API Key name</mat-label>
+    <input matInput placeholder="Enter a name" [formControl]="apikeyName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Expiration option</mat-label>
+    <mat-select [formControl]="expiration">
+      <mat-option value=false>No expiration</mat-option>
+      <mat-option value=true>Temporary</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="btn-div">
+    <button class="btn" (click)="onGenerate()" >Generate API key</button>
+  </div>
+</div>

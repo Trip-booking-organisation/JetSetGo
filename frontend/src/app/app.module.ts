@@ -14,6 +14,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {SearchModule} from "./search/search.module";
 import {UsersTicketsComponent} from './components/users-tickets/users-tickets.component';
 import {CreateFlightModule} from "./create-flight/create-flight.module";
+import {ApiKeyModule} from "./api-key/api-key.module";
 
 
 
@@ -27,6 +28,7 @@ import {CreateFlightModule} from "./create-flight/create-flight.module";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ApiKeyModule,
     HomeModule,
     FlightsModule,
     ComponentsModule,

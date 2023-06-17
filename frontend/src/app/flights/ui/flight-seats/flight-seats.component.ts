@@ -9,6 +9,8 @@ import {ToastrService} from "ngx-toastr";
 import {Seat} from "../../../shared/model/Seat";
 import {CurrentTicketsService} from "../../../shared/services/current-tickets.service";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {ProvideApiKeyComponent} from "./provide-api-key/provide-api-key.component";
 
 @Component({
   selector: 'app-flight-seats',
@@ -28,6 +30,7 @@ export class FlightSeatsComponent implements OnInit {
               private ticketService: TicketsService,
               private toasterService: ToastrService,
               private router: Router,
+              private dialog: MatDialog,
               private ticketsSave: CurrentTicketsService) {
   }
 
@@ -75,12 +78,16 @@ export class FlightSeatsComponent implements OnInit {
     const objects = this.listOfSeatNumbers
       .map((seatNumber, index) => ({seatNumber, contactDetails: this.listOfContacts[index]}));
     const newTickets = this.createRequest(objects);
-    this.ticketService.createTickets(newTickets).subscribe({
+    this.dialog.open(ProvideApiKeyComponent,{
+      width: '500px',
+      data:{tickets : newTickets}
+    })
+ /*   this.ticketService.createTickets(newTickets).subscribe({
       next: _ =>{
        this.ticketsSave.setCurrentTickets(newTickets);
        this.router.navigate(['your-tickets']).then()
     }
-    })
+    })*/
   }
 
   private createRequest(objects: { contactDetails: string; seatNumber: string }[]) {

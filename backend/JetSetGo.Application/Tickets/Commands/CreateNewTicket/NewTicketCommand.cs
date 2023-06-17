@@ -9,5 +9,6 @@ public record NewTicketCommand(
     string SeatNumber);
 
 public    record NewTicketsCommand(Guid FlightId,
+    string? ApiKey,
     List<NewTicketCommand> NewTickets,
     Guid PassengerId) : IRequest<Result<bool>>;

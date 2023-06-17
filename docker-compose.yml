@@ -7,6 +7,7 @@ services:
     restart: on-failure
     ports:
       - "5000:80"
+      - "7000:443"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     env_file:

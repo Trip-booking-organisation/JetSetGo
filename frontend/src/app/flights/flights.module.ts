@@ -12,10 +12,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { PlaneAnimationComponent } from './ui/plane-animation/plane-animation.component';
 import { TicketComponent } from './ui/ticket/ticket.component';
 import { TicketPrinterComponent } from './ui/ticket-printer/ticket-printer.component';
+import { ProvideApiKeyComponent } from './ui/flight-seats/provide-api-key/provide-api-key.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
-  declarations: [FlightsComponent, FlightSeatsComponent, PassengersComponent,PlaneAnimationComponent, TicketComponent, TicketPrinterComponent],
+  declarations: [FlightsComponent, FlightSeatsComponent, PassengersComponent,PlaneAnimationComponent, TicketComponent, TicketPrinterComponent, ProvideApiKeyComponent],
     imports: [
         CommonModule,
         ComponentsModule,
@@ -23,7 +26,9 @@ import { TicketPrinterComponent } from './ui/ticket-printer/ticket-printer.compo
         MatIconModule,
         MatInputModule,
         SearchModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatOptionModule,
+        MatSelectModule
     ],
   exports: [FlightsComponent]
 })

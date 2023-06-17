@@ -36,6 +36,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IFlightRepository, FlightRepository>();
         services.AddScoped<ITicketRepository, TicketRepository>();
+        services.AddScoped<IApikeyRepository, ApiKeyRepository>();
     }
     private static void AddEmail(this IServiceCollection services,IConfiguration builderConfiguration){
         services.Configure<EmailOptions>(options => builderConfiguration.GetSection("EmailOptions")

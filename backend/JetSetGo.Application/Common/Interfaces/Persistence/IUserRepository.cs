@@ -7,5 +7,6 @@ public interface IUserRepository
     Task<User> CreateAsync(User user);
     Task<User?> GetByEmail(string email);
     Task<User?> GetById(Guid id);
+    Task<List<User>> GetAll();
 
 }

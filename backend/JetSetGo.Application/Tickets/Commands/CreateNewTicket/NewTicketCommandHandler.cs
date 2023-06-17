@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using JetSetGo.Application.Common.Errors;
 using JetSetGo.Application.Common.Interfaces.Persistence;
+using JetSetGo.Domain.ApiKeys;
 using JetSetGo.Domain.Flights;
 using JetSetGo.Domain.Tickets;
 using MediatR;
@@ -12,12 +13,14 @@ public class NewTicketCommandHandler : IRequestHandler<NewTicketsCommand,Result<
     private readonly ITicketRepository _ticketRepository;
     private readonly IFlightRepository _flightRepository;
     private readonly IUserRepository _userRepository;
+    private readonly IApikeyRepository _apikeyRepository;
 
-    public NewTicketCommandHandler(ITicketRepository ticketRepository, IFlightRepository flightRepository, IUserRepository userRepository)
+    public NewTicketCommandHandler(ITicketRepository ticketRepository, IFlightRepository flightRepository, IUserRepository userRepository, IApikeyRepository apikeyRepository)
     {
         _ticketRepository = ticketRepository;
         _flightRepository = flightRepository;
         _userRepository = userRepository;
+        _apikeyRepository = apikeyRepository;
     }
 
     public async Task<Result<bool>> Handle(NewTicketsCommand request, CancellationToken cancellationToken)
@@ -55,22 +58,61 @@ public class NewTicketCommandHandler : IRequestHandler<NewTicketsCommand,Result<
 
     private async Task<Ticket?> CreateTicket(NewTicketCommand ticket, NewTicketsCommand request)
     {
-        var ticketRequest = InitializeTicket(ticket,request);
+        var ticketRequest = await InitializeTicket(ticket,request);
+        if (ticketRequest is null)
+            return null;
         var newTicket = await _ticketRepository.CreateTicket(ticketRequest);
         return newTicket;
     }
 
-    private static Ticket InitializeTicket(NewTicketCommand ticket, NewTicketsCommand request)
+    private async Task<Ticket?> InitializeTicket(NewTicketCommand ticket, NewTicketsCommand request)
     {
-        var ticketRequest = new Ticket
+        if (request.ApiKey is null)
         {
-            SeatNumber = ticket.SeatNumber,
-            BookingTime = DateTime.Now,
-            ContactDetails = ticket.ContactDetails,
-            PassengerId = request.PassengerId,
-            FlightId = request.FlightId
-        };
-        return ticketRequest;
+            var ticketRequest = new Ticket
+            {
+                SeatNumber = ticket.SeatNumber,
+                BookingTime = DateTime.Now,
+                ContactDetails = ticket.ContactDetails,
+                PassengerId = request.PassengerId,
+                FlightId = request.FlightId
+            };
+
+            return ticketRequest;
+        }
+        var apiKeySplit = request.ApiKey.Split(new string[] { "==" }, StringSplitOptions.None);
+        if (!await ValidateApiKey(apiKeySplit)) return null;
+        {
+            var ticketRequest = new Ticket
+            {
+                SeatNumber = ticket.SeatNumber,
+                BookingTime = DateTime.Now,
+                ContactDetails = ticket.ContactDetails,
+                PassengerId = Guid.Parse(apiKeySplit[1]),
+                FlightId = request.FlightId
+            };
+            return ticketRequest;
+        }
+
+    }
+
+    private async Task<bool> ValidateApiKey(IReadOnlyList<string> apiKeySplit)
+    {
+        var apiKey = await _apikeyRepository.GetByToken(Guid.Parse(apiKeySplit[0]));
+        if(apiKey is null)
+            return false;
+        
+        if (CheckExpirationDate(apiKey))
+            return false;
+            
+        return apiKey.UserId.ToString() == apiKeySplit[1];
+    }
+
+    private  bool CheckExpirationDate(ApiKey apiKey)
+    {
+        if (apiKey.HasExpiration)
+            return apiKey.ExpirationDate < DateTime.Now;
+        return true;
     }
 
     private bool CheckIfSeatExistsOnFlight(Flight flight,String seatNumber)

@@ -9,6 +9,7 @@ import {adminNavData} from "./data-access/admin-nav-data";
 import {ToastrService} from "ngx-toastr";
 import {ConfirmDialogData, ModalDialogComponent} from "../modal-dialog/modal-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {GenerateApiKeyComponent} from "../../api-key/generet-api-key/generate-api-key.component";
 
 @Component({
   selector: 'app-navbar',
@@ -111,5 +112,12 @@ export class NavbarComponent implements OnInit {
 
   navigateHome() {
     this.router.navigate(['']).then();
+  }
+
+  onGenerateAPIKey() {
+      this.dialog.open(GenerateApiKeyComponent,{
+        width: '500px',
+        height: '450px'
+      });
   }
 }

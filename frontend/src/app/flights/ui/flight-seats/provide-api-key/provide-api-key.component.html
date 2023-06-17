@@ -1,0 +1,10 @@
+<div class="main">
+  <h2 class="main-text">Please provide API key if you are buying tickets for someone else</h2>
+  <mat-form-field class="input-div">
+    <mat-label>API Key</mat-label>
+    <input matInput placeholder="Enter an API key" [formControl]="apiKey">
+  </mat-form-field>
+  <div class="btn-div">
+    <button class="btn" (click)="OnBuy()">Buy</button>
+  </div>
+</div>
